@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QOpenGLWidget" name="openGLWidget">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>0</y>
-      <width>1031</width>
-      <height>871</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
@@ -35,6 +25,16 @@
     </property>
     <property name="text">
      <string>COLOR</string>
+    </property>
+   </widget>
+   <widget class="oglwidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>0</y>
+      <width>1021</width>
+      <height>861</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -50,6 +50,14 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>oglwidget</class>
+   <extends>QWidget</extends>
+   <header>oglwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
