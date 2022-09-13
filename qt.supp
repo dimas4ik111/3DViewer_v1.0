@@ -1,0 +1,3812 @@
+{
+   92a640c38f2f775846d1e54736e18ea2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   fun:g_slice_alloc
+   fun:g_queue_new
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN22QGuiApplicationPrivate21createEventDispatcherEv
+   fun:_ZN23QCoreApplicationPrivate4initEv
+   fun:_ZN22QGuiApplicationPrivate4initEv
+   fun:_ZN19QApplicationPrivate4initEv
+}
+{
+   5878ac829b050301cd3e6fe5c952442e
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm26initializeJSONImporterPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   b21aebb909261dd20a970509c20b87ef
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeScopDetectionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   762182dbfea121bc5f5cdfe14d2d164c
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm29initializeFlattenSchedulePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   6118ddc5dc571013bc3270aaed23e9e2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+}
+{
+   76aa328a12d88413a506de6a5ff34b80
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_private_get
+   fun:g_thread_self
+   fun:g_main_context_acquire
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   fun:start_thread
+}
+{
+   e04456a7f8acc0b8791ab8f7c93f9cfb
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcDirCacheLoad
+   fun:FcDirCacheRead
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcConfigBuildFonts
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+}
+{
+   54eb4ecb91109617b55223963b2506b5
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+}
+{
+   f4296d6b4da4cab45f84169fc0e8d0a2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeCodeGenerationPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   04c52ef090e60e0e7876e507928324d3
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   b0aee14596a7b900d7c0276afd49b448
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm20initializeDeLICMPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   006aa66663683b5b6644093f963d3725
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XrmInternalStringToQuark
+   fun:_XlcGetCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+}
+{
+   34dc1fb7c6cee1043858e8698be51d9d
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm36initializeCFLAndersAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   580a69a1b2392336a3f56a7099072918
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm2cl14OptionCategory16registerCategoryEv
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   4788edd0d519d8b0ab4b15657c2568ae
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm2cl14OptionCategory16registerCategoryEv
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+}
+{
+   f544e4de880362608dedf6633ae03a28
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm35initializeIslAstInfoWrapperPassPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   d54d88d97c4678d9fe9000acb7eb5f70
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm25initializeScopInlinerPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   fbd4d4d070f987dd1ce9258789b5a0cd
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   8b824bddc70fc9ce23bc2e6784a01b94
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm25initializeLazyBFIPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm50initializeOptimizationRemarkEmitterWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeScopDetectionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   962396bcb633fae281de4548039a82ec
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   fun:_XlcResolveLocaleName
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   3c822e0a4442360c4ee2effcac02a5f6
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm26initializeDeadCodeElimPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   e7c50f944a2578fff5d47e7cc14141ba
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm22initializeSimplifyPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   cce182c79169932924ab8692b10e87f5
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dbus_register_shutdown_func
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   fun:_ZN7QObject5eventEP6QEvent
+   fun:_ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent
+   fun:_ZN23QCoreApplicationPrivate16sendPostedEventsEP7QObjectiP11QThreadData
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   fun:g_main_context_dispatch
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_iteration
+   fun:_ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE
+}
+{
+   9a3c1bcfafcd4f8a8165d22c6cbadd1a
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   6c7a19f176aa9607586678afa76faccc
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeRewriteByrefParamsPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   e8d71ab6613bb71981c1241d3fbbaeab
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeCodeGenerationPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+}
+{
+   84e6f1e63bf6a43d8cbfa3609f801079
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm29initializeCodePreparationPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   1292d5de44c3999da204c5923010a8be
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm39initializeDependenceInfoWrapperPassPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   151a60e9bfde1ee3201595fb7dd173a9
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm36initializeAssumptionCacheTrackerPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+}
+{
+   3a9fdff3eb0e9f0a362c33232f816461
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm33initializeScopInfoWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm39initializeDependenceInfoWrapperPassPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+}
+{
+   6489b22eed484ecf51a139de4a2bd53e
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeGlobalsAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   d935de383e3d521ca35d076a456f1777
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+{
+   26c656de42232253fc9249492c5d9051
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm26initializeJSONExporterPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   996e6984446f5967450bf4fb775b8cae
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+}
+{
+   803df215763ab52ab826501297437eb1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm29initializeFlattenSchedulePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   59e251b560d1c80aa2d2e9a8ca5479c0
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm2cl14OptionCategory16registerCategoryEv
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+}
+{
+   57d5369c60ab1c22f06b458087a02a04
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_private_get
+   fun:g_slice_alloc
+   fun:g_hash_table_new_full
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   obj:/usr/lib/x86_64-linux-gnu/ld-2.31.so
+}
+{
+   6f71ff3d32e49ed349ed00655e594873
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializePollyCanonicalizePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   c438649038b496edf175e9dd64e4dfaa
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm36initializeCFLSteensAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   eec12ed3c20e72cb1b913086ee990812
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeCallGraphWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeGlobalsAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+}
+{
+   6782457d7c54e3eb2ab683a8d0a93007
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+}
+{
+   96af7b43102c3a5607ea176068af851c
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+}
+{
+   36a15b53108bb1c341f0202d62e6b42f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_ZN4llvm13StringMapImpl15LookupBucketForENS_9StringRefE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   485fa8cb733e326f4fe17e9ab68f4f53
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm27initializeForwardOpTreePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   258db00a6971f869122f59d2f51c5a62
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm40initializeScalarEvolutionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializeSCEVAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+}
+{
+   1a8e0feaee63e4380dcdc69e6f9fb254
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializePruneUnprofitablePassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+}
+{
+   f34495c2e7b0b45561636f24645d6f07
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   84ff97b7982f183e773ebbe9489d72f3
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_private_get
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   fun:start_thread
+   fun:clone
+}
+{
+   e5517fce37aebd4d273f351e481442d5
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   a0f6076687d4d6f08717b846ac776878
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   538aa65fce77191caec98408a246ee2b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcAddLoader
+   fun:_XlcInitLoader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+   obj:/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqxcb.so
+}
+{
+   b54039302c3431d000d08e8d464fc282
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializePruneUnprofitablePassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+}
+{
+   a5b63f80617d4e9eb5e4dc997084fba0
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_map_object
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+   obj:*
+}
+{
+   4b9c103c597d205b560e5127cad1a374
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_ZN4llvm13StringMapImpl11RehashTableEj
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm20initializeDeLICMPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+}
+{
+   834017e8b48a2a7991dd5d8c0ff4098b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   obj:/usr/lib/x86_64-linux-gnu/ld-2.31.so
+}
+{
+   4509e8b12607915e804cabc4c47bf259
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   fun:allocate_dtv
+   fun:_dl_allocate_tls
+   fun:allocate_stack
+   fun:pthread_create@@GLIBC_2.2.5
+   fun:_ZN7QThread5startENS_8PriorityE
+   fun:_ZN15QDBusConnection10sessionBusEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.2.4
+   fun:_ZN13Ui_MainWindow7setupUiEP11QMainWindow
+   fun:_ZN10MainWindowC1EP7QWidget
+   fun:main
+}
+{
+   62e5170edb2daecbb02d0ccba45f6848
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_type_writer_recurse
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_header_set_field_basic
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_message_iter_append_basic
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+}
+{
+   770b3356e96d7c6de66e3dd325dc1e86
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   7c6e32f70b05deece68efbd8132a9d75
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializePolyhedralInfoPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   144a861255451a27b9d4081aa6dd2150
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_dl_check_map_versions
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   7340598b72e018c8726a2abdd8caedc7
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm35initializeMaximalStaticExpanderPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   57510780227a45882932e792a06b2c85
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+}
+{
+   808b6f65aeee7744fd2a538fd0c3b3c4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:FcStrSetAdd
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcGetDefaultLangs
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcFontSetList
+   fun:FcFontList
+   fun:_ZN19QFontconfigDatabase20populateFontDatabaseEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   fun:_ZN20QFontDatabasePrivate8findFontERK8QFontDefib
+   fun:_ZN20QFontDatabasePrivate4loadEPK12QFontPrivatei
+}
+{
+   4bb02134a3031e4d4548ffff7a1d3e9d
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm42initializePostDominatorTreeWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeRegionInfoPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   58dfd0eca3df60efb50e1e3e3dff960f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:XInitThreads
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+   obj:/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqxcb.so
+   fun:_ZN27QPlatformIntegrationFactory6createERK7QStringRK5QListIS0_ERiPPcS2_
+   fun:_ZN22QGuiApplicationPrivate25createPlatformIntegrationEv
+   fun:_ZN22QGuiApplicationPrivate21createEventDispatcherEv
+   fun:_ZN23QCoreApplicationPrivate4initEv
+   fun:_ZN22QGuiApplicationPrivate4initEv
+   fun:_ZN19QApplicationPrivate4initEv
+   fun:main
+}
+{
+   c6479ffd0468e85a8d09bcfeda99eb22
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm24initializeDumpModulePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   f5fa99f714bfa555330d2e4783eb60e4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:decompose_rpath
+   fun:cache_rpath
+   fun:cache_rpath
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+{
+   c3c592b3bd7cd062972a4a7f5ad92112
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm33initializeScopInfoWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm39initializeDependenceInfoWrapperPassPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+}
+{
+   16ec92d259c98279f8f1cdb450958a0f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm35initializeMaximalStaticExpanderPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   eec0ab0f1d5150f73ad009442384ef77
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_XlcCreateDefaultCharSet
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   7370395d0f7229e5c3bcb67f8c3487b7
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm22initializeSimplifyPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   30581f6990662017474e3dedceb750cf
+   Memcheck:Addr8
+   fun:strncmp
+   fun:is_dst
+   fun:_dl_dst_substitute
+   fun:fillin_rpath.isra.0
+   fun:decompose_rpath
+   fun:cache_rpath
+   fun:cache_rpath
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   dcc7f7e2b99aadc71c07d0dff44f07f2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm33initializeLoopInfoWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm40initializeScalarEvolutionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializeSCEVAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   acd944e307471fd6ecbd1ad15932c11e
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm25initializeLazyBFIPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm50initializeOptimizationRemarkEmitterWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeScopDetectionWrapperPassPassERNS_12PassRegistryE
+}
+{
+   da1bb42cd6b7a6ef66a5c921049cd3c4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_message_loader_queue_messages
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_connection_send_with_reply_and_block
+}
+{
+   0d595fd93628a2b714976d490ccd99f1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_message_new_error
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_connection_send_with_reply
+   fun:dbus_connection_send_with_reply_and_block
+   fun:dbus_bus_register
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   fun:_ZN7QObject5eventEP6QEvent
+   fun:_ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent
+   fun:_ZN23QCoreApplicationPrivate16sendPostedEventsEP7QObjectiP11QThreadData
+}
+{
+   f11058c89c0d4280c97491a6f737c283
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm42initializeTargetLibraryInfoWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+}
+{
+   3aab1c309c3f28d43a05d77490f802d4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeRewriteByrefParamsPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   236b7b045ebcc2eb60d236f00da4d69f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcDefaultSubstitute
+   fun:_ZNK19QFontconfigDatabase18fallbacksForFamilyERK7QStringN5QFont5StyleENS3_9StyleHintEN5QChar6ScriptE
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   fun:_ZN20QFontDatabasePrivate8findFontERK8QFontDefib
+   fun:_ZN20QFontDatabasePrivate4loadEPK12QFontPrivatei
+   fun:_ZNK12QFontPrivate15engineForScriptEi
+   fun:_ZNK12QFontMetrics6heightEv
+   fun:_ZN10QStatusBar8reformatEv
+   fun:_ZN10QStatusBar18setSizeGripEnabledEb
+}
+{
+   8adffd7974ec47782af3e3ee9945b892
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+   obj:/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqxcb.so
+   fun:_ZN27QPlatformIntegrationFactory6createERK7QStringRK5QListIS0_ERiPPcS2_
+   fun:_ZN22QGuiApplicationPrivate25createPlatformIntegrationEv
+}
+{
+   1f75964d8dd4e16d10cef0c88e2cd566
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_load_cache_lookup
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+}
+{
+   940213f0f91386763b8a611a831ef5d0
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+}
+{
+   14455ce31cbc902fa2c1e912ce70692a
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_close_worker
+   fun:_dl_close
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:dlerror_run
+   fun:free_mem
+   fun:__libc_freeres
+   fun:_vgnU_freeres
+   fun:__run_exit_handlers
+   fun:exit
+   fun:(below main)
+}
+{
+   98184b0ca02e50c5ba85c284313d6ebc
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_threads_init
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   fun:_ZN7QObject5eventEP6QEvent
+   fun:_ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent
+   fun:_ZN23QCoreApplicationPrivate16sendPostedEventsEP7QObjectiP11QThreadData
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   fun:g_main_context_dispatch
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_iteration
+}
+{
+   0c6913cd5e438461aa4201fa524c549c
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   obj:/usr/lib/x86_64-linux-gnu/ld-2.31.so
+}
+{
+   bcce7bd7661228c88a27ad07800a1ea1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:realloc
+   fun:g_realloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_hash_table_new_full
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   590239f4812cb4e5aba22f8e3a6f9f32
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm2cl5applyINS0_3optINS_13RegBankSelect4ModeELb0ENS0_6parserIS4_EEEENS0_18NumOccurrencesFlagEJNS0_11ValuesClassEEEEvPT_RKT0_DpRKT1_
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+}
+{
+   69d5a187b0d86ac41bc94557b4716722
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   fun:g_slice_alloc
+   fun:g_ptr_array_new
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   44c190c45a383cd33fe9fda5edbaa061
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm33initializeLoopInfoWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm40initializeScalarEvolutionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializeSCEVAAWrapperPassPassERNS_12PassRegistryE
+}
+{
+   17facba263458350a6ca566732cca843
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm42initializePostDominatorTreeWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeRegionInfoPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   38f515c047e24deb8232ffc6dec57940
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+}
+{
+   a6833688f394767c56f1a39beb7364f5
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:realloc
+   fun:g_realloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_ptr_array_add
+   fun:g_main_context_check
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_iteration
+   fun:_ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE
+   fun:_ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE
+   fun:_ZN16QCoreApplication4execEv
+   fun:main
+}
+{
+   81a626e51a5c5c49a5d96a9c2a2fe5c6
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:IceRegisterForProtocolSetup
+   fun:SmcOpenConnection
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZNK15QXcbIntegration28createPlatformSessionManagerERK7QStringS2_
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   fun:_ZN15QSessionManagerC1EP15QGuiApplicationR7QStringS3_
+   fun:_ZN22QGuiApplicationPrivate4initEv
+   fun:_ZN19QApplicationPrivate4initEv
+   fun:main
+}
+{
+   208bbe2642e7d8e757af1387efe8d8ec
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializePollyCanonicalizePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   35b06d15b35bed11987699097a2b1dba
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XrmInternalStringToQuark
+   fun:_XlcGetLocaleDataBase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+}
+{
+   2b2fb8947cfa42506681d5619cdf4674
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libz3.so.4
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+}
+{
+   ec791de4f6ed72df9e240dcb5b2c6327
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm36initializeTypeBasedAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   b06c36d0a365e00196a02d631bbce18b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm36initializeTypeBasedAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   74f4c6f7181bc751ec47897c75255b7e
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm18PassManagerBuilder18addGlobalExtensionENS0_16ExtensionPointTyESt8functionIFvRKS0_RNS_6legacy15PassManagerBaseEEE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+}
+{
+   e814c8171acbde0ed65c9d49cba60a07
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8LocaleConverters
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+}
+{
+   28408c1e2c383592a9240be793b68fa5
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   fun:_ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE17_M_realloc_insertIJRKS5_EEEvN9__gnu_cxx17__normal_iteratorIPS5_S7_EEDpOT_
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+}
+{
+   8b9667c38f4a4ffe14dd807c29f2e56f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeObjCARCAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   de4fc9a7c5542f62b47cb1377e452f3b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm12PassRegistry15getPassRegistryEv
+   fun:_ZN4llvm14PassNameParserC1ERNS_2cl6OptionE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   cc0de581e85c3594db5f90047e3d2ba3
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_iteration
+   fun:_ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE
+   fun:_ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE
+   fun:_ZN16QCoreApplication4execEv
+   fun:main
+}
+{
+   7205946d757a2dc5d63d0ee76d6c7268
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   fun:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_assignERKS4_
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+}
+{
+   84c91bf538e7fdc52c3379fbd5b7ae8f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:IceAuthFileName
+   fun:_IceGetPoValidAuthIndices
+   fun:IceOpenConnection
+   fun:SmcOpenConnection
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZNK15QXcbIntegration28createPlatformSessionManagerERK7QStringS2_
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   fun:_ZN15QSessionManagerC1EP15QGuiApplicationR7QStringS3_
+   fun:_ZN22QGuiApplicationPrivate4initEv
+   fun:_ZN19QApplicationPrivate4initEv
+   fun:main
+}
+{
+   2c7b4b1e97c62d25294e2c44e8df69af
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm36initializeAssumptionCacheTrackerPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   3d583ddeafe0b5abfbfa1bdbb0309d10
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+}
+{
+   0e87b2cd432513bcfa4c4369acaa19ea
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   fun:g_slice_alloc
+   fun:g_hash_table_new_full
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   obj:/usr/lib/x86_64-linux-gnu/ld-2.31.so
+}
+{
+   c92af1a19be72198bdbb3ad7c6b863ba
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+}
+{
+   ecf0ae9a04e5508848330e175a170380
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm44initializeTargetTransformInfoWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeIslScheduleOptimizerPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+}
+{
+   5c66226cb1b9acdfd605f3e6692c1dd9
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:open_path
+   fun:_dl_map_object
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   88c8d80766775a16267062adfc863de2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializePhiValuesWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   55cf074e6899dbab6f47ddd78e4d7df7
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+   obj:/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqxcb.so
+}
+{
+   dd96cdf049733f395024ac191cbcbe1d
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_string_copy_len
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_type_writer_write_basic
+   fun:dbus_message_iter_append_basic
+   fun:dbus_message_new_error
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_connection_send_with_reply
+   fun:dbus_connection_send_with_reply_and_block
+   fun:dbus_bus_register
+}
+{
+   1d5e9b810118ac0c24348b742a531db4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dbus_strdup
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   fun:_ZN7QObject5eventEP6QEvent
+   fun:_ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent
+   fun:_ZN23QCoreApplicationPrivate16sendPostedEventsEP7QObjectiP11QThreadData
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   fun:g_main_context_dispatch
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_iteration
+   fun:_ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE
+}
+{
+   a52f2c7957e5c583b2cd89ea4d230f05
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_hash_table_insert
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_source_attach
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN22QGuiApplicationPrivate21createEventDispatcherEv
+   fun:_ZN23QCoreApplicationPrivate4initEv
+   fun:_ZN22QGuiApplicationPrivate4initEv
+}
+{
+   3b7f02ac44cafef7e625ea2d3d0cb800
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm40initializeScopedNoAliasAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   edb2741a4249c38abec01b453f6172c4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dbus_register_shutdown_func
+   fun:dbus_message_unref
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_connection_send_with_reply_and_block
+   fun:dbus_bus_register
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   fun:_ZN7QObject5eventEP6QEvent
+   fun:_ZN16QCoreApplication15notifyInternal2EP7QObjectP6QEvent
+   fun:_ZN23QCoreApplicationPrivate16sendPostedEventsEP7QObjectiP11QThreadData
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   7b6485d8cbf169c59f2b52ee07239696
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_dl_check_map_versions
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+   obj:*
+   obj:*
+}
+{
+   a72448637f6f17ca313fdfd42e55fe8f
+   Memcheck:Addr8
+   fun:strncmp
+   fun:is_dst
+   fun:_dl_dst_count
+   fun:expand_dynamic_string_token
+   fun:fillin_rpath.isra.0
+   fun:decompose_rpath
+   fun:cache_rpath
+   fun:cache_rpath
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+}
+{
+   88aecb6807cae5e0710b7d822129e748
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   67b63a69af11a833a390c534471336e0
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+}
+{
+   dfe7708fee48d170186c740f4edb5726
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeCodeGenerationPassERNS_12PassRegistryE
+}
+{
+   f267ff34a1b810727c498582ab8a9720
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm26initializeDeadCodeElimPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   024dd7b03f553420010710bf25e682c6
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeCodegenCleanupPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   56ce3d191a305ea9cf14e89b5cdfbb0b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   cc5a25652e4c7aad8caec0f5c4ac83e2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcAddCharSet
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+}
+{
+   7158409f59ca3420817f07b6162dc30e
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:g_malloc0
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_hash_table_new_full
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   obj:/usr/lib/x86_64-linux-gnu/ld-2.31.so
+}
+{
+   e5602b59e97bf75f91ff2f86224e41a2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_dl_check_map_versions
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+   obj:/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+   obj:/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0
+}
+{
+   afcc37ff9ca80bb32f5ff6bd3641b6ac
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_message_loader_queue_messages
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_connection_send_with_reply_and_block
+   fun:dbus_bus_register
+}
+{
+   d99b1a650cbafcb454864107cdf4c4d6
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+}
+{
+   315cc8a98f9c413e29e6673eef9fc1f9
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_private_get
+   fun:g_main_context_dispatch
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_iteration
+   fun:_ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE
+   fun:_ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE
+   fun:_ZN7QThread4execEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   fun:start_thread
+}
+{
+   8107f04a70af685a9fd3b3a2287ce6c1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm36initializeCFLAndersAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   0ef04bcf2a3d25cdf9453c57f91f504f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm20initializeDeLICMPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   74dcf86ea75510a079b48881c4ca87a9
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+}
+{
+   f1e14e3a1b8af3f21b632b72a1fa49af
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:XrmGetStringDatabase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:XGetDefault
+   fun:_XcursorGetDisplayInfo
+   fun:XcursorGetDefaultSize
+   fun:XcursorLibraryLoadCursor
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+}
+{
+   d5cf7b5ddbb3871c3cb71b700331b6fb
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+}
+{
+   c384585db431ae19fdc14db77c7ec783
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm27initializeForwardOpTreePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+}
+{
+   c97fa9e05bb561bdbd6f5362cf4e683d
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializePolyhedralInfoPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   3c0113f2c51cd31bccac6d0625ce2163
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeScopDetectionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+}
+{
+   594f5ef71eeb70b7a59acde00870e1b6
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   fun:g_slice_alloc
+   fun:g_hash_table_new_full
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   cb100d11c2c8dc8ba298e7b045025f25
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   fun:g_slice_alloc
+   fun:g_slist_append
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   4b7469233c9c93d78be2edb88fee7fc0
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeDominatorTreeWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+}
+{
+   00b962446e1092a07a3939d6514f7dbb
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+}
+{
+   ad4b8b24364b7b5c234e725aabd7a3d2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcAddLoader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+   obj:/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqxcb.so
+   fun:_ZN27QPlatformIntegrationFactory6createERK7QStringRK5QListIS0_ERiPPcS2_
+}
+{
+   c13a9e226b22eeb818afd8607f1d7efa
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   fun:_ZNSt6vectorISt10unique_ptrIKN4llvm8PassInfoESt14default_deleteIS3_EESaIS6_EE17_M_realloc_insertIJS6_EEEvN9__gnu_cxx17__normal_iteratorIPS6_S8_EEDpOT_
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm26initializeJSONImporterPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   3e905fd668cc3bd080074a0f02a1f175
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeGlobalsAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   a92e04505c9dbb236c334ab5c55c81ca
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   fun:XML_ParseBuffer
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+}
+{
+   96c310b0cf755c8e5aa89793fbe7326e
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   fun:g_slice_alloc
+   fun:g_thread_self
+   fun:g_main_context_acquire
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN22QGuiApplicationPrivate21createEventDispatcherEv
+   fun:_ZN23QCoreApplicationPrivate4initEv
+   fun:_ZN22QGuiApplicationPrivate4initEv
+}
+{
+   b63788ecb021360670b58dbb3981fe3c
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+}
+{
+   997e4c40be3e13591dcabdf98511f227
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcAddCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+}
+{
+   d720033e1f5ab870332b0c64c9989014
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+}
+{
+   b198cbd4044d073fa0321386217e0b1b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:open_path
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+{
+   f741919d0cb4406478a4cfd4b9e92d8a
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QWidgetPrivate21setWindowTitle_helperERK7QString
+   fun:_ZN7QWidget6createEybb
+   fun:_ZN14QWidgetPrivate10setVisibleEb
+   fun:main
+}
+{
+   b196f56d2e3b458e1fba31d8c5cb92a7
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_string_copy_len
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_message_loader_queue_messages
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+}
+{
+   9d6b0799e3b8234e8397b71dfedd0031
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeCodeGenerationPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   a09379fc18dee5c31e8d4f4d4a93c7ec
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializePhiValuesWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+}
+{
+   0cd6cd0ebd816a71cb68f317a851937a
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   fun:XML_ParseBuffer
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+}
+{
+   cbc3d61a64753eeb562794177c5984a4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm40initializeScalarEvolutionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializeSCEVAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   6b8aa3cf91f1bd116d629cb1abc5f6ba
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm25initializeLazyBPIPassPassERNS_12PassRegistryE
+   fun:_ZN4llvm25initializeLazyBFIPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm50initializeOptimizationRemarkEmitterWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeScopDetectionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+}
+{
+   3d00db206aef3343ad5a66ebf1e1a2a4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:g_malloc
+   fun:g_slice_alloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   f138953e859014df189e7ec9c5bc6ad1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcFontSetList
+   fun:FcFontList
+   fun:_ZN19QFontconfigDatabase20populateFontDatabaseEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   fun:_ZN20QFontDatabasePrivate8findFontERK8QFontDefib
+   fun:_ZN20QFontDatabasePrivate4loadEPK12QFontPrivatei
+   fun:_ZNK12QFontPrivate15engineForScriptEi
+   fun:_ZNK12QFontMetrics6heightEv
+   fun:_ZN10QStatusBar8reformatEv
+}
+{
+   0129fe56e40faaf1dfcf9780e3e42574
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeRegionInfoPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+}
+{
+   f965b544de252276859e08c8f9063b87
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:g_malloc0
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_hash_table_new_full
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   c923efb3d68e9835bca0af90e0f3acee
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializeSCEVAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   b0cce01098028d544d26c3c101766f8b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_ZN4llvm13StringMapImpl11RehashTableEj
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   cc63e20e666949899686af7b251afb00
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm39initializeDependenceInfoWrapperPassPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   d1a9f2993ee257a3582ab621e9d5e5ba
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm2cl6Option11addArgumentEv
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+}
+{
+   ab8fc7cc0a1b5e60ee273ebfc81b6b63
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+}
+{
+   6e1eb31fa3cef965263e37ca2d52242f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8Converters
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+   fun:_ZN15QXcbIntegrationC1ERK5QListI7QStringERiPPc
+}
+{
+   ac3056e30eb69a165d575fbcb83a6db2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZNK4llvm17ManagedStaticBase21RegisterManagedStaticEPFPvvEPFvS1_E
+   fun:_ZN4llvm2cl14OptionCategory16registerCategoryEv
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   46a8f489519aa691d69b68dd7efb0893
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   cba9cdcdaf5afa96aaf9f2dd2bdcdb20
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm25initializeScopInlinerPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   77ab99746c25d3a33b5c9f70ece390c5
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   fun:_ZNSt8_Rb_treeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt4pairIKS5_jESt10_Select1stIS8_ESt4lessIS5_ESaIS8_EE22_M_emplace_hint_uniqueIJRKSt21piecewise_construct_tSt5tupleIJRS7_EESJ_IJEEEEESt17_Rb_tree_iteratorIS8_ESt23_Rb_tree_const_iteratorIS8_EDpOT_
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   f7b6e2e3329f44786dd14f2438b4c773
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm24initializeDumpModulePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   be8f7b239c30276cfdccf93a0c81c810
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm42initializeDominanceFrontierWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeRegionInfoPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   d14340819b8a28452f05a24900b50ac4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+}
+{
+   0336698cc3fd2e6391a6e458a6c8ce64
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeRegionInfoPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   04e2f557bbb0f6304e24b133356ba0bb
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm44initializeTargetTransformInfoWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeIslScheduleOptimizerPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+}
+{
+   8ac1e8e2e39948dce64becd5844d7cd5
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm50initializeOptimizationRemarkEmitterWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeScopDetectionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   1696bb245141bc2306480da01da3152b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeCodegenCleanupPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   e27d997320d086f1ea7b6b24d8155806
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XrmInternalStringToQuark
+   fun:_XlcGetCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+}
+{
+   2982b6e9edb43e347e6fd5623483aa68
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+}
+{
+   aaab743b014945db479756fecfb141e7
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm29initializeCodePreparationPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   0ba5b2a94b34d96c62e7ee2e4a8120ad
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeCodeGenerationPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+}
+{
+   f5a7e71e4f7061a2a6cf0671ab85aa17
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:g_malloc0
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_slice_alloc
+   fun:g_hash_table_new_full
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   obj:/usr/lib/x86_64-linux-gnu/ld-2.31.so
+}
+{
+   eb3c4211ef5a4e7e1af673cc61e2fb01
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm31initializeSCEVAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   d5999b220f83190a0b4de135dee61ed4
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   fun:_ZN4llvm12PassRegistry23addRegistrationListenerEPNS_24PassRegistrationListenerE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+}
+{
+   ee94dac1a671867ef7aff39a1d2fc20d
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+}
+{
+   49adf72a57eea4ab31676cf0e8bb9493
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeIslScheduleOptimizerPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   0f9ca80944ab24fcecd3a7c7f21d628b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm42initializeDominanceFrontierWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeRegionInfoPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   438aa62571f96c81922ef8eb38615656
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:g_malloc0
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_dispatch
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_main_context_iteration
+   fun:_ZN20QEventDispatcherGlib13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE
+   fun:_ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE
+   fun:_ZN16QCoreApplication4execEv
+   fun:main
+}
+{
+   1263513a424dfb8477bc606383864b3b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:add_to_global_resize
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+   obj:*
+   obj:*
+}
+{
+   cf311694267baf68aaaa811c4b34bea2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm50initializeOptimizationRemarkEmitterWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeScopDetectionWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   9b54e10079e51f45cd42ad9168f11e24
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm38initializeDominatorTreeWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   56963c585509d672c3a588828e8a0eb2
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_XrmInternalStringToQuark
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:XrmGetStringDatabase
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:XGetDefault
+   fun:_XcursorGetDisplayInfo
+   fun:XcursorGetDefaultSize
+   fun:XcursorLibraryLoadCursor
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+}
+{
+   0dfd03cafcc7d326c9c436ececf66f09
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm40initializeScopedNoAliasAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   4374f54c604eecddaec751db10801c0e
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:realloc
+   fun:g_realloc
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:g_hash_table_new_full
+   obj:/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.6600.8
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   obj:/usr/lib/x86_64-linux-gnu/ld-2.31.so
+}
+{
+   e89fd9feaeca4f39318f191168110c90
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:XmbTextListToTextProperty
+   fun:_ZN10QXcbWindow14setWindowTitleEPK14QXcbConnectionjRK7QString
+   fun:_ZN14QXcbConnection19getQtSelectionOwnerEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZN14QXcbConnection17initializeScreensEv
+   fun:_ZN14QXcbConnectionC1EP19QXcbNativeInterfacebjPKc
+}
+{
+   9f8400d3d7822798672b656beb6016b6
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+}
+{
+   a071fb3d7005e53c69a905acad7fa22f
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+}
+{
+   92ea614dbb2b6d8a22a47bd547636b5b
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm27initializeForwardOpTreePassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+{
+   c42aae72d02cb13c8b47332411d571c3
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm42initializeTargetLibraryInfoWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeBasicAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   3dc371dabb98dbe52f0c6e8a5a68ab53
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:_dl_map_object
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen@@GLIBC_2.2.5
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+}
+{
+   4afdf4638d0b16a9c821b4acba58bfe8
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+}
+{
+   ad111679593ed78ccd544468e7cfefc8
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_type_writer_recurse
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:_dbus_header_set_field_basic
+   fun:dbus_message_set_reply_serial
+   fun:dbus_message_new_error
+   obj:/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.19.13
+   fun:dbus_connection_send_with_reply
+   fun:dbus_connection_send_with_reply_and_block
+}
+{
+   8bbdb905f785214f35c64cb105e5342a
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeDependenceInfoPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm28initializeCodeGenerationPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+}
+{
+   26fd02c205d9956775fe01650ebe159d
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm26initializeJSONExporterPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   3e3f7b36645c96133ec4f06f7b78df37
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcStrSetAdd
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcGetDefaultLangs
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcFontSetList
+   fun:FcFontList
+   fun:_ZN19QFontconfigDatabase20populateFontDatabaseEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   fun:_ZN20QFontDatabasePrivate8findFontERK8QFontDefib
+   fun:_ZN20QFontDatabasePrivate4loadEPK12QFontPrivatei
+}
+{
+   1e6f893a023bb42b758d5473b9243d39
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm36initializeCFLSteensAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
+{
+   4019f563e33e6a60d6c54166f9b92ee1
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:g_malloc0
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4
+   fun:start_thread
+   fun:clone
+}
+{
+   c0d94a10827855eec2c8ec63d2b9c491
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   obj:/usr/lib/x86_64-linux-gnu/libexpat.so.1.6.12
+   fun:XML_ParseBuffer
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+}
+{
+   e447abff570cee9f8bcfcbeaa2f5a592
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeCallGraphWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeGlobalsAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   fa2412a2df7e568af17327261897e4d0
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:IceRegisterForProtocolSetup
+   fun:SmcOpenConnection
+   obj:/usr/lib/x86_64-linux-gnu/libQt6XcbQpa.so.6.2.4
+   fun:_ZNK15QXcbIntegration28createPlatformSessionManagerERK7QStringS2_
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   fun:_ZN15QSessionManagerC1EP15QGuiApplicationR7QStringS3_
+   fun:_ZN22QGuiApplicationPrivate4initEv
+   fun:_ZN19QApplicationPrivate4initEv
+   fun:main
+}
+{
+   b45e644e13e792beb5b798fccc9b6127
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:FcStrSetCreate
+   fun:FcGetDefaultLangs
+   obj:/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.0
+   fun:FcFontSetList
+   fun:FcFontList
+   fun:_ZN19QFontconfigDatabase20populateFontDatabaseEv
+   obj:/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.2.4
+   fun:_ZN20QFontDatabasePrivate8findFontERK8QFontDefib
+   fun:_ZN20QFontDatabasePrivate4loadEPK12QFontPrivatei
+   fun:_ZNK12QFontPrivate15engineForScriptEi
+   fun:_ZNK12QFontMetrics6heightEv
+}
+{
+   8c93cdd07c272443aabfcb065ec4b4f0
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm25initializeLazyBPIPassPassERNS_12PassRegistryE
+   fun:_ZN4llvm25initializeLazyBFIPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm50initializeOptimizationRemarkEmitterWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+}
+{
+   5be6ad0f7ee2db303bb8f96212cf3aa9
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm35initializeIslAstInfoWrapperPassPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   d0b57a836d0236eaf0d8d54e3a3448ce
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm26initializeJSONImporterPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   2b5082ee206af8e4d5906463ba4e1119
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   573c61203825f02afc70ee4d73afc961
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeIslScheduleOptimizerPassERNS_12PassRegistryE
+   fun:_ZN5polly21initializePollyPassesERN4llvm12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:call_init.part.0
+   fun:call_init
+   fun:_dl_init
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+}
+{
+   258ec93c826023686659b2e310217926
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:_ZN4llvm12PassRegistry12registerPassERKNS_8PassInfoEb
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeObjCARCAAWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm34initializeAAResultsWrapperPassPassERNS_12PassRegistryE
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-11.so.1
+   fun:__pthread_once_slow
+   fun:_ZN4llvm32initializeScopInfoRegionPassPassERNS_12PassRegistryE
+}
