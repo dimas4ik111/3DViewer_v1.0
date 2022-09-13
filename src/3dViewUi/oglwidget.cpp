@@ -15,8 +15,15 @@ oglwidget::~oglwidget()
 void oglwidget::initializeGL()
 {
     initializeOpenGLFunctions();
+    glClearColor(255, 255, 255, 1);  // color back?
+    //    initShaders();
+    //    initTextures();
     glEnable(GL_DEPTH_TEST);
-    glwidget = new QOpenGLWidget;
-//    glwidget->makeCurrent();
-    backGroundColor.setRgb(54, 23, 52);
+//    glwidget = new QOpenGLWidget;
+    //    backGroundColor.setRgb(54, 23, 52);
+}
+
+void oglwidget::paintGL()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

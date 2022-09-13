@@ -21,6 +21,7 @@ private:
     QOpenGLShaderProgram *model = nullptr;
     void draw();
     int faceAtPosition(const QPoint &pos);
+
     GLfloat rotationX;
     GLfloat rotationY;
     GLfloat rotationZ;
@@ -29,7 +30,7 @@ private:
 protected:
     void initializeGL() override;
 //    void resizeGL(int width, int height) override;
-//    void paintGL() override;
+    void paintGL() override;
 //    void mousePressEvent(QMouseEvent *event) override;
 //    void mouseMoveEvent(QMouseEvent *event) override;
 //    void mouseDoubleClickEvent(QMouseEvent *event) override;

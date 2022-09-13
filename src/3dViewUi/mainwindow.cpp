@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 //    oglwidget olgw;
 //    olgw.show();
+
 }
 
 MainWindow::~MainWindow()
