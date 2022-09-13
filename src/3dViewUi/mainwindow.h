@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QColorDialog>
-#include <QGLWidget>
+//#include <QGLWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,7 +18,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
