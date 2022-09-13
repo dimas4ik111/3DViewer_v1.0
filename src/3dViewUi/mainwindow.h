@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QColorDialog>
-//#include <QGLWidget>
+#include <oglwidget.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
