@@ -2,8 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QColorDialog>
-#include "oglwidget.h"
 
 extern "C" {
 #include "../backend/backend.h"
