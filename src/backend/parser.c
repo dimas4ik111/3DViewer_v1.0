@@ -1,9 +1,11 @@
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "backend.h"
 
 void s21_parse_file(char *file_path, s21_obj_data *data) {
+  setlocale(LC_NUMERIC, "C");
   FILE *file;
   char buff[1024];
   file = fopen(file_path, "r");
