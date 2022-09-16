@@ -14,6 +14,7 @@ void GLWidget::initSettings() {
     backgroundColor.setRgb(0, 0, 0);
     lineColor.setRgb(255, 127, 51);
     pointColor.setRgb(0, 214, 120);
+    orthoMode = 0; // По умолчанию перспектива
 }
 
 void GLWidget::initBuffers() {
@@ -57,10 +58,13 @@ static const char *vertexShaderSourceCore =
 //    "#version 150\n"
 //    "in vec4 vertex;\n"
     "attribute vec4 vertex;\n"
-    "uniform mat4 projMatrix;\n"
-    "uniform mat4 mvMatrix;\n"
+    "uniform mat4 projectionMatrix;\n"
+    "uniform mat4 cameraMatrix;\n"
+    "uniform mat4 rotateMatrix;\n"
+    "uniform mat4 moveMatrix;\n"
+    "uniform mat4 scaleMatrix;\n"
     "void main() {\n"
-    "   gl_Position = projMatrix * mvMatrix * vertex;\n"
+    "   gl_Position = projectionMatrix * cameraMatrix * rotateMatrix * moveMatrix * scaleMatrix * vertex;\n"
     "}\n";
 
 static const char *fragmentShaderSourceCore =
@@ -83,9 +87,11 @@ void GLWidget::initializeGL() {
     m_program->bindAttributeLocation("vertex", 0);
     m_program->link();
     m_program->bind();
-    m_projMatrixLoc = m_program->uniformLocation("projMatrix");
-    m_mvMatrixLoc = m_program->uniformLocation("mvMatrix");
-    m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
+    m_projectionMatrixLoc = m_program->uniformLocation("projectionMatrix");
+    m_cameraMatrixLoc = m_program->uniformLocation("cameraMatrix");
+    m_rotateMatrixLoc = m_program->uniformLocation("rotateMatrix");
+    m_moveMatrixLoc = m_program->uniformLocation("moveMatrix");
+    m_scaleMatrixLoc = m_program->uniformLocation("scaleMatrix");
     m_colorLoc = m_program->uniformLocation("color");
 
 //    vao.create();
@@ -96,8 +102,22 @@ void GLWidget::initializeGL() {
 
 
     // Our camera never changes in this example.
-    m_camera.setToIdentity();
-    m_camera.translate(0, 0, -5);
+    cameraMatrix.setToIdentity();
+//    cameraMatrix.translate(0, 0, -2);
+    if (orthoMode == 0) {
+        cameraMatrix.translate(0, 0, -4);
+    } else {
+        cameraMatrix.scale(0.5,0.5,0.5);
+    }
+
+//    cameraMatrix.ortho(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
+//    ortho(float left, float right, float bottom, float top, float nearPlane, float farPlane)
+//    cameraMatrix.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
+//    cameraMatrix.viewport()
+//    viewport(float left, float bottom, float width, float height, float nearPlane = 0.0f, float farPlane = 1.0f)
+    rotateMatrix.setToIdentity();
+    moveMatrix.setToIdentity();
+    scaleMatrix.setToIdentity();
 
 //    m_camera.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
 //    m_camera.translate(0, 0, -1.7);
@@ -112,17 +132,28 @@ void GLWidget::paintGL() {
     glEnable(GL_DEPTH_TEST);
 //    glEnable(GL_CULL_FACE);
 
-    m_world.setToIdentity();
-        m_world.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
-        m_world.rotate(m_yRot / 16.0f, 0, 1, 0);
-        m_world.rotate(m_zRot / 16.0f, 0, 0, 1);
+//    m_world.setToIdentity();
+//        m_world.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
+//        m_world.rotate(m_yRot / 16.0f, 0, 1, 0);
+//        m_world.rotate(m_zRot / 16.0f, 0, 0, 1);
 
 //    QOpenGLVertexArrayObject::Binder vaoBinder(&vao);
+
+// Примеры трансформаций
+//    rotateMatrix.rotate(5, 1, 0, 0);
+//    rotateMatrix.rotate(5, 0, 1, 0);
+//    rotateMatrix.rotate(5, 0, 0, 1);
+//    scaleMatrix.scale(0.75,0.75,0.75);
+//    moveMatrix.translate(0,0.1,0);
+
+
     m_program->bind();
-    m_program->setUniformValue(m_projMatrixLoc, m_proj);
-    m_program->setUniformValue(m_mvMatrixLoc, m_camera * m_world);
-    QMatrix3x3 normalMatrix = m_world.normalMatrix();
-    m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
+    m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
+    m_program->setUniformValue(m_cameraMatrixLoc, cameraMatrix);
+    m_program->setUniformValue(m_rotateMatrixLoc, rotateMatrix);
+    m_program->setUniformValue(m_moveMatrixLoc, moveMatrix);
+    m_program->setUniformValue(m_scaleMatrixLoc, scaleMatrix);
+
 
 //    vbo.bind();
 //    glDrawElements(GL_POINTS, 8, GL_UNSIGNED_INT, nullptr);
@@ -145,6 +176,9 @@ void GLWidget::paintGL() {
 
 // Функция resizeGL() вызывается один раз, перед paintGL(), но после того, как будет вызвана функция initializeGL(). Здесь настраивается область просмотра (viewport), проекция и прочие настройки, которые зависят от размера виджета.
 void GLWidget::resizeGL(int width, int height) {
-    m_proj.setToIdentity();
-    m_proj.perspective(45.0f, GLfloat(width) / height, 0.01f, 100.0f);
+    projectionMatrix.setToIdentity();
+    if (orthoMode == 0) {
+        projectionMatrix.perspective(45.0f, GLfloat(width) / height, 0.01f, 100.0f);
+    }
+//    projectionMatrix.viewport(0, 0, width*0.8, height*0.8, 0.1f, 4.0f);
 }

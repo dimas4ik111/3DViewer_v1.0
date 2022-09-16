@@ -20,6 +20,7 @@ public:
     QColor backgroundColor;
     QColor lineColor;
     QColor pointColor;
+    int orthoMode;
 
 protected:
     void initializeGL() override;
@@ -29,20 +30,23 @@ protected:
 private:
     void initSettings();
 
-    QOpenGLShaderProgram *m_program = nullptr;
-    int m_projMatrixLoc = 0;
-    int m_mvMatrixLoc = 0;
-    int m_normalMatrixLoc = 0;
+    int m_projectionMatrixLoc = 0;
+    int m_cameraMatrixLoc = 0;
+    int m_rotateMatrixLoc = 0;
+    int m_moveMatrixLoc = 0;
+    int m_scaleMatrixLoc = 0;
     int m_colorLoc = 0;
-    QMatrix4x4 m_proj;
-    QMatrix4x4 m_camera;
+
+    QOpenGLShaderProgram *m_program = nullptr;
     QOpenGLBuffer vbo;
     QOpenGLBuffer ebo;
     QOpenGLVertexArrayObject vao;
-    int m_xRot = 0;
-    int m_yRot = 0;
-    int m_zRot = 0;
-    QMatrix4x4 m_world;
+
+    QMatrix4x4 projectionMatrix;
+    QMatrix4x4 cameraMatrix;
+    QMatrix4x4 rotateMatrix;
+    QMatrix4x4 moveMatrix;
+    QMatrix4x4 scaleMatrix;
 };
 
 #endif // GLWIDGET_H
