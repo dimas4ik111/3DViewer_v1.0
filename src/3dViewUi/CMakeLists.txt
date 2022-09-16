@@ -20,8 +20,7 @@ set(PROJECT_SOURCES
         main.cpp
         mainwindow.h mainwindow.cpp
         mainwindow.ui
-        oglwidget.h oglwidget.cpp
-        logo.h logo.cpp
+        glwidget.h glwidget.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

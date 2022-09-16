@@ -1,0 +1,4 @@
+/Users/osgreywi/Desktop/git_hub_my/3DView/src/tmpQt/build-untitled-Desktop_x86_darwin_generic_mach_o_64bit-Debug/CMakeFiles/untitled.dir
+/Users/osgreywi/Desktop/git_hub_my/3DView/src/tmpQt/build-untitled-Desktop_x86_darwin_generic_mach_o_64bit-Debug/CMakeFiles/edit_cache.dir
+/Users/osgreywi/Desktop/git_hub_my/3DView/src/tmpQt/build-untitled-Desktop_x86_darwin_generic_mach_o_64bit-Debug/CMakeFiles/rebuild_cache.dir
+/Users/osgreywi/Desktop/git_hub_my/3DView/src/tmpQt/build-untitled-Desktop_x86_darwin_generic_mach_o_64bit-Debug/CMakeFiles/untitled_autogen.dir

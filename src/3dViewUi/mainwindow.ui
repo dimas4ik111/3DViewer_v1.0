@@ -14,29 +14,39 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="ButtonTest">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>810</y>
-      <width>201</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>START TEST</string>
-    </property>
-   </widget>
-   <widget class="oglwidget" name="ViewModel" native="true">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>30</y>
-      <width>1021</width>
-      <height>831</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QSlider" name="xSlider">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QSlider" name="ySlider">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="GLWidget" name="OGLwidget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QSlider" name="zSlider">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -52,9 +62,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>oglwidget</class>
+   <class>GLWidget</class>
    <extends>QWidget</extends>
-   <header>oglwidget.h</header>
+   <header>glwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

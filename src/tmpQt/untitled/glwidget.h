@@ -21,6 +21,7 @@ public:
     QColor lineColor;
     QColor pointColor;
     int orthoMode;
+    QOpenGLShaderProgram *m_program = nullptr;
 
 protected:
     void initializeGL() override;
@@ -37,7 +38,6 @@ private:
     int m_scaleMatrixLoc = 0;
     int m_colorLoc = 0;
 
-    QOpenGLShaderProgram *m_program = nullptr;
     QOpenGLBuffer vbo;
     QOpenGLBuffer ebo;
     QOpenGLVertexArrayObject vao;

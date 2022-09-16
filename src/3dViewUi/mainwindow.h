@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "glwidget.h"
 
 extern "C" {
 #include "../backend/backend.h"
