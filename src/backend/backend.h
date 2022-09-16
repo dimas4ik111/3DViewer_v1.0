@@ -1,22 +1,14 @@
 #ifndef SRC_BACKEND_BACKEND_H_
 #define SRC_BACKEND_BACKEND_H_
 
-typedef struct s21_vertex {
-  float x;
-  float y;
-  float z;
-} s21_vertex;
-
-typedef struct s21_polygon {
-  unsigned int *points;
-  unsigned int num_of_points;
-} s21_polygon;
+#define S21_MEMORY_BLOCK_SIZE 128U
+#define S21_MEMORY_BLOCK_SIZE_F 256U
 
 typedef struct s21_obj_data {
   unsigned int num_of_v;
   unsigned int num_of_f;
-  s21_vertex *array_of_v;
-  s21_polygon *array_of_f;
+  float *array_of_v;
+  unsigned int *array_of_f;
 } s21_obj_data;
 
 typedef enum s21_boolean {
