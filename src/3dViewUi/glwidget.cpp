@@ -131,10 +131,10 @@ void GLWidget::paintGL() {
     glEnable(GL_DEPTH_TEST);
 //    glEnable(GL_CULL_FACE);
 
-//    m_world.setToIdentity();
-//        m_world.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
-//        m_world.rotate(m_yRot / 16.0f, 0, 1, 0);
-//        m_world.rotate(m_zRot / 16.0f, 0, 0, 1);
+    rotateMatrix.setToIdentity();
+    rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
+    rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
+    rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
 
 //    QOpenGLVertexArrayObject::Binder vaoBinder(&vao);
 
@@ -144,7 +144,6 @@ void GLWidget::paintGL() {
 //    rotateMatrix.rotate(5, 0, 0, 1);
 //    scaleMatrix.scale(0.75,0.75,0.75);
 //    moveMatrix.translate(0,0.1,0);
-
 
     m_program->bind();
     m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
@@ -207,8 +206,7 @@ void GLWidget::setXRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != m_xRot) {
         m_xRot = angle;
-//        rotateMatrix.setToIdentity();
-        rotateMatrix.rotate(180.0f - (angle / 16.0f), 1, 0, 0);
+//        rotateMatrix.rotate(180.0f - (angle / 16.0f), 1, 0, 0);
         emit xRotationChanged(angle);
         update();
     }
@@ -219,8 +217,7 @@ void GLWidget::setYRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != m_yRot) {
         m_yRot = angle;
-//        rotateMatrix.setToIdentity();
-        rotateMatrix.rotate(angle / 16.0f, 0, 1, 0);
+//        rotateMatrix.rotate(angle / 16.0f, 0, 1, 0);
         emit yRotationChanged(angle);
         update();
     }
@@ -231,8 +228,7 @@ void GLWidget::setZRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != m_zRot) {
         m_zRot = angle;
-//        rotateMatrix.setToIdentity();
-        rotateMatrix.rotate(angle / 16.0f, 0, 0, 1);
+//        rotateMatrix.rotate(angle / 16.0f, 0, 0, 1);
         emit zRotationChanged(angle);
         update();
     }
