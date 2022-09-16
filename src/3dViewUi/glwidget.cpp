@@ -6,10 +6,6 @@ GLWidget::GLWidget(QWidget *parent)
     initSettings();
 }
 
-GLWidget::~GLWidget() {
-
-}
-
 void GLWidget::initSettings() {
     backgroundColor.setRgb(0, 0, 0);
     lineColor.setRgb(255, 127, 51);
@@ -116,6 +112,9 @@ void GLWidget::initializeGL() {
 //    cameraMatrix.viewport()
 //    viewport(float left, float bottom, float width, float height, float nearPlane = 0.0f, float farPlane = 1.0f)
     rotateMatrix.setToIdentity();
+//    rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
+//    rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
+//    rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
     moveMatrix.setToIdentity();
     scaleMatrix.setToIdentity();
 
@@ -132,20 +131,17 @@ void GLWidget::paintGL() {
     glEnable(GL_DEPTH_TEST);
 //    glEnable(GL_CULL_FACE);
 
-//    m_world.setToIdentity();
-//        m_world.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
-//        m_world.rotate(m_yRot / 16.0f, 0, 1, 0);
-//        m_world.rotate(m_zRot / 16.0f, 0, 0, 1);
+    rotateMatrix.setToIdentity();
+    rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
+    rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
+    rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
 
 //    QOpenGLVertexArrayObject::Binder vaoBinder(&vao);
 
 // Примеры трансформаций
-//    rotateMatrix.rotate(5, 1, 0, 0);
-//    rotateMatrix.rotate(5, 0, 1, 0);
-//    rotateMatrix.rotate(5, 0, 0, 1);
-//    scaleMatrix.scale(0.75,0.75,0.75);
-//    moveMatrix.translate(0,0.1,0);
+//  scaleMatrix.scale(0.75,0.75,0.75);
 
+//  moveMatrix.translate(0,0,0);
 
     m_program->bind();
     m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
@@ -182,3 +178,106 @@ void GLWidget::resizeGL(int width, int height) {
     }
 //    projectionMatrix.viewport(0, 0, width*0.8, height*0.8, 0.1f, 4.0f);
 }
+
+// --------------------------------------------------------------------------
+
+GLWidget::~GLWidget()
+{
+    cleanup();
+}
+
+//QSize GLWidget::sizeHint() const
+//{
+//    return QSize(400, 400);
+//}
+
+static void qNormalizeAngle(int &angle)
+{
+    while (angle < 0)
+        angle += 360 * 16;
+    while (angle > 360 * 16)
+        angle -= 360 * 16;
+}
+
+static void qNormalizeStep(int &step) {
+    while (step < 0) {
+        step += 1;
+    }
+    while (step > 0) {
+        step -= 1;
+    }
+}
+
+void GLWidget::setXMove(int step) {
+    qNormalizeStep(step);
+    if (step != m_xMove) {
+        m_xMove = step;
+        emit xMoveChanged(step);
+        update();
+    }
+}
+
+void GLWidget::setXRotation(int angle)
+{
+    qNormalizeAngle(angle);
+    if (angle != m_xRot) {
+        m_xRot = angle;
+        emit xRotationChanged(angle);
+        update();
+    }
+}
+
+void GLWidget::setYRotation(int angle)
+{
+    qNormalizeAngle(angle);
+    if (angle != m_yRot) {
+        m_yRot = angle;
+//        rotateMatrix.rotate(angle / 16.0f, 0, 1, 0);
+        emit yRotationChanged(angle);
+        update();
+    }
+}
+
+void GLWidget::setZRotation(int angle)
+{
+    qNormalizeAngle(angle);
+    if (angle != m_zRot) {
+        m_zRot = angle;
+//        rotateMatrix.rotate(angle / 16.0f, 0, 0, 1);
+        emit zRotationChanged(angle);
+        update();
+    }
+}
+
+void GLWidget::cleanup()
+{
+    if (m_program == nullptr)
+        return;
+    makeCurrent();
+    vbo.destroy();
+    ebo.destroy();
+    delete m_program;
+    m_program = nullptr;
+    doneCurrent();
+}
+
+void GLWidget::mousePressEvent(QMouseEvent *event)
+{
+    m_lastPos = event->position().toPoint();
+}
+
+void GLWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    int dx = event->position().toPoint().x() - m_lastPos.x();
+    int dy = event->position().toPoint().y() - m_lastPos.y();
+
+    if (event->buttons() & Qt::LeftButton) {
+        setXRotation(m_xRot + 8 * dy);
+        setYRotation(m_yRot + 8 * dx);
+    } else if (event->buttons() & Qt::RightButton) {
+        setXRotation(m_xRot + 8 * dy);
+        setZRotation(m_zRot + 8 * dx);
+    }
+    m_lastPos = event->position().toPoint();
+}
+
