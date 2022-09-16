@@ -1,11 +1,16 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <QFileDialog>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {  
     ui->setupUi(this);
+
+    connect(ui->openObjButton, SIGNAL(clicked()), this, SLOT(handleOpenFile()));
+
     ui->xSlider->setRange(0, 360 * 16);
     ui->xSlider->setSingleStep(16);
     ui->xSlider->setPageStep(15 * 16);
@@ -36,6 +41,40 @@ MainWindow::MainWindow(QWidget *parent)
     ui->xText->setText(QString::number(0));
     ui->yText->setText(QString::number(0));
     ui->zText->setText(QString::number(0));
+}
+
+void MainWindow::handleOpenFile() {
+    // Определить класс диалогового окна файла
+    QFileDialog *fileDialog = new QFileDialog(this);
+    // определить заголовок файла
+    fileDialog-> setWindowTitle (tr ("Открыть изображение"));
+    // Установить путь к файлу по умолчанию
+    //    fileDialog->setDirectory("");
+    // Установить фильтр файлов
+    fileDialog->setNameFilter(tr("(*.obj)"));
+    // Настройка позволяет выбрать несколько файлов, по умолчанию используется только один файл QFileDialog :: ExistingFiles
+    //fileDialog->setFileMode(QFileDialog::ExistingFiles);
+    // Установить режим просмотра
+    fileDialog->setViewMode(QFileDialog::Detail);
+    // выводим путь ко всем выбранным файлам
+    QStringList fileNames;
+    if(fileDialog->exec())
+    {
+       fileNames = fileDialog->selectedFiles();
+    }
+
+    if (fileNames.size() > 0) {
+        QString fileName = fileNames.at(0);
+        qDebug() << fileName;
+        QByteArray ba = fileName.toLocal8Bit();
+        char *input = ba.data();
+        s21_parse_file(input, &ui->OGLwidget->rawObjData);
+        ui->OGLwidget->initBuffers();
+    }
+
+//    for(auto tmp:fileNames)
+//    qDebug()<<tmp;
+
 }
 
 MainWindow::~MainWindow()

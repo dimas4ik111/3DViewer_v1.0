@@ -13,7 +13,7 @@ void GLWidget::initSettings() {
     orthoMode = 0; // По умолчанию перспектива
 }
 
-void GLWidget::initBuffers() {
+void GLWidget::testBuffers() {
     QList<GLfloat> m_data;
 
     m_data.push_back(1);m_data.push_back(-1);m_data.push_back(-1);
@@ -47,6 +47,30 @@ void GLWidget::initBuffers() {
     ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     ebo.allocate(inds, 72 * sizeof(GLuint));
 
+}
+
+void GLWidget::initBuffers() {
+
+    vbo = QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+    vbo.create();
+    vbo.bind();
+    vbo.setUsagePattern(QOpenGLBuffer::DynamicDraw);
+    vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
+    qDebug()<<rawObjData.num_of_v;
+    qDebug()<<rawObjData.array_of_v;
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
+
+    ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+    ebo.create();
+    ebo.bind();
+    ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
+    ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
+    qDebug()<<rawObjData.num_of_f;
+    qDebug()<<rawObjData.array_of_f;
+
+//    update();
+    m_program->release();
 }
 
 // код веришнного шейдера на GLSL
@@ -93,7 +117,7 @@ void GLWidget::initializeGL() {
 //    vao.create();
 //    QOpenGLVertexArrayObject::Binder vaoBinder(&vao);
 
-    initBuffers();
+//    testBuffers();
 
 
 
@@ -121,7 +145,7 @@ void GLWidget::initializeGL() {
 //    m_camera.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
 //    m_camera.translate(0, 0, -1.7);
 
-    m_program->release();
+//    m_program->release();
 }
 
 // Функция paintGL() вызывается всякий раз, когда возникает необходимость перерисовать содержимое виджета.
@@ -151,7 +175,7 @@ void GLWidget::paintGL() {
     m_program->setUniformValue(m_scaleMatrixLoc, scaleMatrix);
 
 
-//    vbo.bind();
+//    vao.bind();
 //    glDrawElements(GL_POINTS, 8, GL_UNSIGNED_INT, nullptr);
     m_program->setUniformValue(m_colorLoc, pointColor);
 
@@ -256,6 +280,7 @@ void GLWidget::cleanup()
     makeCurrent();
     vbo.destroy();
     ebo.destroy();
+    s21_destroy_obj_data(&rawObjData);
     delete m_program;
     m_program = nullptr;
     doneCurrent();
