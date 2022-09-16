@@ -18,11 +18,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS OpenGLWidgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
+        mainwindow.h mainwindow.cpp
         mainwindow.ui
-        oglwidget.h
-        oglwidget.cpp
+        glwidget.h glwidget.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -10,4 +10,6 @@
 
 Suite *parse_file_suite(void);
 
+void test_parser(char *obj_path);
+
 #endif  // SRC_CHECK_TEST_H_

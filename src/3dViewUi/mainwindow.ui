@@ -6,126 +6,277 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1250</width>
-    <height>922</height>
+    <width>1683</width>
+    <height>1083</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="ButtonTest">
+   <widget class="GLWidget" name="OGLwidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>1351</width>
+      <height>1001</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>810</y>
-      <width>201</width>
-      <height>61</height>
+      <y>870</y>
+      <width>231</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>START TEST</string>
+     <string>Reset settings</string>
     </property>
    </widget>
-   <widget class="oglwidget" name="ViewModel" native="true">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>30</y>
-      <width>1021</width>
-      <height>831</height>
+      <x>0</x>
+      <y>0</y>
+      <width>242</width>
+      <height>149</height>
      </rect>
     </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Rotate</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>X</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="xSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="xText"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Y</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="ySlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="yText"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Z</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="zSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="zText"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
-   <widget class="QScrollBar" name="verticalScrollBar">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>350</y>
-      <width>16</width>
-      <height>160</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
-   <widget class="QScrollBar" name="horizontalScrollBar">
+   <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
-      <width>160</width>
-      <height>16</height>
+      <y>940</y>
+      <width>231</width>
+      <height>81</height>
      </rect>
     </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
+    <property name="text">
+     <string>Open file</string>
     </property>
    </widget>
-   <widget class="QSlider" name="verticalSlider">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>620</y>
-      <width>22</width>
-      <height>160</height>
+      <x>0</x>
+      <y>160</y>
+      <width>242</width>
+      <height>152</height>
      </rect>
     </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>200</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;horizontal&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>300</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;vertical&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>570</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;zoom&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>24</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Move</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>X</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="horizontalSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Y</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="horizontalSlider_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_2"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLabel" name="label_10">
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Z</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="horizontalSlider_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_3"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -133,7 +284,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1250</width>
+     <width>1683</width>
      <height>22</height>
     </rect>
    </property>
@@ -142,9 +293,9 @@ p, li { white-space: pre-wrap; }
  </widget>
  <customwidgets>
   <customwidget>
-   <class>oglwidget</class>
+   <class>GLWidget</class>
    <extends>QWidget</extends>
-   <header>oglwidget.h</header>
+   <header>glwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
