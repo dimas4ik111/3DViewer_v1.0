@@ -23,6 +23,12 @@ public:
     QColor pointColor;
     int orthoMode;
 
+    int m_xRot = 0;
+    int m_yRot = 0;
+    int m_zRot = 0;
+
+    int m_xMove = 0;
+
 protected:
     void initializeGL() override;
     void paintGL() override;
@@ -31,6 +37,8 @@ protected:
     void mouseMoveEvent(QMouseEvent *event) override;
 
 public slots:
+    void setXMove(int step);
+
     void setXRotation(int angle);
     void setYRotation(int angle);
     void setZRotation(int angle);
@@ -41,12 +49,11 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
 
+    void xMoveChanged(int step);
+
 private:
     void initSettings();
 
-    int m_xRot = 0;
-    int m_yRot = 0;
-    int m_zRot = 0;
     QPoint m_lastPos;
 
     int m_projectionMatrixLoc = 0;

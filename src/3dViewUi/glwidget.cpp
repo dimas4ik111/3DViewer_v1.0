@@ -139,11 +139,9 @@ void GLWidget::paintGL() {
 //    QOpenGLVertexArrayObject::Binder vaoBinder(&vao);
 
 // Примеры трансформаций
-//    rotateMatrix.rotate(5, 1, 0, 0);
-//    rotateMatrix.rotate(5, 0, 1, 0);
-//    rotateMatrix.rotate(5, 0, 0, 1);
-//    scaleMatrix.scale(0.75,0.75,0.75);
-//    moveMatrix.translate(0,0.1,0);
+//  scaleMatrix.scale(0.75,0.75,0.75);
+
+//  moveMatrix.translate(0,0,0);
 
     m_program->bind();
     m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
@@ -201,12 +199,29 @@ static void qNormalizeAngle(int &angle)
         angle -= 360 * 16;
 }
 
+static void qNormalizeStep(int &step) {
+    while (step < 0) {
+        step += 1;
+    }
+    while (step > 0) {
+        step -= 1;
+    }
+}
+
+void GLWidget::setXMove(int step) {
+    qNormalizeStep(step);
+    if (step != m_xMove) {
+        m_xMove = step;
+        emit xMoveChanged(step);
+        update();
+    }
+}
+
 void GLWidget::setXRotation(int angle)
 {
     qNormalizeAngle(angle);
     if (angle != m_xRot) {
         m_xRot = angle;
-//        rotateMatrix.rotate(180.0f - (angle / 16.0f), 1, 0, 0);
         emit xRotationChanged(angle);
         update();
     }

@@ -21,8 +21,13 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_pushButton_clicked();
+    void on_xSlider_valueChanged(int value);
+    void on_ySlider_valueChanged(int value);
+    void on_zSlider_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
+    void sliderSetUp();
 };
 #endif // MAINWINDOW_H
