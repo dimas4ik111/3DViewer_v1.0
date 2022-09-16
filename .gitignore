@@ -54,3 +54,4 @@ dkms.conf
 
 #cool ignores
 build/
+tests
