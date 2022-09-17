@@ -160,7 +160,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="openObjButton">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -173,7 +173,7 @@
      <string>Open file</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -285,7 +285,7 @@
      <x>0</x>
      <y>0</y>
      <width>1683</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

@@ -3,6 +3,7 @@
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent)
 {
+    s21_init_obj_data(&rawObjData);
     initSettings();
 }
 
@@ -13,9 +14,10 @@ void GLWidget::initSettings() {
     orthoMode = 0; // По умолчанию перспектива
 }
 
-void GLWidget::initBuffers() {
-    QList<GLfloat> m_data;
+void GLWidget::testBuffers() {
+    clearBuffers();
 
+    QList<GLfloat> m_data;
     m_data.push_back(1);m_data.push_back(-1);m_data.push_back(-1);
     m_data.push_back(1);m_data.push_back(-1);m_data.push_back(1);
     m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(1);
@@ -25,21 +27,21 @@ void GLWidget::initBuffers() {
     m_data.push_back(-1);m_data.push_back(1);m_data.push_back(1);
     m_data.push_back(-1);m_data.push_back(1);m_data.push_back(-1);
 
-    //vao.create();
-    //glBindBuffer()
+    vao.create();
+    vao.bind();
+
     vbo = QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
     vbo.create();
     vbo.bind();
     vbo.setUsagePattern(QOpenGLBuffer::DynamicDraw);
     vbo.allocate(m_data.constData(), m_data.count() * sizeof(GLfloat));
 
-    glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
+    glEnableVertexAttribArray(0);
 
     //setupVertexAttribs();
 
     GLuint inds[]={1,2,2,3,3,1,7,6,6,5,5,7,4,5,5,1,1,4,5,6,6,2,2,5,2,6,6,7,7,2,0,3,3,7,7,0,0,1,1,3,3,0,4,7,7,5,5,4,0,4,4,1,1,0,1,5,5,2,2,1,3,2,2,7,7,3,4,0,0,7,7,4};
-    // GLuint inds[]={2,3,4,8,7,6,5,6,2,6,7,3,3,7,8,1,4,8,1,2,4,5,8,6,1,5,2,2,6,3,4,3,8,5,1,8};
 
     ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
     ebo.create();
@@ -47,6 +49,66 @@ void GLWidget::initBuffers() {
     ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     ebo.allocate(inds, 72 * sizeof(GLuint));
 
+    rawObjData.num_of_v = 8;
+    rawObjData.num_of_f = 72;
+
+    vao.release();
+}
+
+void GLWidget::clearBuffers() {
+    if (vao.isCreated()) {
+        vao.destroy();
+    }
+    if (vbo.isCreated()) {
+        vbo.destroy();
+    }
+    if (ebo.isCreated()) {
+        ebo.destroy();
+    }
+}
+
+void GLWidget::initBuffers() {
+    // Чистим все буферы, если они были ранее созданы
+    clearBuffers();
+
+    // Создаем Vertex Arrays Object (VAO) - хранилище индексов VBO (в элементах которого хранится информация о том, какую часть некого VBO использовать, и как эти данные нужно интерпретировать)
+    vao.create();
+    // Всё, что будет происходить далее, будет привязано к vao
+    vao.bind();
+
+    // Создаем Vertex Buffer Object (VBO) - средство OpenGL, позволяющее загружать определенные данные в память GPU. В данном случае будем хранить координаты вершин
+    vbo = QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+    vbo.create();
+    vbo.bind();
+    vbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
+    // Заполняем VBO данными, которые были распарсены из .obj-файла
+    vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
+
+    qDebug() << "Координат вершин:" << rawObjData.num_of_v;
+
+    // Сообщаем OpenGL, как он должен интерпретировать данные вершин
+    // 0 - Указываем location атрибута в шейдерах, который мы хотим настроить (у нас он один)
+    // 3 - размер вершинного атрибута (состоит из 3х значений - x, y, z)
+    // GL_FLOAT - указываем тип данных атрибута (т.е. float)
+    // GL_FALSE - Указываем, хотим ли мы, чтобы наши данные были нормализованы (актуально только для целочисленных данных)
+    // 3 * sizeof(GLfloat) - шаг, на который необходимо сдвигаться в пространстве атрибутов, чтобы получить значения следующе вершины
+    // nullptr - Смещение от начала буфера, с которого начинается обработка. Тут задано смещение 0, поскольку данные находятся в начале массива
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
+    // Устанавливаем индекс атрибута (включаем). Если это не сделать, то атрибут не будет использоваться
+    glEnableVertexAttribArray(0);
+
+    // Создаем Element Buffer Objects (EBO) - буффер, хранящий индексы вершин
+    // Используем, чтобы соединить указанные вершины линиями
+    ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+    ebo.create();
+    ebo.bind();
+    ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
+    // Заполняем EBO данными, которые были распарсены из .obj-файла
+    ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
+    qDebug() << "Координат линий:" << rawObjData.num_of_f;
+
+    // Сообщаем, что мы закончили привязывать к VAO
+    vao.release();
 }
 
 // код веришнного шейдера на GLSL
@@ -90,38 +152,29 @@ void GLWidget::initializeGL() {
     m_scaleMatrixLoc = m_program->uniformLocation("scaleMatrix");
     m_colorLoc = m_program->uniformLocation("color");
 
-//    vao.create();
-//    QOpenGLVertexArrayObject::Binder vaoBinder(&vao);
+    // testBuffers();
 
-    initBuffers();
-
-
-
-    // Our camera never changes in this example.
     cameraMatrix.setToIdentity();
-//    cameraMatrix.translate(0, 0, -2);
     if (orthoMode == 0) {
         cameraMatrix.translate(0, 0, -4);
     } else {
         cameraMatrix.scale(0.5,0.5,0.5);
     }
 
+    rotateMatrix.setToIdentity();
+    moveMatrix.setToIdentity();
+    scaleMatrix.setToIdentity();
+
 //    cameraMatrix.ortho(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
 //    ortho(float left, float right, float bottom, float top, float nearPlane, float farPlane)
 //    cameraMatrix.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
 //    cameraMatrix.viewport()
 //    viewport(float left, float bottom, float width, float height, float nearPlane = 0.0f, float farPlane = 1.0f)
-    rotateMatrix.setToIdentity();
 //    rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
 //    rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
 //    rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
-    moveMatrix.setToIdentity();
-    scaleMatrix.setToIdentity();
-
 //    m_camera.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
 //    m_camera.translate(0, 0, -1.7);
-
-    m_program->release();
 }
 
 // Функция paintGL() вызывается всякий раз, когда возникает необходимость перерисовать содержимое виджета.
@@ -131,42 +184,46 @@ void GLWidget::paintGL() {
     glEnable(GL_DEPTH_TEST);
 //    glEnable(GL_CULL_FACE);
 
-    rotateMatrix.setToIdentity();
-    rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
-    rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
-    rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
+    // Пытаемся что-то рисовать только если создан VAO
+    if (vao.isCreated()) {
+        rotateMatrix.setToIdentity();
+        rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
+        rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
+        rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
 
-//    QOpenGLVertexArrayObject::Binder vaoBinder(&vao);
+    // Примеры трансформаций
+    //  scaleMatrix.scale(0.75,0.75,0.75);
+    //  moveMatrix.translate(0,0,1);
 
-// Примеры трансформаций
-//  scaleMatrix.scale(0.75,0.75,0.75);
+        m_program->bind();
+        m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
+        m_program->setUniformValue(m_cameraMatrixLoc, cameraMatrix);
+        m_program->setUniformValue(m_rotateMatrixLoc, rotateMatrix);
+        m_program->setUniformValue(m_moveMatrixLoc, moveMatrix);
+        m_program->setUniformValue(m_scaleMatrixLoc, scaleMatrix);
+        // Устанавливаем цвет точки для отрисовки
+        m_program->setUniformValue(m_colorLoc, pointColor);
 
-//  moveMatrix.translate(0,0,0);
+        // Указываем, какой VAO будем использовать
+        vao.bind();
 
-    m_program->bind();
-    m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
-    m_program->setUniformValue(m_cameraMatrixLoc, cameraMatrix);
-    m_program->setUniformValue(m_rotateMatrixLoc, rotateMatrix);
-    m_program->setUniformValue(m_moveMatrixLoc, moveMatrix);
-    m_program->setUniformValue(m_scaleMatrixLoc, scaleMatrix);
+        // Рисуем точки
+        glPointSize(20);
+        glEnable(GL_POINT_SMOOTH);
+        glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
+        glDisable(GL_POINT_SMOOTH);
 
+        // Устанавливаем цвет линии для отрисовки
+        m_program->setUniformValue(m_colorLoc, lineColor);
 
-//    vbo.bind();
-//    glDrawElements(GL_POINTS, 8, GL_UNSIGNED_INT, nullptr);
-    m_program->setUniformValue(m_colorLoc, pointColor);
+        // Рисуем линии
+        glDrawElements(GL_LINES, rawObjData.num_of_f, GL_UNSIGNED_INT, 0);
+        //glDrawElements(GL_LINE_STRIP, 72, GL_UNSIGNED_INT, inds);
 
-    glPointSize(20);
-    glEnable(GL_POINT_SMOOTH);
-    glDrawArrays(GL_POINTS, 0, 8);
-    glDisable(GL_POINT_SMOOTH);
-
-    m_program->setUniformValue(m_colorLoc, lineColor);
-
-    glDrawElements(GL_LINES, 72, GL_UNSIGNED_INT, 0);
-    //glDrawElements(GL_LINE_STRIP, 72, GL_UNSIGNED_INT, inds);
-
-//    vao.release();
-    m_program->release();
+        // Сообщаем, что мы закончили использовать этот VAO
+        vao.release();
+        m_program->release();
+    }
 
 }
 
@@ -254,8 +311,8 @@ void GLWidget::cleanup()
     if (m_program == nullptr)
         return;
     makeCurrent();
-    vbo.destroy();
-    ebo.destroy();
+    clearBuffers();
+    s21_destroy_obj_data(&rawObjData);
     delete m_program;
     m_program = nullptr;
     doneCurrent();

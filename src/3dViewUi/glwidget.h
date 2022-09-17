@@ -8,6 +8,10 @@
 #include <QOpenGLVertexArrayObject>
 #include <QMouseEvent>
 
+extern "C" {
+    #include "../backend/backend.h"
+}
+
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
@@ -16,6 +20,7 @@ public:
     GLWidget(QWidget *parent = nullptr);
     ~GLWidget();
 
+    void testBuffers();
     void initBuffers();
 
     QColor backgroundColor;
@@ -28,6 +33,8 @@ public:
     int m_zRot = 0;
 
     int m_xMove = 0;
+
+    s21_obj_data rawObjData;
 
 protected:
     void initializeGL() override;
@@ -42,6 +49,8 @@ public slots:
     void setXRotation(int angle);
     void setYRotation(int angle);
     void setZRotation(int angle);
+
+    void clearBuffers();
     void cleanup();
 
 signals:
