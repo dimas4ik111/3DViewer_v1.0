@@ -28,12 +28,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXRotation);
     connect(ui->OGLwidget, &GLWidget::xRotationChanged, ui->xSlider, &QSlider::setValue);
+    connect(ui->xText, SIGNAL(editingFinished()), (this), SLOT(xTextEdit()));
 
     connect(ui->ySlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setYRotation);
     connect(ui->OGLwidget, &GLWidget::yRotationChanged, ui->ySlider, &QSlider::setValue);
+    connect(ui->yText, SIGNAL(editingFinished()), (this), SLOT(yTextEdit()));
 
     connect(ui->zSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setZRotation);
     connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zSlider, &QSlider::setValue);
+    connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
 
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
@@ -62,6 +65,7 @@ void MainWindow::handleOpenFile() {
        if (fileNames.size() > 0) {
            QString fileName = fileNames.at(0);
            qDebug() << "Выбран файл: " << fileName;
+           ui->statusbar->showMessage("Выбран файл: " + fileName);
            QByteArray ba = fileName.toLocal8Bit();
            char *input = ba.data();
            // Парсим файл
@@ -75,6 +79,40 @@ void MainWindow::handleOpenFile() {
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+int valNormalize(int val) {
+    while (val > 180) {
+        val -= 360;
+    }
+    while (val < -180) {
+        val += 360;
+    }
+    return val;
+}
+
+void MainWindow::xTextEdit()
+{
+    int val = ui->xText->text().toInt();
+    val += 180;
+    val = valNormalize(val);
+    ui->OGLwidget->setXRotation(val * 16);
+}
+
+void MainWindow::yTextEdit()
+{
+    int val = ui->yText->text().toInt();
+    val += 180;
+    val = valNormalize(val);
+    ui->OGLwidget->setYRotation(val * 16);
+}
+
+void MainWindow::zTextEdit()
+{
+    int val = ui->zText->text().toInt();
+    val += 180;
+    val = valNormalize(val);
+    ui->OGLwidget->setZRotation(val * 16);
 }
 
 void MainWindow::on_pushButton_clicked()

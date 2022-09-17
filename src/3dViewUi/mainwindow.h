@@ -21,6 +21,9 @@ public:
     ~MainWindow();
 
 private slots:
+    void xTextEdit();
+    void yTextEdit();
+    void zTextEdit();
     void on_pushButton_clicked();
     void on_xSlider_valueChanged(int value);
     void on_ySlider_valueChanged(int value);
