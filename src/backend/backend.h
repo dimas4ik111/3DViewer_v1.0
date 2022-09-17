@@ -16,6 +16,7 @@ typedef enum s21_boolean {
   S21_TRUE = 1,
 } s21_boolean;
 
+void s21_init_obj_data(s21_obj_data *data);
 void s21_parse_file(char *file_path, s21_obj_data *data);
 void s21_parse_line_v(char *line, s21_obj_data *data);
 void s21_parse_line_f(char *line, s21_obj_data *data);

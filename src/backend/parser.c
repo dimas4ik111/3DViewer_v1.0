@@ -11,8 +11,7 @@ void s21_parse_file(char *file_path, s21_obj_data *data) {
   file = fopen(file_path, "r");
   // TODO(hubertfu): file open error
   if (file != NULL) {
-    data->num_of_f = 0;
-    data->num_of_v = 0;
+    s21_init_obj_data(data);
 
     while (!feof(file)) {
       char *res = fgets(buff, 1024, file);
@@ -32,6 +31,13 @@ void s21_parse_file(char *file_path, s21_obj_data *data) {
     // s21_print_obj_data(data);
     // exit(1);
   }
+}
+
+void s21_init_obj_data(s21_obj_data *data) {
+  data->num_of_f = 0;
+  data->num_of_v = 0;
+  data->array_of_v = NULL;
+  data->array_of_f = NULL;
 }
 
 void s21_allocate_memory_block_f(s21_obj_data *data) {
