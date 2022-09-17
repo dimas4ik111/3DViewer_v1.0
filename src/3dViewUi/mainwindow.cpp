@@ -49,11 +49,13 @@ void MainWindow::handleOpenFile() {
     // Определяем заголовок окна
     fileDialog-> setWindowTitle (tr ("Выберите .obj-файл"));
     // Устанавливаем путь к файлу по умолчанию
-    // fileDialog->setDirectory(QDir::homePath());
+//     fileDialog->setDirectory(QDir::homePath());
     // Устанавливаем фильтр файлов
     fileDialog->setNameFilter(tr("(*.obj)"));
     // Устанавливаем режим просмотра
     fileDialog->setViewMode(QFileDialog::Detail);
+    // Разрешаем выбирать только один существующий файл
+    // fileDialog->setFileMode(QFileDialog::ExistingFile);
     // Вызываем диалог
     QStringList fileNames;
     if (fileDialog->exec()) {
