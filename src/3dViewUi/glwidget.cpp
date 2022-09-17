@@ -12,6 +12,8 @@ void GLWidget::initSettings() {
     lineColor.setRgb(255, 127, 51);
     pointColor.setRgb(0, 214, 120);
     orthoMode = 0; // По умолчанию перспектива
+    pointMode = 0; // 0 - нет точек, 1 - круг, 2 - квадрат
+    pointSize = 20; // Размер точки
 }
 
 void GLWidget::testBuffers() {
@@ -201,17 +203,20 @@ void GLWidget::paintGL() {
         m_program->setUniformValue(m_rotateMatrixLoc, rotateMatrix);
         m_program->setUniformValue(m_moveMatrixLoc, moveMatrix);
         m_program->setUniformValue(m_scaleMatrixLoc, scaleMatrix);
-        // Устанавливаем цвет точки для отрисовки
-        m_program->setUniformValue(m_colorLoc, pointColor);
 
         // Указываем, какой VAO будем использовать
         vao.bind();
 
         // Рисуем точки
-//        glPointSize(20);
-//        glEnable(GL_POINT_SMOOTH);
-//        glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
-//        glDisable(GL_POINT_SMOOTH);
+        if (pointMode != 0) {
+            // Устанавливаем цвет точки для отрисовки
+            m_program->setUniformValue(m_colorLoc, pointColor);
+            glPointSize(pointSize);
+            if (pointMode == 1) {
+                glEnable(GL_POINT_SMOOTH);
+            }
+            glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
+        }
 
         // Устанавливаем цвет линии для отрисовки
         m_program->setUniformValue(m_colorLoc, lineColor);
