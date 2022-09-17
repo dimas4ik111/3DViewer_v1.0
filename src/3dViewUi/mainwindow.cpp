@@ -26,7 +26,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->zSlider->setPageStep(15 * 16);
     ui->zSlider->setTickInterval(15 * 16);
 
-    // slider val
+    ui->xMove->setRange(0, 100);
+    ui->xMove->setSingleStep(1);
+
+    ui->yMove->setRange(0, 100);
+    ui->yMove->setSingleStep(1);
+
+    ui->zMove->setRange(0, 100);
+    ui->zMove->setSingleStep(1);
+
+    // slider rotate val
     // x
     connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXRotation);
     connect(ui->OGLwidget, &GLWidget::xRotationChanged, ui->xSlider, &QSlider::setValue);
@@ -40,13 +49,32 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zSlider, &QSlider::setValue);
     connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
 
+
+
+    // slider move val
+    // x
+    connect(ui->xMove, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXMove);
+    connect(ui->yMove, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setYMove);
+    connect(ui->zMove, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setZMove);
+
+
+
+
     // reset all val
     connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
+
+
+
+
 
     // slider value in to text line
     connect(ui->xSlider, &QSlider::valueChanged, (this), &MainWindow::xSliderValueChanged);
     connect(ui->ySlider, &QSlider::valueChanged, (this), &MainWindow::ySliderValueChanged);
     connect(ui->zSlider, &QSlider::valueChanged, (this), &MainWindow::zSliderValueChanged);
+
+
+
+
 
     // dots view
     connect(ui->disableView, &QRadioButton::pressed, (this), &MainWindow::DisableView);
@@ -56,6 +84,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
+    ui->xMove->setValue(50);
+    ui->yMove->setValue(50);
+    ui->zMove->setValue(50);
     ui->xText->setText(QString::number(0));
     ui->yText->setText(QString::number(0));
     ui->zText->setText(QString::number(0));
@@ -85,7 +116,9 @@ void MainWindow::handleOpenFile() {
            QByteArray ba = fileName.toLocal8Bit();
            char *input = ba.data();
            // Парсим файл
-           s21_parse_file(input, &ui->OGLwidget->rawObjData);
+           if (strstr(input, ".obj") != NULL) { // Типо проверка на файл .obj
+               s21_parse_file(input, &ui->OGLwidget->rawObjData);
+           }
            // Инициализируем буфферы OpenGL распарсенными данными
            ui->OGLwidget->initBuffers();
        }
@@ -154,8 +187,14 @@ void MainWindow::resetValue()
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
+//    ui->xMove->setValue(50);
+//    ui->yMove->setValue(50);
+//    ui->zMove->setValue(50);
     ui->disableView->setChecked(true);
     ui->OGLwidget->initSettings();
+    ui->xMove->setValue(50);
+    ui->yMove->setValue(50);
+    ui->zMove->setValue(50);
     ui->OGLwidget->update();
 }
 

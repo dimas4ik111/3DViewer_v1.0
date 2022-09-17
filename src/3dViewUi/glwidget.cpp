@@ -194,8 +194,10 @@ void GLWidget::paintGL() {
         rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
 
     // Примеры трансформаций
-    //  scaleMatrix.scale(0.75,0.75,0.75);
-    //  moveMatrix.translate(0,0,1);
+//        scaleMatrix.scale(0.75,0.75,0.75);
+//        moveMatrix.translate(0,0,0);
+//        moveMatrix.scale(0, 0, 0);
+//        m_xMove
 
         m_program->bind();
         m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
@@ -264,22 +266,49 @@ static void qNormalizeAngle(int &angle)
         angle -= 360 * 16;
 }
 
-static void qNormalizeStep(int &step) {
-    while (step < 0) {
-        step += 1;
-    }
-    while (step > 0) {
-        step -= 1;
-    }
-}
+//static void qNormalizeStep(int &step) {
+//    while (step < 0) {
+//        step += 1;
+//    }
+//    while (step > 0) {
+//        step -= 1;
+//    }
+//}
 
 void GLWidget::setXMove(int step) {
-    qNormalizeStep(step);
     if (step != m_xMove) {
+        if (step > m_xMove) {
+            moveMatrix.translate(0.1f * (step - m_xMove), 0, 0);
+        } else if (step < m_xMove) {
+            moveMatrix.translate(-0.1f * (m_xMove - step), 0, 0);
+        }
         m_xMove = step;
-        emit xMoveChanged(step);
-        update();
     }
+    update();
+}
+
+void GLWidget::setYMove(int step) {
+    if (step != m_yMove) {
+        if (step > m_yMove) {
+            moveMatrix.translate(0, 1.0f / 16.0f * (step - m_yMove), 0);
+        } else if (step < m_yMove) {
+            moveMatrix.translate(0, -1.0f / 16.0f * (m_yMove - step), 0);
+        }
+        m_yMove = step;
+    }
+    update();
+}
+
+void GLWidget::setZMove(int step) {
+    if (step != m_yMove) {
+        if (step > m_yMove) {
+            moveMatrix.translate(0, 0, 1.0f / 16.0f * (step - m_yMove));
+        } else if (step < m_yMove) {
+            moveMatrix.translate(0, 0, -1.0f / 16.0f * (m_yMove - step));
+        }
+        m_yMove = step;
+    }
+    update();
 }
 
 void GLWidget::setXRotation(int angle)

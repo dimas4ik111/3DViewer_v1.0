@@ -35,7 +35,9 @@ public:
     int m_yRot = 0;
     int m_zRot = 0;
 
-    int m_xMove = 0;
+    int m_xMove = 50;
+    int m_yMove = 50;
+    int m_zMove = 50;
 
     s21_obj_data rawObjData;
 
@@ -48,6 +50,8 @@ protected:
 
 public slots:
     void setXMove(int step);
+    void setYMove(int step);
+    void setZMove(int step);
 
     void setXRotation(int angle);
     void setYRotation(int angle);
@@ -60,8 +64,6 @@ signals:
     void xRotationChanged(int angle);
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
-
-    void xMoveChanged(int step);
 
 private:
 
