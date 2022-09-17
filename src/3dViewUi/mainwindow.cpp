@@ -44,37 +44,32 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::handleOpenFile() {
-    // Определить класс диалогового окна файла
+    // Определяем класс диалогового окна выбора файла
     QFileDialog *fileDialog = new QFileDialog(this);
-    // определить заголовок файла
-    fileDialog-> setWindowTitle (tr ("Открыть изображение"));
-    // Установить путь к файлу по умолчанию
-    //    fileDialog->setDirectory("");
-    // Установить фильтр файлов
+    // Определяем заголовок окна
+    fileDialog-> setWindowTitle (tr ("Выберите .obj-файл"));
+    // Устанавливаем путь к файлу по умолчанию
+    // fileDialog->setDirectory(QDir::homePath());
+    // Устанавливаем фильтр файлов
     fileDialog->setNameFilter(tr("(*.obj)"));
-    // Настройка позволяет выбрать несколько файлов, по умолчанию используется только один файл QFileDialog :: ExistingFiles
-    //fileDialog->setFileMode(QFileDialog::ExistingFiles);
-    // Установить режим просмотра
+    // Устанавливаем режим просмотра
     fileDialog->setViewMode(QFileDialog::Detail);
-    // выводим путь ко всем выбранным файлам
+    // Вызываем диалог
     QStringList fileNames;
-    if(fileDialog->exec())
-    {
+    if (fileDialog->exec()) {
        fileNames = fileDialog->selectedFiles();
+       // В случае успеха и если что-то выбрано
+       if (fileNames.size() > 0) {
+           QString fileName = fileNames.at(0);
+           qDebug() << "Выбран файл: " << fileName;
+           QByteArray ba = fileName.toLocal8Bit();
+           char *input = ba.data();
+           // Парсим файл
+           s21_parse_file(input, &ui->OGLwidget->rawObjData);
+           // Инициализируем буфферы OpenGL распарсенными данными
+           ui->OGLwidget->initBuffers();
+       }
     }
-
-    if (fileNames.size() > 0) {
-        QString fileName = fileNames.at(0);
-        qDebug() << fileName;
-        QByteArray ba = fileName.toLocal8Bit();
-        char *input = ba.data();
-        s21_parse_file(input, &ui->OGLwidget->rawObjData);
-        ui->OGLwidget->initBuffers();
-    }
-
-//    for(auto tmp:fileNames)
-//    qDebug()<<tmp;
-
 }
 
 MainWindow::~MainWindow()
