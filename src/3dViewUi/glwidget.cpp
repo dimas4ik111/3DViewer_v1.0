@@ -152,13 +152,13 @@ void GLWidget::initializeGL() {
     m_scaleMatrixLoc = m_program->uniformLocation("scaleMatrix");
     m_colorLoc = m_program->uniformLocation("color");
 
-    // testBuffers();
+     testBuffers();
 
     cameraMatrix.setToIdentity();
     if (orthoMode == 0) {
-        cameraMatrix.translate(0, 0, -4);
+        cameraMatrix.translate(0, 0, -7);
     } else {
-        cameraMatrix.scale(0.5,0.5,0.5);
+        cameraMatrix.scale(0.1,0.1,0.1);
     }
 
     rotateMatrix.setToIdentity();
@@ -208,10 +208,10 @@ void GLWidget::paintGL() {
         vao.bind();
 
         // Рисуем точки
-        glPointSize(20);
-        glEnable(GL_POINT_SMOOTH);
-        glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
-        glDisable(GL_POINT_SMOOTH);
+//        glPointSize(20);
+//        glEnable(GL_POINT_SMOOTH);
+//        glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
+//        glDisable(GL_POINT_SMOOTH);
 
         // Устанавливаем цвет линии для отрисовки
         m_program->setUniformValue(m_colorLoc, lineColor);
