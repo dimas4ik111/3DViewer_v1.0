@@ -154,13 +154,13 @@ void GLWidget::initializeGL() {
     m_scaleMatrixLoc = m_program->uniformLocation("scaleMatrix");
     m_colorLoc = m_program->uniformLocation("color");
 
-     testBuffers();
+    testBuffers();
 
     cameraMatrix.setToIdentity();
     if (orthoMode == 0) {
-        cameraMatrix.translate(0, 0, -7);
+        cameraMatrix.translate(0, 0, -4);
     } else {
-        cameraMatrix.scale(0.1,0.1,0.1);
+        cameraMatrix.scale(0.5, 0.5, 0.5);
     }
 
     rotateMatrix.setToIdentity();
@@ -189,7 +189,7 @@ void GLWidget::paintGL() {
     // Пытаемся что-то рисовать только если создан VAO
     if (vao.isCreated()) {
         rotateMatrix.setToIdentity();
-        rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
+        rotateMatrix.rotate(m_xRot / 16.0f, 1, 0, 0);
         rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
         rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
 
@@ -216,6 +216,9 @@ void GLWidget::paintGL() {
                 glEnable(GL_POINT_SMOOTH);
             }
             glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
+            if (pointMode == 1) {
+                glDisable(GL_POINT_SMOOTH);
+            }
         }
 
         // Устанавливаем цвет линии для отрисовки

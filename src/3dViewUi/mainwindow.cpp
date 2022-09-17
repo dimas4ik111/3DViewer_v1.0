@@ -26,17 +26,32 @@ MainWindow::MainWindow(QWidget *parent)
     ui->zSlider->setPageStep(15 * 16);
     ui->zSlider->setTickInterval(15 * 16);
 
+    // slider val
+    // x
     connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXRotation);
     connect(ui->OGLwidget, &GLWidget::xRotationChanged, ui->xSlider, &QSlider::setValue);
     connect(ui->xText, SIGNAL(editingFinished()), (this), SLOT(xTextEdit()));
-
+    // y
     connect(ui->ySlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setYRotation);
     connect(ui->OGLwidget, &GLWidget::yRotationChanged, ui->ySlider, &QSlider::setValue);
     connect(ui->yText, SIGNAL(editingFinished()), (this), SLOT(yTextEdit()));
-
+    // z
     connect(ui->zSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setZRotation);
     connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zSlider, &QSlider::setValue);
     connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
+
+    // reset all val
+    connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
+
+    // slider value in to text line
+    connect(ui->xSlider, &QSlider::valueChanged, (this), &MainWindow::xSliderValueChanged);
+    connect(ui->ySlider, &QSlider::valueChanged, (this), &MainWindow::ySliderValueChanged);
+    connect(ui->zSlider, &QSlider::valueChanged, (this), &MainWindow::zSliderValueChanged);
+
+    // dots view
+    connect(ui->disableView, &QRadioButton::pressed, (this), &MainWindow::DisableView);
+    connect(ui->circleView, &QRadioButton::pressed, (this), &MainWindow::CircleView);
+    connect(ui->squareView, &QRadioButton::pressed, (this), &MainWindow::SquareView);
 
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
@@ -44,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->xText->setText(QString::number(0));
     ui->yText->setText(QString::number(0));
     ui->zText->setText(QString::number(0));
+    ui->disableView->setChecked(true);
 }
 
 void MainWindow::handleOpenFile() {
@@ -52,13 +68,11 @@ void MainWindow::handleOpenFile() {
     // Определяем заголовок окна
     fileDialog-> setWindowTitle (tr ("Выберите .obj-файл"));
     // Устанавливаем путь к файлу по умолчанию
-//     fileDialog->setDirectory(QDir::homePath());
+    // fileDialog->setDirectory(QDir::homePath());
     // Устанавливаем фильтр файлов
     fileDialog->setNameFilter(tr("(*.obj)"));
     // Устанавливаем режим просмотра
     fileDialog->setViewMode(QFileDialog::Detail);
-    // Разрешаем выбирать только один существующий файл
-    // fileDialog->setFileMode(QFileDialog::ExistingFile);
     // Вызываем диалог
     QStringList fileNames;
     if (fileDialog->exec()) {
@@ -117,26 +131,45 @@ void MainWindow::zTextEdit()
     ui->OGLwidget->setZRotation(val * 16);
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::DisableView()
+{
+    ui->OGLwidget->pointMode = 0;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::CircleView()
+{
+    ui->OGLwidget->pointMode = 1;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::SquareView()
+{
+    ui->OGLwidget->pointMode = 2;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::resetValue()
 {
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
+    ui->disableView->setChecked(true);
+    ui->OGLwidget->initSettings();
+    ui->OGLwidget->update();
 }
 
-void MainWindow::on_xSlider_valueChanged(int value)
+void MainWindow::xSliderValueChanged(int value)
 {
     ui->xText->setText(QString::number(-180 + value / 16));
 }
 
-
-void MainWindow::on_ySlider_valueChanged(int value)
+void MainWindow::ySliderValueChanged(int value)
 {
     ui->yText->setText(QString::number(-180 + value / 16));
 }
 
-
-void MainWindow::on_zSlider_valueChanged(int value)
+void MainWindow::zSliderValueChanged(int value)
 {
     ui->zText->setText(QString::number(-180 + value / 16));
 }

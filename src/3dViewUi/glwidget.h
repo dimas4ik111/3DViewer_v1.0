@@ -22,6 +22,7 @@ public:
 
     void testBuffers();
     void initBuffers();
+    void initSettings();
 
     QColor backgroundColor;
     QColor lineColor;
@@ -63,7 +64,6 @@ signals:
     void xMoveChanged(int step);
 
 private:
-    void initSettings();
 
     QPoint m_lastPos;
 
