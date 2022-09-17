@@ -8,10 +8,22 @@ GLWidget::GLWidget(QWidget *parent)
 }
 
 void GLWidget::initSettings() {
+    // Проекция: 0 - центральная, 1 - параллельная
+    orthoMode = 0;
+    // Цвет фона
     backgroundColor.setRgb(0, 0, 0);
+    // Цвет линии
     lineColor.setRgb(255, 127, 51);
+    // Толщина линии
+    lineSize = 1;
+    // Тип линии: 0 - сплошная, 1 - пунктирная
+    lineMode = 0;
+    // Цвет точки
     pointColor.setRgb(0, 214, 120);
-    orthoMode = 0; // По умолчанию перспектива
+    // Размер точки
+    pointSize = 20;
+    // Тип точки: 0 - нет точек, 1 - круг, 2 - квадрат
+    pointMode = 0;
 }
 
 void GLWidget::testBuffers() {
@@ -152,13 +164,13 @@ void GLWidget::initializeGL() {
     m_scaleMatrixLoc = m_program->uniformLocation("scaleMatrix");
     m_colorLoc = m_program->uniformLocation("color");
 
-    // testBuffers();
+     testBuffers();
 
     cameraMatrix.setToIdentity();
     if (orthoMode == 0) {
-        cameraMatrix.translate(0, 0, -4);
+        cameraMatrix.translate(0, 0, -7);
     } else {
-        cameraMatrix.scale(0.5,0.5,0.5);
+        cameraMatrix.scale(0.1,0.1,0.1);
     }
 
     rotateMatrix.setToIdentity();
@@ -201,25 +213,38 @@ void GLWidget::paintGL() {
         m_program->setUniformValue(m_rotateMatrixLoc, rotateMatrix);
         m_program->setUniformValue(m_moveMatrixLoc, moveMatrix);
         m_program->setUniformValue(m_scaleMatrixLoc, scaleMatrix);
-        // Устанавливаем цвет точки для отрисовки
-        m_program->setUniformValue(m_colorLoc, pointColor);
 
         // Указываем, какой VAO будем использовать
         vao.bind();
 
         // Рисуем точки
-        glPointSize(20);
-        glEnable(GL_POINT_SMOOTH);
-        glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
-        glDisable(GL_POINT_SMOOTH);
+        if (pointMode != 0) {
+            // Устанавливаем цвет точки для отрисовки
+            m_program->setUniformValue(m_colorLoc, pointColor);
+            glPointSize(pointSize);
+            if (pointMode == 1) {
+                glEnable(GL_POINT_SMOOTH);
+            }
+            glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
+        }
 
         // Устанавливаем цвет линии для отрисовки
         m_program->setUniformValue(m_colorLoc, lineColor);
 
+        glLineWidth (lineSize);
+        if (lineMode == 1) {
+            // Настраиваем тип линии
+            glEnable(GL_LINE_STIPPLE);
+            // TODO(maiamabl): glLineStipple deprecated in OpenGL 3.1 / Использовать геометрические шейдеры?
+            glLineStipple(2, 0x00F0);
+        }
+
         // Рисуем линии
         glDrawElements(GL_LINES, rawObjData.num_of_f, GL_UNSIGNED_INT, 0);
-        //glDrawElements(GL_LINE_STRIP, 72, GL_UNSIGNED_INT, inds);
 
+        if (lineMode == 1) {
+            glDisable(GL_LINE_STIPPLE);
+        }
         // Сообщаем, что мы закончили использовать этот VAO
         vao.release();
         m_program->release();
