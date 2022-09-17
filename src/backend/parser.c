@@ -102,23 +102,23 @@ void s21_parse_line_v(char *line, s21_obj_data *data) {
   }
 
   // TODO(hubertfu): scanf memory errors
-  // sscanf(line, "v %f %f %f", &data->array_of_v[data->num_of_v],
-  //        &data->array_of_v[data->num_of_v + 1],
-  //        &data->array_of_v[data->num_of_v + 2]);
+  sscanf(line, "v %f %f %f", &data->array_of_v[data->num_of_v],
+         &data->array_of_v[data->num_of_v + 1],
+         &data->array_of_v[data->num_of_v + 2]);
 
-  char *ptr = line;
-  int shift = 0;
-  ptr += 2;
-  // printf("[%s]", ptr);
-  s21_parse_float(ptr, &data->array_of_v[data->num_of_v], &shift);
+  // char *ptr = line;
+  // int shift = 0;
+  // ptr += 2;
+  // printf("%s", ptr);
+  // s21_parse_float(ptr, &data->array_of_v[data->num_of_v], &shift);
 
-  ptr += shift + 1;
-  // printf("[%s]", ptr);
-  s21_parse_float(ptr, &data->array_of_v[data->num_of_v + 1], &shift);
+  // ptr += shift + 1;
+  // printf("%s", ptr);
+  // s21_parse_float(ptr, &data->array_of_v[data->num_of_v + 1], &shift);
 
-  ptr += shift + 1;
-  // printf("[%s]", ptr);
-  s21_parse_float(ptr, &data->array_of_v[data->num_of_v + 2], &shift);
+  // ptr += shift + 1;
+  // printf("%s", ptr);
+  // s21_parse_float(ptr, &data->array_of_v[data->num_of_v + 2], &shift);
   data->num_of_v += 3;
 }
 
@@ -141,7 +141,6 @@ void s21_parse_line_f(char *line, s21_obj_data *data) {
         tmp *= 10;
         tmp += *ptr - 48;
         ++ptr;
-        // *c = fgetc(file);
       }
       flag = 1;
       new_num = 1;
