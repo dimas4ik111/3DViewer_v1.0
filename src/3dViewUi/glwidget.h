@@ -27,6 +27,8 @@ public:
     QColor lineColor;
     QColor pointColor;
     int orthoMode;
+    int pointMode;
+    int pointSize;
 
     int m_xRot = 0;
     int m_yRot = 0;
