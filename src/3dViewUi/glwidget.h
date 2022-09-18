@@ -30,6 +30,8 @@ public:
     int orthoMode;
     int pointMode;
     int pointSize;
+    int lineSize;
+    int lineMode;
 
     int m_xRot = 2880;
     int m_yRot = 360 * 8;

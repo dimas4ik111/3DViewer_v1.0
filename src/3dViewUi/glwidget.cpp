@@ -13,12 +13,22 @@ GLWidget::~GLWidget()
 }
 
 void GLWidget::initSettings() {
+    // Проекция: 0 - центральная, 1 - параллельная
+    orthoMode = 0;
+    // Цвет фона
     backgroundColor.setRgb(0, 0, 0);
+    // Цвет линии
     lineColor.setRgb(255, 127, 51);
+    // Толщина линии
+    lineSize = 1;
+    // Тип линии: 0 - сплошная, 1 - пунктирная
+    lineMode = 0;
+    // Цвет точки
     pointColor.setRgb(0, 214, 120);
-    orthoMode = 0; // По умолчанию перспектива
-    pointMode = 0; // 0 - нет точек, 1 - круг, 2 - квадрат
-    pointSize = 20; // Размер точки
+    // Размер точки
+    pointSize = 20;
+    // Тип точки: 0 - нет точек, 1 - круг, 2 - квадрат
+    pointMode = 0;
 }
 
 void GLWidget::testBuffers() {
@@ -255,10 +265,20 @@ void GLWidget::paintGL() {
         // Устанавливаем цвет линии для отрисовки
         m_program->setUniformValue(m_colorLoc, lineColor);
 
+        glLineWidth (lineSize);
+        if (lineMode == 1) {
+            // Настраиваем тип линии
+            glEnable(GL_LINE_STIPPLE);
+            // TODO(maiamabl): glLineStipple deprecated in OpenGL 3.1 / Использовать геометрические шейдеры?
+            glLineStipple(2, 0x00F0);
+        }
+
         // Рисуем линии
         glDrawElements(GL_LINES, rawObjData.num_of_f, GL_UNSIGNED_INT, 0);
-        //glDrawElements(GL_LINE_STRIP, 72, GL_UNSIGNED_INT, inds);
 
+        if (lineMode == 1) {
+            glDisable(GL_LINE_STIPPLE);
+        }
         // Сообщаем, что мы закончили использовать этот VAO
         vao.release();
         m_program->release();
