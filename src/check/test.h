@@ -11,6 +11,9 @@
 
 Suite *parse_file_suite(void);
 
-void test_parser(char *obj_path, s21_obj_data *data);
+void test_parser(char *obj_path, s21_obj_data *data,
+                 s21_boolean need_normalize);
+void test_parser_fail(char *obj_path, s21_obj_data *data,
+                      s21_parser_result code_check);
 
 #endif  // SRC_CHECK_TEST_H_
