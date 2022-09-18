@@ -67,7 +67,7 @@ void MainWindow::handleOpenFile() {
            QByteArray ba = fileName.toLocal8Bit();
            char *input = ba.data();
            // Парсим файл
-           s21_parse_file(input, &ui->OGLwidget->rawObjData);
+           s21_parse_file(input, &ui->OGLwidget->rawObjData, S21_TRUE);
            // Инициализируем буфферы OpenGL распарсенными данными
            ui->OGLwidget->initBuffers();
        }
