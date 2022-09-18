@@ -23,17 +23,30 @@ void GLWidget::initSettings() {
 
 void GLWidget::testBuffers() {
     clearBuffers();
+//x:  0.000000 y:  1.000000 z:  0.000000
+//x: -1.000000 y:  0.000000 z: -1.000000
+//x:  1.000000 y:  0.000000 z: -1.000000
+//x:  1.000000 y:  0.000000 z:  1.000000
+//x: -1.000000 y:  0.000000 z:  1.000000
+//0,1,1,2,2,0,0,2,2,3,3,0,0,3,3,4,4,0,0,4,4,1,1,0,2,1,1,3,3,2,1,4,4,3,3,1,v: 5 (15)
+//f: 18 (36)
 
     QList<GLfloat> m_data;
-    m_data.push_back(1);m_data.push_back(-1);m_data.push_back(-1);
-    m_data.push_back(1);m_data.push_back(-1);m_data.push_back(1);
-    m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(1);
-    m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(-1);
-    m_data.push_back(1);m_data.push_back(1);m_data.push_back(-1);
-    m_data.push_back(1);m_data.push_back(1);m_data.push_back(1);
-    m_data.push_back(-1);m_data.push_back(1);m_data.push_back(1);
-    m_data.push_back(-1);m_data.push_back(1);m_data.push_back(-1);
-
+    // Куб
+//    m_data.push_back(1);m_data.push_back(-1);m_data.push_back(-1);
+//    m_data.push_back(1);m_data.push_back(-1);m_data.push_back(1);
+//    m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(1);
+//    m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(-1);
+//    m_data.push_back(1);m_data.push_back(1);m_data.push_back(-1);
+//    m_data.push_back(1);m_data.push_back(1);m_data.push_back(1);
+//    m_data.push_back(-1);m_data.push_back(1);m_data.push_back(1);
+//    m_data.push_back(-1);m_data.push_back(1);m_data.push_back(-1);
+    // Пирамидка
+    m_data.push_back(0);m_data.push_back(1);m_data.push_back(0);
+    m_data.push_back(-1);m_data.push_back(0);m_data.push_back(-1);
+    m_data.push_back(1);m_data.push_back(0);m_data.push_back(-1);
+    m_data.push_back(1);m_data.push_back(0);m_data.push_back(1);
+    m_data.push_back(-1);m_data.push_back(0);m_data.push_back(1);
     vao.create();
     vao.bind();
 
@@ -48,16 +61,22 @@ void GLWidget::testBuffers() {
 
     //setupVertexAttribs();
 
-    GLuint inds[]={1,2,2,3,3,1,7,6,6,5,5,7,4,5,5,1,1,4,5,6,6,2,2,5,2,6,6,7,7,2,0,3,3,7,7,0,0,1,1,3,3,0,4,7,7,5,5,4,0,4,4,1,1,0,1,5,5,2,2,1,3,2,2,7,7,3,4,0,0,7,7,4};
-
+    // Куб
+//    GLuint inds[]={1,2,2,3,3,1,7,6,6,5,5,7,4,5,5,1,1,4,5,6,6,2,2,5,2,6,6,7,7,2,0,3,3,7,7,0,0,1,1,3,3,0,4,7,7,5,5,4,0,4,4,1,1,0,1,5,5,2,2,1,3,2,2,7,7,3,4,0,0,7,7,4};
+    // Пирамидка
+    GLuint inds[]={0,1,1,2,2,0,0,2,2,3,3,0,0,3,3,4,4,0,0,4,4,1,1,0,2,1,1,3,3,2,1,4,4,3,3,1};
     ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
     ebo.create();
     ebo.bind();
     ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
-    ebo.allocate(inds, 72 * sizeof(GLuint));
-
-    rawObjData.num_of_v = 8;
-    rawObjData.num_of_f = 72;
+    // Куб
+//    ebo.allocate(inds, 72 * sizeof(GLuint));
+//    rawObjData.num_of_v = 8;
+//    rawObjData.num_of_f = 72;
+    // Пирамидка
+    ebo.allocate(inds, 36 * sizeof(GLuint));
+    rawObjData.num_of_v = 5;
+    rawObjData.num_of_f = 36;
 
     vao.release();
 }
