@@ -49,6 +49,8 @@ private slots:
 
     void resetValue();
 
+    void createScreenshot();
+
 private:
     Ui::MainWindow *ui;
     void sliderSetUp();

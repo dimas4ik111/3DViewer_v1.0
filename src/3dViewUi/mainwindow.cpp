@@ -82,10 +82,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->zoomSlider, &QSlider::valueChanged, (this), &MainWindow::zoomSliderValueChanged);
 
-
     // reset all val
     connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
 
+    // screenshot
+    connect(ui->btn_screen, SIGNAL(released()), (this), SLOT(createScreenshot()));
 
 
     // dots view
@@ -267,4 +268,9 @@ void MainWindow::zMoveTextEdit() {
 void MainWindow::zoomTextEdit() {
     int val = ui->zoomText->text().toInt();
     ui->zoomSlider->setValue(val);
+}
+
+void MainWindow::createScreenshot() {
+    ui->OGLwidget->grab().save("../../../../SCREEEEEN1.bmp");
+    QMovie
 }
