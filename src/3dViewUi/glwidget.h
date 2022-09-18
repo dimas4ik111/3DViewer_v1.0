@@ -31,13 +31,13 @@ public:
     int pointMode;
     int pointSize;
 
-    int m_xRot = 0;
-    int m_yRot = 0;
-    int m_zRot = 0;
+    int m_xRot = 2880;
+    int m_yRot = 360 * 8;
+    int m_zRot = 360 * 8;
 
-    int m_xMove = 50;
-    int m_yMove = 50;
-    int m_zMove = 50;
+    int m_xMove = 0;
+    int m_yMove = 0;
+    int m_zMove = 0;
 
     s21_obj_data rawObjData;
 
