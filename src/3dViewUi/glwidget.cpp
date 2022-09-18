@@ -213,19 +213,20 @@ void GLWidget::paintGL() {
     // Пытаемся что-то рисовать только если создан VAO
     if (vao.isCreated()) {
         rotateMatrix.setToIdentity();
-        rotateMatrix.rotate(m_xRot / 16.0f, 1, 0, 0);
-        rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
-        rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
+        rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
+        rotateMatrix.rotate(180 - m_yRot / 16.0f, 0, 1, 0);
+        rotateMatrix.rotate(180 - m_zRot / 16.0f, 0, 0, 1);
 
         moveMatrix.setToIdentity();
         moveMatrix.translate(0.05 * (50 - m_xMove), 0, 0);
         moveMatrix.translate(0, 0.05 * (50 - m_yMove), 0);
         moveMatrix.translate(0, 0, 0.05 * (50 - m_zMove));
 
+        scaleMatrix.setToIdentity();
+        scaleMatrix.scale(fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f));
     // Примеры трансформаций
 //        scaleMatrix.scale(0.75,0.75,0.75);
 //        moveMatrix.translate(0,0,0);
-//        moveMatrix.scale(0, 0, 0);
 
         m_program->bind();
         m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
@@ -329,6 +330,13 @@ void GLWidget::setZRotation(int angle)
     if (angle != m_zRot) {
         m_zRot = angle;
         emit zRotationChanged(angle);
+        update();
+    }
+}
+
+void GLWidget::setZoom(int zoom) {
+    if (zoom != zoomVal) {
+        zoomVal = zoom;
         update();
     }
 }

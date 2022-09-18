@@ -35,6 +35,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->zMove->setRange(0, 100);
     ui->zMove->setSingleStep(1);
 
+    ui->zoomSlider->setRange(1, 300);
+    ui->zMove->setSingleStep(1);
+
     // slider rotate val
     // x
     connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXRotation);
@@ -54,17 +57,18 @@ MainWindow::MainWindow(QWidget *parent)
     // slider move val
     // x
     connect(ui->xMove, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXMove);
+    connect(ui->xMText, SIGNAL(editingFinished()), (this), SLOT(xMoveTextEdit()));
+
     connect(ui->yMove, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setYMove);
+    connect(ui->yMText, SIGNAL(editingFinished()), (this), SLOT(yMoveTextEdit()));
+
     connect(ui->zMove, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setZMove);
+    connect(ui->zMText, SIGNAL(editingFinished()), (this), SLOT(zMoveTextEdit()));
 
 
-
-
-    // reset all val
-    connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
-
-
-
+    // zoom slider
+    connect(ui->zoomSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setZoom);
+    connect(ui->zoomText, SIGNAL(editingFinished()), (this), SLOT(zoomTextEdit()));
 
 
     // slider value in to text line
@@ -72,7 +76,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->ySlider, &QSlider::valueChanged, (this), &MainWindow::ySliderValueChanged);
     connect(ui->zSlider, &QSlider::valueChanged, (this), &MainWindow::zSliderValueChanged);
 
+    connect(ui->xMove, &QSlider::valueChanged, (this), &MainWindow::xMoveSliderValueChanged);
+    connect(ui->yMove, &QSlider::valueChanged, (this), &MainWindow::yMoveSliderValueChanged);
+    connect(ui->zMove, &QSlider::valueChanged, (this), &MainWindow::zMoveSliderValueChanged);
 
+    connect(ui->zoomSlider, &QSlider::valueChanged, (this), &MainWindow::zoomSliderValueChanged);
+
+
+    // reset all val
+    connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
 
 
 
@@ -84,6 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
+    ui->zoomSlider->setValue(30);
     ui->xMove->setValue(50);
     ui->yMove->setValue(50);
     ui->zMove->setValue(50);
@@ -187,15 +200,25 @@ void MainWindow::resetValue()
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
-//    ui->xMove->setValue(50);
-//    ui->yMove->setValue(50);
-//    ui->zMove->setValue(50);
     ui->disableView->setChecked(true);
     ui->OGLwidget->initSettings();
     ui->xMove->setValue(50);
     ui->yMove->setValue(50);
     ui->zMove->setValue(50);
+    ui->zoomSlider->setValue(30);
     ui->OGLwidget->update();
+}
+
+void MainWindow::xMoveSliderValueChanged(int value) {
+    ui->xMText->setText(QString::number(value - 50));
+}
+
+void MainWindow::yMoveSliderValueChanged(int value) {
+    ui->yMText->setText(QString::number(value - 50));
+}
+
+void MainWindow::zMoveSliderValueChanged(int value) {
+    ui->zMText->setText(QString::number(value - 50));
 }
 
 void MainWindow::xSliderValueChanged(int value)
@@ -211,4 +234,37 @@ void MainWindow::ySliderValueChanged(int value)
 void MainWindow::zSliderValueChanged(int value)
 {
     ui->zText->setText(QString::number(-180 + value / 16));
+}
+
+void MainWindow::zoomSliderValueChanged(int value) {
+    ui->zoomText->setText(QString::number(value));
+}
+
+void MainWindow::xMoveTextEdit() {
+    int val = ui->xMText->text().toInt();
+    val += 50;
+//    val = valNormalize(val);
+//    ui->OGLwidget->setXMove(val);
+    ui->xMove->setValue(val);
+}
+
+void MainWindow::yMoveTextEdit() {
+    int val = ui->yMText->text().toInt();
+    val += 50;
+//    val = valNormalize(val);
+//    ui->OGLwidget->setYMove(val);
+    ui->yMove->setValue(val);
+}
+
+void MainWindow::zMoveTextEdit() {
+    int val = ui->zMText->text().toInt();
+    val += 50;
+//    val = valNormalize(val);
+//    ui->OGLwidget->setZMove(val);
+    ui->zMove->setValue(val);
+}
+
+void MainWindow::zoomTextEdit() {
+    int val = ui->zoomText->text().toInt();
+    ui->zoomSlider->setValue(val);
 }

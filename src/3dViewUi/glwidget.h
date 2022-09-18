@@ -39,6 +39,8 @@ public:
     int m_yMove = 0;
     int m_zMove = 0;
 
+    int zoomVal = 30;
+
     s21_obj_data rawObjData;
 
 protected:
@@ -52,6 +54,8 @@ public slots:
     void setXMove(int step);
     void setYMove(int step);
     void setZMove(int step);
+
+    void setZoom(int zoom);
 
     void setXRotation(int angle);
     void setYRotation(int angle);

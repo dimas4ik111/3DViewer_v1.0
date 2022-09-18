@@ -25,15 +25,29 @@ private slots:
     void yTextEdit();
     void zTextEdit();
 
+    void xMoveTextEdit();
+    void yMoveTextEdit();
+    void zMoveTextEdit();
+
+    void zoomTextEdit();
+
     void DisableView();
     void CircleView();
     void SquareView();
 
-    void resetValue();
     void xSliderValueChanged(int value);
     void ySliderValueChanged(int value);
     void zSliderValueChanged(int value);
+
+    void xMoveSliderValueChanged(int value);
+    void yMoveSliderValueChanged(int value);
+    void zMoveSliderValueChanged(int value);
+
+    void zoomSliderValueChanged(int value);
+
     void handleOpenFile();
+
+    void resetValue();
 
 private:
     Ui::MainWindow *ui;
