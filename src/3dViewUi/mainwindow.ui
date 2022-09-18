@@ -17,9 +17,9 @@
    <widget class="GLWidget" name="OGLwidget" native="true">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>290</x>
       <y>10</y>
-      <width>1321</width>
+      <width>1371</width>
       <height>1021</height>
      </rect>
     </property>
@@ -33,8 +33,8 @@
    <widget class="QPushButton" name="resetButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>570</y>
+      <x>0</x>
+      <y>480</y>
       <width>231</width>
       <height>51</height>
      </rect>
@@ -167,8 +167,8 @@
    <widget class="QPushButton" name="openObjButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>630</y>
+      <x>0</x>
+      <y>540</y>
       <width>231</width>
       <height>81</height>
      </rect>
@@ -177,11 +177,11 @@
      <string>Open file</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>390</y>
+      <y>350</y>
       <width>240</width>
       <height>124</height>
      </rect>
@@ -246,26 +246,13 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>790</y>
-      <width>251</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>ЛУЧШЕ НЕ ТРОГАЙ ОНО СЛОМАНО</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>190</y>
       <width>242</width>
-      <height>111</height>
+      <height>152</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -336,35 +323,23 @@
        </item>
       </layout>
      </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>850</y>
-      <width>231</width>
-      <height>70</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_4">
-     <item>
-      <widget class="QLabel" name="label_7">
-       <property name="font">
-        <font>
-         <pointsize>24</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>типо движение по z</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="font">
+          <font>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Z</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QSlider" name="zMove">
          <property name="orientation">
