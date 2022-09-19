@@ -29,6 +29,8 @@ void GLWidget::initSettings() {
     pointSize = 20;
     // Тип точки: 0 - нет точек, 1 - круг, 2 - квадрат
     pointMode = 0;
+    // Режим вычислений: 0 - GPU, 1 - CPU
+    calcMode = 1;
 }
 
 void GLWidget::testBuffers() {
@@ -103,6 +105,18 @@ void GLWidget::clearBuffers() {
     }
 }
 
+void GLWidget::clearBuffersCPU() {
+    if (vaoCPU.isCreated()) {
+        vaoCPU.destroy();
+    }
+    if (vboCPU.isCreated()) {
+        vboCPU.destroy();
+    }
+    if (eboCPU.isCreated()) {
+        eboCPU.destroy();
+    }
+}
+
 void GLWidget::initBuffers() {
     // Чистим все буферы, если они были ранее созданы
     clearBuffers();
@@ -146,7 +160,56 @@ void GLWidget::initBuffers() {
 
     // Сообщаем, что мы закончили привязывать к VAO
     vao.release();
+
+    s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
 }
+
+void GLWidget::initBuffersCPU() {
+    // Чистим все буферы, если они были ранее созданы
+    clearBuffersCPU();
+
+    // Создаем Vertex Arrays Object (VAO) - хранилище индексов VBO (в элементах которого хранится информация о том, какую часть некого VBO использовать, и как эти данные нужно интерпретировать)
+    vaoCPU.create();
+    // Всё, что будет происходить далее, будет привязано к vao
+    vaoCPU.bind();
+
+    // Создаем Vertex Buffer Object (VBO) - средство OpenGL, позволяющее загружать определенные данные в память GPU. В данном случае будем хранить координаты вершин
+    vboCPU = QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+    vboCPU.create();
+    vboCPU.bind();
+    vboCPU.setUsagePattern(QOpenGLBuffer::StaticDraw);
+    // Заполняем VBO данными, которые были распарсены из .obj-файла
+    vboCPU.allocate(rawObjDataCPU.array_of_v, rawObjDataCPU.num_of_v * sizeof(GLfloat));
+
+    qDebug() << "Координат вершин (CPU):" << rawObjDataCPU.num_of_v;
+
+    // Сообщаем OpenGL, как он должен интерпретировать данные вершин
+    // 0 - Указываем location атрибута в шейдерах, который мы хотим настроить (у нас он один)
+    // 3 - размер вершинного атрибута (состоит из 3х значений - x, y, z)
+    // GL_FLOAT - указываем тип данных атрибута (т.е. float)
+    // GL_FALSE - Указываем, хотим ли мы, чтобы наши данные были нормализованы (актуально только для целочисленных данных)
+    // 3 * sizeof(GLfloat) - шаг, на который необходимо сдвигаться в пространстве атрибутов, чтобы получить значения следующе вершины
+    // nullptr - Смещение от начала буфера, с которого начинается обработка. Тут задано смещение 0, поскольку данные находятся в начале массива
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
+    // Устанавливаем индекс атрибута (включаем). Если это не сделать, то атрибут не будет использоваться
+    glEnableVertexAttribArray(0);
+
+    // Создаем Element Buffer Objects (EBO) - буффер, хранящий индексы вершин
+    // Используем, чтобы соединить указанные вершины линиями
+    eboCPU = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+    eboCPU.create();
+    eboCPU.bind();
+    eboCPU.setUsagePattern(QOpenGLBuffer::StaticDraw);
+    // Заполняем EBO данными, которые были распарсены из .obj-файла
+    eboCPU.allocate(rawObjDataCPU.array_of_f, rawObjDataCPU.num_of_f * sizeof(GLuint));
+    qDebug() << "Координат линий (CPU):" << rawObjDataCPU.num_of_f;
+    qDebug() << "Максимальная координата (CPU):" << rawObjDataCPU.max_coord;
+
+    // Сообщаем, что мы закончили привязывать к VAO
+    vaoCPU.release();
+}
+
+
 
 // код веришнного шейдера на GLSL
 static const char *vertexShaderSourceCore =
@@ -189,7 +252,7 @@ void GLWidget::initializeGL() {
     m_scaleMatrixLoc = m_program->uniformLocation("scaleMatrix");
     m_colorLoc = m_program->uniformLocation("color");
 
-    testBuffers();
+    // testBuffers();
 
     cameraMatrix.setToIdentity();
     if (orthoMode == 0) {
@@ -223,21 +286,32 @@ void GLWidget::paintGL() {
 
     // Пытаемся что-то рисовать только если создан VAO
     if (vao.isCreated()) {
-        rotateMatrix.setToIdentity();
-        rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
-        rotateMatrix.rotate(180 - m_yRot / 16.0f, 0, 1, 0);
-        rotateMatrix.rotate(180 - m_zRot / 16.0f, 0, 0, 1);
+        if (calcMode == 0) {
+            rotateMatrix.setToIdentity();
+            rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
+            rotateMatrix.rotate(180 - m_yRot / 16.0f, 0, 1, 0);
+            rotateMatrix.rotate(180 - m_zRot / 16.0f, 0, 0, 1);
 
-        moveMatrix.setToIdentity();
-        moveMatrix.translate(0.05 * (50 - m_xMove), 0, 0);
-        moveMatrix.translate(0, 0.05 * (50 - m_yMove), 0);
-        moveMatrix.translate(0, 0, 0.05 * (50 - m_zMove));
+            moveMatrix.setToIdentity();
+            moveMatrix.translate(0.05 * (50 - m_xMove), 0, 0);
+            moveMatrix.translate(0, 0.05 * (50 - m_yMove), 0);
+            moveMatrix.translate(0, 0, 0.05 * (50 - m_zMove));
 
-        scaleMatrix.setToIdentity();
-        scaleMatrix.scale(fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f));
-    // Примеры трансформаций
-//        scaleMatrix.scale(0.75,0.75,0.75);
-//        moveMatrix.translate(0,0,0);
+            scaleMatrix.setToIdentity();
+            scaleMatrix.scale(fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f));
+        } else {
+            s21_move_x(&rawObjDataCPU, 0.05 * (50 - m_xMove));
+            s21_move_y(&rawObjDataCPU, 0.05 * (50 - m_yMove));
+            s21_move_z(&rawObjDataCPU, 0.05 * (50 - m_zMove));
+
+            s21_rotate_x(&rawObjDataCPU, 180 - m_xRot / 16.0f);
+            s21_rotate_y(&rawObjDataCPU, 180 - m_yRot / 16.0f);
+            s21_rotate_z(&rawObjDataCPU, 180 - m_zRot / 16.0f);
+            
+            s21_scale(&rawObjDataCPU, fabs(zoomVal / 30.0f));
+
+            initBuffersCPU();
+        }
 
         m_program->bind();
         m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
@@ -247,7 +321,11 @@ void GLWidget::paintGL() {
         m_program->setUniformValue(m_scaleMatrixLoc, scaleMatrix);
 
         // Указываем, какой VAO будем использовать
-        vao.bind();
+        if (calcMode == 0) {
+            vao.bind();
+        } else {
+            vaoCPU.bind();
+        }
 
         // Рисуем точки
         if (pointMode != 0) {
@@ -281,8 +359,17 @@ void GLWidget::paintGL() {
             glDisable(GL_LINE_STIPPLE);
         }
         // Сообщаем, что мы закончили использовать этот VAO
-        vao.release();
+        if (calcMode == 0) {
+            vao.release();
+        } else {
+            vaoCPU.release();
+        }
+
         m_program->release();
+        if (calcMode == 1) {
+            s21_destroy_obj_data(&rawObjDataCPU);
+            s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
+        }
     }
 
 }
@@ -368,7 +455,9 @@ void GLWidget::cleanup()
         return;
     makeCurrent();
     clearBuffers();
+    clearBuffersCPU();
     s21_destroy_obj_data(&rawObjData);
+    s21_destroy_obj_data(&rawObjDataCPU);
     delete m_program;
     m_program = nullptr;
     doneCurrent();

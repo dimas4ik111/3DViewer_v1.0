@@ -22,6 +22,7 @@ public:
 
     void testBuffers();
     void initBuffers();
+    void initBuffersCPU();
     void initSettings();
 
     QColor backgroundColor;
@@ -32,6 +33,7 @@ public:
     int pointSize;
     int lineSize;
     int lineMode;
+    int calcMode;
 
     int m_xRot = 2880;
     int m_yRot = 360 * 8;
@@ -44,6 +46,7 @@ public:
     int zoomVal = 30;
 
     s21_obj_data rawObjData;
+    s21_obj_data rawObjDataCPU;
 
 protected:
     void initializeGL() override;
@@ -64,6 +67,7 @@ public slots:
     void setZRotation(int angle);
 
     void clearBuffers();
+    void clearBuffersCPU();
     void cleanup();
 
 signals:
@@ -84,8 +88,11 @@ private:
 
     QOpenGLShaderProgram *m_program = nullptr;
     QOpenGLBuffer vbo;
+    QOpenGLBuffer vboCPU;
     QOpenGLBuffer ebo;
+    QOpenGLBuffer eboCPU;
     QOpenGLVertexArrayObject vao;
+    QOpenGLVertexArrayObject vaoCPU;
 
     QMatrix4x4 projectionMatrix;
     QMatrix4x4 cameraMatrix;

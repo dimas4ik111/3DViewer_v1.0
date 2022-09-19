@@ -32,6 +32,14 @@ s21_parser_result s21_allocate_memory_block_v(s21_obj_data *data);
 void s21_init_obj_data(s21_obj_data *data);
 void s21_destroy_obj_data(s21_obj_data *data);
 void s21_print_obj_data(s21_obj_data *data);
-s21_boolean s21_is_number(char symbol);
+void s21_copy_obj_data(s21_obj_data *dst, s21_obj_data *src);
+
+void s21_move_x(s21_obj_data *data, float shift);
+void s21_move_y(s21_obj_data *data, float shift);
+void s21_move_z(s21_obj_data *data, float shift);
+void s21_scale(s21_obj_data *data, float scale);
+void s21_rotate_x(s21_obj_data *data, float angle);
+void s21_rotate_y(s21_obj_data *data, float angle);
+void s21_rotate_z(s21_obj_data *data, float angle);
 
 #endif  // SRC_BACKEND_BACKEND_H_
