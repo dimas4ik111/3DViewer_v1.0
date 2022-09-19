@@ -342,7 +342,7 @@ void GLWidget::paintGL() {
             if (pointMode == 1) {
                 glEnable(GL_POINT_SMOOTH);
             }
-            glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
+            glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v / 3);
             if (pointMode == 1) {
                 glDisable(GL_POINT_SMOOTH);
             }
