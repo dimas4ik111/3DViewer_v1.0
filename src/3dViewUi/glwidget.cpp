@@ -4,6 +4,7 @@ GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent)
 {
     s21_init_obj_data(&rawObjData);
+    s21_init_obj_data(&rawObjDataCPU);
     initSettings();
 }
 
