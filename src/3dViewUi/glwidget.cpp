@@ -31,7 +31,7 @@ void GLWidget::initSettings() {
     // Тип точки: 0 - нет точек, 1 - круг, 2 - квадрат
     pointMode = 0;
     // Режим вычислений: 0 - GPU, 1 - CPU
-    calcMode = 1;
+    calcMode = 0;
 }
 
 void GLWidget::testBuffers() {
@@ -284,32 +284,35 @@ void GLWidget::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
 //    glEnable(GL_CULL_FACE);
+    qDebug() << m_xRot << m_yRot << m_zRot;
+    qDebug() << 180 - m_xRot / 16.0f << 180 - m_yRot / 16.0f << 180 - m_zRot / 16.0f;
 
     // Пытаемся что-то рисовать только если создан VAO
     if (vao.isCreated()) {
+        rotateMatrix.setToIdentity();
+        moveMatrix.setToIdentity();
+        scaleMatrix.setToIdentity();
+
         if (calcMode == 0) {
-            rotateMatrix.setToIdentity();
             rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
             rotateMatrix.rotate(180 - m_yRot / 16.0f, 0, 1, 0);
             rotateMatrix.rotate(180 - m_zRot / 16.0f, 0, 0, 1);
 
-            moveMatrix.setToIdentity();
             moveMatrix.translate(0.05 * (50 - m_xMove), 0, 0);
             moveMatrix.translate(0, 0.05 * (50 - m_yMove), 0);
             moveMatrix.translate(0, 0, 0.05 * (50 - m_zMove));
 
-            scaleMatrix.setToIdentity();
             scaleMatrix.scale(fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f));
         } else {
+            s21_scale(&rawObjDataCPU, fabs(zoomVal / 30.0f));
+
             s21_move_x(&rawObjDataCPU, 0.05 * (50 - m_xMove));
             s21_move_y(&rawObjDataCPU, 0.05 * (50 - m_yMove));
             s21_move_z(&rawObjDataCPU, 0.05 * (50 - m_zMove));
 
-            s21_rotate_x(&rawObjDataCPU, 180 - m_xRot / 16.0f);
-            s21_rotate_y(&rawObjDataCPU, 180 - m_yRot / 16.0f);
             s21_rotate_z(&rawObjDataCPU, 180 - m_zRot / 16.0f);
-            
-            s21_scale(&rawObjDataCPU, fabs(zoomVal / 30.0f));
+            s21_rotate_y(&rawObjDataCPU, 180 - m_yRot / 16.0f);
+            s21_rotate_x(&rawObjDataCPU, 180 - m_xRot / 16.0f);
 
             initBuffersCPU();
         }

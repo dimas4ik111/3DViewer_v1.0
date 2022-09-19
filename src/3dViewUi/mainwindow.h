@@ -36,6 +36,9 @@ private slots:
     void CircleView();
     void SquareView();
 
+    void EnableGPUMode();
+    void EnableCPUMode();
+
     void xSliderValueChanged(int value);
     void ySliderValueChanged(int value);
     void zSliderValueChanged(int value);
