@@ -43,8 +43,8 @@ void s21_rotate_y(s21_obj_data *data, float angle) {
     float x = data->array_of_v[i];
     float z = data->array_of_v[i + 2];
 
-    data->array_of_v[i] = x * cos(angle) - z * sin(angle);
-    data->array_of_v[i + 2] = x * sin(angle) + z * cos(angle);
+    data->array_of_v[i] = x * cos(angle) + z * sin(angle);
+    data->array_of_v[i + 2] = -x * sin(angle) + z * cos(angle);
   }
 }
 
