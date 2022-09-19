@@ -41,5 +41,6 @@ void s21_scale(s21_obj_data *data, float scale);
 void s21_rotate_x(s21_obj_data *data, float angle);
 void s21_rotate_y(s21_obj_data *data, float angle);
 void s21_rotate_z(s21_obj_data *data, float angle);
+float s21_degres_to_radians(float angle);
 
 #endif  // SRC_BACKEND_BACKEND_H_

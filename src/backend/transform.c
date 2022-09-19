@@ -27,6 +27,7 @@ void s21_scale(s21_obj_data *data, float scale) {
 }
 
 void s21_rotate_x(s21_obj_data *data, float angle) {
+  angle = s21_degres_to_radians(angle);
   for (unsigned int i = 0; i < data->num_of_v; i += 3) {
     float y = data->array_of_v[i + 1];
     float z = data->array_of_v[i + 2];
@@ -37,6 +38,7 @@ void s21_rotate_x(s21_obj_data *data, float angle) {
 }
 
 void s21_rotate_y(s21_obj_data *data, float angle) {
+  angle = s21_degres_to_radians(angle);
   for (unsigned int i = 0; i < data->num_of_v; i += 3) {
     float x = data->array_of_v[i];
     float z = data->array_of_v[i + 2];
@@ -47,6 +49,7 @@ void s21_rotate_y(s21_obj_data *data, float angle) {
 }
 
 void s21_rotate_z(s21_obj_data *data, float angle) {
+  angle = s21_degres_to_radians(angle);
   for (unsigned int i = 0; i < data->num_of_v; i += 3) {
     float x = data->array_of_v[i];
     float y = data->array_of_v[i + 1];
@@ -55,3 +58,5 @@ void s21_rotate_z(s21_obj_data *data, float angle) {
     data->array_of_v[i + 1] = x * sin(angle) + y * cos(angle);
   }
 }
+
+float s21_degres_to_radians(float angle) { return angle * M_PI / 180; }
