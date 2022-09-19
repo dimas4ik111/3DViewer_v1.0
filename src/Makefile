@@ -156,6 +156,8 @@ dist:
 	@echo "-- Distribution: $(DIST_DIR).tar.gz"
 	@rm -rf $(DIST_DIR)/
 
+test: $(TEST_EXE)
+
 $(TEST_EXE): $(OBJ_DIR) $(TESTS_OBJ_DIR) $(MODULES_STATIC_LIBRARY) $(ALL_TESTS_O)
 	@$(CC) $(LFLAGS) $(ALL_TESTS_O) $(MODULES_STATIC_LIBRARY) $(LIBS) -o $(TEST_EXE)
 	@echo "\n-------------------------------------------------------------------------------------------------\n"
