@@ -248,8 +248,6 @@ void GLWidget::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
 //    glEnable(GL_CULL_FACE);
-    qDebug() << m_xRot << m_yRot << m_zRot;
-    qDebug() << 180 - m_xRot / 16.0f << 180 - m_yRot / 16.0f << 180 - m_zRot / 16.0f;
 
     // Пытаемся что-то рисовать только если создан VAO
     if (vao.isCreated()) {
