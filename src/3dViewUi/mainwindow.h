@@ -39,6 +39,9 @@ private slots:
     void EnableGPUMode();
     void EnableCPUMode();
 
+    void EnableRotateAxesMode();
+    void EnableRotateModelMode();
+
     void xSliderValueChanged(int value);
     void ySliderValueChanged(int value);
     void zSliderValueChanged(int value);

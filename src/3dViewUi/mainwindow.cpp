@@ -98,6 +98,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->CalcModeGPURadio, &QRadioButton::pressed, (this), &MainWindow::EnableGPUMode);
     connect(ui->CalcModeCPURadio, &QRadioButton::pressed, (this), &MainWindow::EnableCPUMode);
 
+    // Rotate
+    connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateAxesMode);
+    connect(ui->RotateModelRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateModelMode);
+
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
@@ -110,6 +114,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->zText->setText(QString::number(0));
     ui->disableView->setChecked(true);
     ui->CalcModeGPURadio->setChecked(true);
+    ui->RotateAxesRadio->setChecked(true);
 }
 
 void MainWindow::handleOpenFile() {
@@ -234,6 +239,15 @@ void MainWindow::EnableCPUMode() {
   ui->OGLwidget->update();
 }
 
+void MainWindow::EnableRotateAxesMode() {
+  ui->OGLwidget->rotateMode = 0;
+  ui->OGLwidget->update();
+}
+
+void MainWindow::EnableRotateModelMode() {
+  ui->OGLwidget->rotateMode = 1;
+  ui->OGLwidget->update();
+}
 
 void MainWindow::resetValue()
 {
@@ -242,6 +256,7 @@ void MainWindow::resetValue()
     ui->zSlider->setValue(360 * 8);
     ui->disableView->setChecked(true);
     ui->CalcModeGPURadio->setChecked(true);
+    ui->RotateAxesRadio->setChecked(true);
     ui->OGLwidget->initSettings();
     ui->xMove->setValue(50);
     ui->yMove->setValue(50);

@@ -34,6 +34,7 @@ public:
     int lineSize;
     int lineMode;
     int calcMode;
+    int rotateMode;
 
     int m_xRot = 2880;
     int m_yRot = 360 * 8;
@@ -79,11 +80,7 @@ private:
 
     QPoint m_lastPos;
 
-    int m_projectionMatrixLoc = 0;
-    int m_cameraMatrixLoc = 0;
-    int m_rotateMatrixLoc = 0;
-    int m_moveMatrixLoc = 0;
-    int m_scaleMatrixLoc = 0;
+    int m_coeffMatrixLoc = 0;
     int m_colorLoc = 0;
 
     QOpenGLShaderProgram *m_program = nullptr;

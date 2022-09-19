@@ -32,6 +32,8 @@ void GLWidget::initSettings() {
     pointMode = 0;
     // Режим вычислений: 0 - GPU, 1 - CPU
     calcMode = 0;
+    // Способ вращения: 0 - вокруг осей xyz, 1 - вокруг осей модели
+    rotateMode = 0;
 }
 
 void GLWidget::testBuffers() {
@@ -217,13 +219,9 @@ static const char *vertexShaderSourceCore =
 //    "#version 150\n"
 //    "in vec4 vertex;\n"
     "attribute vec4 vertex;\n"
-    "uniform mat4 projectionMatrix;\n"
-    "uniform mat4 cameraMatrix;\n"
-    "uniform mat4 rotateMatrix;\n"
-    "uniform mat4 moveMatrix;\n"
-    "uniform mat4 scaleMatrix;\n"
+    "uniform mat4 coeffMatrix;\n"
     "void main() {\n"
-    "   gl_Position = projectionMatrix * cameraMatrix * rotateMatrix * moveMatrix * scaleMatrix * vertex;\n"
+    "   gl_Position = coeffMatrix * vertex;\n"
     "}\n";
 
 static const char *fragmentShaderSourceCore =
@@ -246,11 +244,7 @@ void GLWidget::initializeGL() {
     m_program->bindAttributeLocation("vertex", 0);
     m_program->link();
     m_program->bind();
-    m_projectionMatrixLoc = m_program->uniformLocation("projectionMatrix");
-    m_cameraMatrixLoc = m_program->uniformLocation("cameraMatrix");
-    m_rotateMatrixLoc = m_program->uniformLocation("rotateMatrix");
-    m_moveMatrixLoc = m_program->uniformLocation("moveMatrix");
-    m_scaleMatrixLoc = m_program->uniformLocation("scaleMatrix");
+    m_coeffMatrixLoc = m_program->uniformLocation("coeffMatrix");
     m_colorLoc = m_program->uniformLocation("color");
 
     // testBuffers();
@@ -305,24 +299,33 @@ void GLWidget::paintGL() {
             scaleMatrix.scale(fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f));
         } else {
             s21_scale(&rawObjDataCPU, fabs(zoomVal / 30.0f));
+            if (rotateMode == 0) {
+                s21_move_x(&rawObjDataCPU, 0.05 * (50 - m_xMove));
+                s21_move_y(&rawObjDataCPU, 0.05 * (50 - m_yMove));
+                s21_move_z(&rawObjDataCPU, 0.05 * (50 - m_zMove));
 
-            s21_move_x(&rawObjDataCPU, 0.05 * (50 - m_xMove));
-            s21_move_y(&rawObjDataCPU, 0.05 * (50 - m_yMove));
-            s21_move_z(&rawObjDataCPU, 0.05 * (50 - m_zMove));
+                s21_rotate_z(&rawObjDataCPU, 180 - m_zRot / 16.0f);
+                s21_rotate_y(&rawObjDataCPU, 180 - m_yRot / 16.0f);
+                s21_rotate_x(&rawObjDataCPU, 180 - m_xRot / 16.0f);
+            } else {
+                s21_rotate_z(&rawObjDataCPU, 180 - m_zRot / 16.0f);
+                s21_rotate_y(&rawObjDataCPU, 180 - m_yRot / 16.0f);
+                s21_rotate_x(&rawObjDataCPU, 180 - m_xRot / 16.0f);
 
-            s21_rotate_z(&rawObjDataCPU, 180 - m_zRot / 16.0f);
-            s21_rotate_y(&rawObjDataCPU, 180 - m_yRot / 16.0f);
-            s21_rotate_x(&rawObjDataCPU, 180 - m_xRot / 16.0f);
+                s21_move_x(&rawObjDataCPU, 0.05 * (50 - m_xMove));
+                s21_move_y(&rawObjDataCPU, 0.05 * (50 - m_yMove));
+                s21_move_z(&rawObjDataCPU, 0.05 * (50 - m_zMove));
+            }
 
             initBuffersCPU();
         }
 
         m_program->bind();
-        m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
-        m_program->setUniformValue(m_cameraMatrixLoc, cameraMatrix);
-        m_program->setUniformValue(m_rotateMatrixLoc, rotateMatrix);
-        m_program->setUniformValue(m_moveMatrixLoc, moveMatrix);
-        m_program->setUniformValue(m_scaleMatrixLoc, scaleMatrix);
+        if (rotateMode == 0) {
+            m_program->setUniformValue(m_coeffMatrixLoc, projectionMatrix * cameraMatrix * rotateMatrix * moveMatrix * scaleMatrix);
+        } else {
+            m_program->setUniformValue(m_coeffMatrixLoc, projectionMatrix * cameraMatrix * moveMatrix * rotateMatrix * scaleMatrix);
+        }
 
         // Указываем, какой VAO будем использовать
         if (calcMode == 0) {
@@ -352,7 +355,7 @@ void GLWidget::paintGL() {
         if (lineMode == 1) {
             // Настраиваем тип линии
             glEnable(GL_LINE_STIPPLE);
-            // TODO(maiamabl): glLineStipple deprecated in OpenGL 3.1 / Использовать геометрические шейдеры?
+            // TODO(maiamabl): glLineStipple deprecated in OpenGL 3.1 / Использовать геометрические шейдеры или #define GL_SILENCE_DEPRECATION?
             glLineStipple(2, 0x00F0);
         }
 
