@@ -21,11 +21,33 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
-    void on_xSlider_valueChanged(int value);
-    void on_ySlider_valueChanged(int value);
-    void on_zSlider_valueChanged(int value);
+    void xTextEdit();
+    void yTextEdit();
+    void zTextEdit();
+
+    void xMoveTextEdit();
+    void yMoveTextEdit();
+    void zMoveTextEdit();
+
+    void zoomTextEdit();
+
+    void DisableView();
+    void CircleView();
+    void SquareView();
+
+    void xSliderValueChanged(int value);
+    void ySliderValueChanged(int value);
+    void zSliderValueChanged(int value);
+
+    void xMoveSliderValueChanged(int value);
+    void yMoveSliderValueChanged(int value);
+    void zMoveSliderValueChanged(int value);
+
+    void zoomSliderValueChanged(int value);
+
     void handleOpenFile();
+
+    void resetValue();
 
 private:
     Ui::MainWindow *ui;

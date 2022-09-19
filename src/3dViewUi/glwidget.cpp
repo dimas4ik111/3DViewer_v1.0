@@ -7,6 +7,11 @@ GLWidget::GLWidget(QWidget *parent)
     initSettings();
 }
 
+GLWidget::~GLWidget()
+{
+    cleanup();
+}
+
 void GLWidget::initSettings() {
     // Проекция: 0 - центральная, 1 - параллельная
     orthoMode = 0;
@@ -28,17 +33,30 @@ void GLWidget::initSettings() {
 
 void GLWidget::testBuffers() {
     clearBuffers();
+//x:  0.000000 y:  1.000000 z:  0.000000
+//x: -1.000000 y:  0.000000 z: -1.000000
+//x:  1.000000 y:  0.000000 z: -1.000000
+//x:  1.000000 y:  0.000000 z:  1.000000
+//x: -1.000000 y:  0.000000 z:  1.000000
+//0,1,1,2,2,0,0,2,2,3,3,0,0,3,3,4,4,0,0,4,4,1,1,0,2,1,1,3,3,2,1,4,4,3,3,1,v: 5 (15)
+//f: 18 (36)
 
     QList<GLfloat> m_data;
-    m_data.push_back(1);m_data.push_back(-1);m_data.push_back(-1);
-    m_data.push_back(1);m_data.push_back(-1);m_data.push_back(1);
-    m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(1);
-    m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(-1);
-    m_data.push_back(1);m_data.push_back(1);m_data.push_back(-1);
-    m_data.push_back(1);m_data.push_back(1);m_data.push_back(1);
-    m_data.push_back(-1);m_data.push_back(1);m_data.push_back(1);
-    m_data.push_back(-1);m_data.push_back(1);m_data.push_back(-1);
-
+    // Куб
+//    m_data.push_back(1);m_data.push_back(-1);m_data.push_back(-1);
+//    m_data.push_back(1);m_data.push_back(-1);m_data.push_back(1);
+//    m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(1);
+//    m_data.push_back(-1);m_data.push_back(-1);m_data.push_back(-1);
+//    m_data.push_back(1);m_data.push_back(1);m_data.push_back(-1);
+//    m_data.push_back(1);m_data.push_back(1);m_data.push_back(1);
+//    m_data.push_back(-1);m_data.push_back(1);m_data.push_back(1);
+//    m_data.push_back(-1);m_data.push_back(1);m_data.push_back(-1);
+    // Пирамидка
+    m_data.push_back(0);m_data.push_back(1);m_data.push_back(0);
+    m_data.push_back(-1);m_data.push_back(0);m_data.push_back(-1);
+    m_data.push_back(1);m_data.push_back(0);m_data.push_back(-1);
+    m_data.push_back(1);m_data.push_back(0);m_data.push_back(1);
+    m_data.push_back(-1);m_data.push_back(0);m_data.push_back(1);
     vao.create();
     vao.bind();
 
@@ -53,16 +71,22 @@ void GLWidget::testBuffers() {
 
     //setupVertexAttribs();
 
-    GLuint inds[]={1,2,2,3,3,1,7,6,6,5,5,7,4,5,5,1,1,4,5,6,6,2,2,5,2,6,6,7,7,2,0,3,3,7,7,0,0,1,1,3,3,0,4,7,7,5,5,4,0,4,4,1,1,0,1,5,5,2,2,1,3,2,2,7,7,3,4,0,0,7,7,4};
-
+    // Куб
+//    GLuint inds[]={1,2,2,3,3,1,7,6,6,5,5,7,4,5,5,1,1,4,5,6,6,2,2,5,2,6,6,7,7,2,0,3,3,7,7,0,0,1,1,3,3,0,4,7,7,5,5,4,0,4,4,1,1,0,1,5,5,2,2,1,3,2,2,7,7,3,4,0,0,7,7,4};
+    // Пирамидка
+    GLuint inds[]={0,1,1,2,2,0,0,2,2,3,3,0,0,3,3,4,4,0,0,4,4,1,1,0,2,1,1,3,3,2,1,4,4,3,3,1};
     ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
     ebo.create();
     ebo.bind();
     ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
-    ebo.allocate(inds, 72 * sizeof(GLuint));
-
-    rawObjData.num_of_v = 8;
-    rawObjData.num_of_f = 72;
+    // Куб
+//    ebo.allocate(inds, 72 * sizeof(GLuint));
+//    rawObjData.num_of_v = 8;
+//    rawObjData.num_of_f = 72;
+    // Пирамидка
+    ebo.allocate(inds, 36 * sizeof(GLuint));
+    rawObjData.num_of_v = 5;
+    rawObjData.num_of_f = 36;
 
     vao.release();
 }
@@ -164,13 +188,13 @@ void GLWidget::initializeGL() {
     m_scaleMatrixLoc = m_program->uniformLocation("scaleMatrix");
     m_colorLoc = m_program->uniformLocation("color");
 
-     testBuffers();
+    testBuffers();
 
     cameraMatrix.setToIdentity();
     if (orthoMode == 0) {
-        cameraMatrix.translate(0, 0, -7);
+        cameraMatrix.translate(0, 0, -4);
     } else {
-        cameraMatrix.scale(0.1,0.1,0.1);
+        cameraMatrix.scale(0.5, 0.5, 0.5);
     }
 
     rotateMatrix.setToIdentity();
@@ -199,13 +223,20 @@ void GLWidget::paintGL() {
     // Пытаемся что-то рисовать только если создан VAO
     if (vao.isCreated()) {
         rotateMatrix.setToIdentity();
-        rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
-        rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
-        rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
+        rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
+        rotateMatrix.rotate(180 - m_yRot / 16.0f, 0, 1, 0);
+        rotateMatrix.rotate(180 - m_zRot / 16.0f, 0, 0, 1);
 
+        moveMatrix.setToIdentity();
+        moveMatrix.translate(0.05 * (50 - m_xMove), 0, 0);
+        moveMatrix.translate(0, 0.05 * (50 - m_yMove), 0);
+        moveMatrix.translate(0, 0, 0.05 * (50 - m_zMove));
+
+        scaleMatrix.setToIdentity();
+        scaleMatrix.scale(fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f));
     // Примеры трансформаций
-    //  scaleMatrix.scale(0.75,0.75,0.75);
-    //  moveMatrix.translate(0,0,1);
+//        scaleMatrix.scale(0.75,0.75,0.75);
+//        moveMatrix.translate(0,0,0);
 
         m_program->bind();
         m_program->setUniformValue(m_projectionMatrixLoc, projectionMatrix);
@@ -226,6 +257,9 @@ void GLWidget::paintGL() {
                 glEnable(GL_POINT_SMOOTH);
             }
             glDrawArrays(GL_POINTS, 0, rawObjData.num_of_v);
+            if (pointMode == 1) {
+                glDisable(GL_POINT_SMOOTH);
+            }
         }
 
         // Устанавливаем цвет линии для отрисовки
@@ -261,18 +295,6 @@ void GLWidget::resizeGL(int width, int height) {
 //    projectionMatrix.viewport(0, 0, width*0.8, height*0.8, 0.1f, 4.0f);
 }
 
-// --------------------------------------------------------------------------
-
-GLWidget::~GLWidget()
-{
-    cleanup();
-}
-
-//QSize GLWidget::sizeHint() const
-//{
-//    return QSize(400, 400);
-//}
-
 static void qNormalizeAngle(int &angle)
 {
     while (angle < 0)
@@ -281,20 +303,23 @@ static void qNormalizeAngle(int &angle)
         angle -= 360 * 16;
 }
 
-static void qNormalizeStep(int &step) {
-    while (step < 0) {
-        step += 1;
-    }
-    while (step > 0) {
-        step -= 1;
+void GLWidget::setXMove(int step) {
+    if (step != m_xMove) {
+        m_xMove = step;
+        update();
     }
 }
 
-void GLWidget::setXMove(int step) {
-    qNormalizeStep(step);
-    if (step != m_xMove) {
-        m_xMove = step;
-        emit xMoveChanged(step);
+void GLWidget::setYMove(int step) {
+    if (step != m_yMove) {
+        m_yMove = step;
+        update();
+    }
+}
+
+void GLWidget::setZMove(int step) {
+    if (step != m_zMove) {
+        m_zMove = step;
         update();
     }
 }
@@ -314,7 +339,6 @@ void GLWidget::setYRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != m_yRot) {
         m_yRot = angle;
-//        rotateMatrix.rotate(angle / 16.0f, 0, 1, 0);
         emit yRotationChanged(angle);
         update();
     }
@@ -325,8 +349,14 @@ void GLWidget::setZRotation(int angle)
     qNormalizeAngle(angle);
     if (angle != m_zRot) {
         m_zRot = angle;
-//        rotateMatrix.rotate(angle / 16.0f, 0, 0, 1);
         emit zRotationChanged(angle);
+        update();
+    }
+}
+
+void GLWidget::setZoom(int zoom) {
+    if (zoom != zoomVal) {
+        zoomVal = zoom;
         update();
     }
 }

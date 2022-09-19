@@ -22,6 +22,7 @@ public:
 
     void testBuffers();
     void initBuffers();
+    void initSettings();
 
     QColor backgroundColor;
     QColor lineColor;
@@ -32,11 +33,15 @@ public:
     int lineSize;
     int lineMode;
 
-    int m_xRot = 0;
-    int m_yRot = 0;
-    int m_zRot = 0;
+    int m_xRot = 2880;
+    int m_yRot = 360 * 8;
+    int m_zRot = 360 * 8;
 
     int m_xMove = 0;
+    int m_yMove = 0;
+    int m_zMove = 0;
+
+    int zoomVal = 30;
 
     s21_obj_data rawObjData;
 
@@ -49,6 +54,10 @@ protected:
 
 public slots:
     void setXMove(int step);
+    void setYMove(int step);
+    void setZMove(int step);
+
+    void setZoom(int zoom);
 
     void setXRotation(int angle);
     void setYRotation(int angle);
@@ -62,10 +71,7 @@ signals:
     void yRotationChanged(int angle);
     void zRotationChanged(int angle);
 
-    void xMoveChanged(int step);
-
 private:
-    void initSettings();
 
     QPoint m_lastPos;
 
