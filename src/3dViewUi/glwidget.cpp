@@ -142,6 +142,7 @@ void GLWidget::initBuffers() {
     // Заполняем EBO данными, которые были распарсены из .obj-файла
     ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
     qDebug() << "Координат линий:" << rawObjData.num_of_f;
+    qDebug() << "Максимальная координата:" << rawObjData.max_coord;
 
     // Сообщаем, что мы закончили привязывать к VAO
     vao.release();

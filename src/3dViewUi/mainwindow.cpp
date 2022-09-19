@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -107,33 +108,58 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::handleOpenFile() {
-    // Определяем класс диалогового окна выбора файла
-    QFileDialog *fileDialog = new QFileDialog(this);
-    // Определяем заголовок окна
-    fileDialog-> setWindowTitle (tr ("Выберите .obj-файл"));
-    // Устанавливаем путь к файлу по умолчанию
-    // fileDialog->setDirectory(QDir::homePath());
-    // Устанавливаем фильтр файлов
-    fileDialog->setNameFilter(tr("(*.obj)"));
-    // Устанавливаем режим просмотра
-    fileDialog->setViewMode(QFileDialog::Detail);
-    // Вызываем диалог
-    QStringList fileNames;
-    if (fileDialog->exec()) {
-       fileNames = fileDialog->selectedFiles();
-       // В случае успеха и если что-то выбрано
-       if (fileNames.size() > 0) {
-           QString fileName = fileNames.at(0);
-           qDebug() << "Выбран файл: " << fileName;
-           ui->statusbar->showMessage("Выбран файл: " + fileName);
-           QByteArray ba = fileName.toLocal8Bit();
-           char *input = ba.data();
-           // Парсим файл
-           s21_parse_file(input, &ui->OGLwidget->rawObjData, S21_TRUE);
-           // Инициализируем буфферы OpenGL распарсенными данными
-           ui->OGLwidget->initBuffers();
-       }
+  // Определяем класс диалогового окна выбора файла
+  QFileDialog *fileDialog = new QFileDialog(this);
+  // Определяем заголовок окна
+  fileDialog->setWindowTitle(tr("Выберите .obj-файл"));
+  // Устанавливаем путь к файлу по умолчанию
+  // fileDialog->setDirectory(QDir::homePath());
+  // Устанавливаем фильтр файлов
+  fileDialog->setNameFilter(tr("(*.obj)"));
+  // Устанавливаем режим просмотра
+  fileDialog->setViewMode(QFileDialog::Detail);
+  // Режим: выбор только существующего файла
+  fileDialog->setFileMode(QFileDialog::ExistingFile);
+  // Вызываем диалог
+  QStringList fileNames;
+  if (fileDialog->exec()) {
+    fileNames = fileDialog->selectedFiles();
+    // В случае успеха и если что-то выбрано
+    if (fileNames.size() > 0) {
+      QString fileName = fileNames.at(0);
+      qDebug() << "Выбран файл: " << fileName;
+      QByteArray ba = fileName.toLocal8Bit();
+      char *input = ba.data();
+      // Парсим файл
+      s21_parser_result code =
+          s21_parse_file(input, &ui->OGLwidget->rawObjData, S21_TRUE);
+      if (code == S21_PARSER_OK) {
+        // Пишем путь до файла в статусбар приложения
+        ui->statusbar->showMessage("Выбран файл: " + fileName);
+        // Инициализируем буфферы OpenGL распарсенными данными
+        ui->OGLwidget->initBuffers();
+      } else {
+        MainWindow::handleErrorByCode(code);
+      }
     }
+  }
+}
+
+void MainWindow::handleErrorByCode(s21_parser_result code) {
+  if (code != S21_PARSER_OK) {
+    switch (code) {
+      case S21_PARSER_ERROR_FILE:
+        QMessageBox::critical(0, "Ошибка",
+                              "Выбран некорректный файл");
+        break;
+      case S21_PARSER_ERROR_MEMORY:
+        QMessageBox::critical(0, "Ошибка", "Ошибка выделения памяти");
+        break;
+      default:
+        QMessageBox::critical(0, "Ошибка", "Неизвестная ошибка");
+        break;
+    }
+  }
 }
 
 MainWindow::~MainWindow()
