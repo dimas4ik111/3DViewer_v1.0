@@ -308,6 +308,9 @@
             <property name="text">
              <string>Axes</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_3</string>
+            </attribute>
            </widget>
           </item>
           <item>
@@ -321,6 +324,9 @@
             <property name="text">
              <string>Model</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_3</string>
+            </attribute>
            </widget>
           </item>
          </layout>
@@ -589,6 +595,9 @@
             <property name="text">
              <string>disable</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_2</string>
+            </attribute>
            </widget>
           </item>
           <item>
@@ -607,6 +616,9 @@
             <property name="text">
              <string>circle</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_2</string>
+            </attribute>
            </widget>
           </item>
           <item>
@@ -625,6 +637,9 @@
             <property name="text">
              <string>square</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_2</string>
+            </attribute>
            </widget>
           </item>
          </layout>
@@ -723,6 +738,9 @@
             <property name="text">
              <string>solid</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_4</string>
+            </attribute>
            </widget>
           </item>
           <item>
@@ -741,6 +759,9 @@
             <property name="text">
              <string>dashed</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_4</string>
+            </attribute>
            </widget>
           </item>
          </layout>
@@ -846,6 +867,9 @@
             <property name="text">
              <string>parallel</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
            </widget>
           </item>
           <item>
@@ -864,6 +888,9 @@
             <property name="text">
              <string>central</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
            </widget>
           </item>
          </layout>
@@ -906,6 +933,9 @@
             <property name="text">
              <string>GPU</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_5</string>
+            </attribute>
            </widget>
           </item>
           <item>
@@ -919,6 +949,9 @@
             <property name="text">
              <string>CPU</string>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup_5</string>
+            </attribute>
            </widget>
           </item>
          </layout>
@@ -964,4 +997,11 @@
  </customwidgets>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_5"/>
+ </buttongroups>
 </ui>

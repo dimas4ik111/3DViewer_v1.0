@@ -251,7 +251,8 @@ void GLWidget::paintGL() {
         if (projectionMode == 0) {
             cameraMatrix.translate(0, 0, -4);
         } else {
-            cameraMatrix.scale(0, 7, 0);
+            cameraMatrix.translate(0, -2, -4);
+//            cameraMatrix.scale(0.95, 0.95, 0.95);
         }
 
         if (calcMode == 0) {
