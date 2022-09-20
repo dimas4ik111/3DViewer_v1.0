@@ -249,10 +249,38 @@ void GLWidget::paintGL() {
 
         cameraMatrix.setToIdentity();
         if (projectionMode == 0) {
+            setupProjection();
             cameraMatrix.translate(0, 0, -4);
         } else {
-            cameraMatrix.translate(0, -2, -4);
-//            cameraMatrix.scale(0.95, 0.95, 0.95);
+            setupProjection();
+
+            float top, bottom, right, left, aratio;
+            aratio = (GLfloat) width() / height();
+            // aratio = (GLfloat) height() / width();
+
+            if (width() > height())
+            {
+                top = 1.5f;
+                bottom = -top;
+                right = top * aratio;
+                left = -right;
+            }
+            else
+            {
+                right = 1.5f;
+                left = -right;
+                top = right / aratio;
+                bottom = -top;
+            }
+            qDebug() << "ratio:" << aratio;
+            qDebug() << "height:" << height();
+            qDebug() << "width:" << width();
+            //    ortho(float left, float right, float bottom, float top, float nearPlane, float farPlane)
+            // cameraMatrix.ortho(0, 0, 5, 5, 0.01f, 100.0f);
+            cameraMatrix.ortho(left, right, bottom, top, -100.0f, 100.0f);
+            // cameraMatrix.scale(0.75 * aratio, 0.75, 0.75);
+
+            // (справа-слева)/(сверху-внизу) совпадали пропорции окна
         }
 
         if (calcMode == 0) {
@@ -351,11 +379,17 @@ void GLWidget::paintGL() {
 
 // Функция resizeGL() вызывается один раз, перед paintGL(), но после того, как будет вызвана функция initializeGL(). Здесь настраивается область просмотра (viewport), проекция и прочие настройки, которые зависят от размера виджета.
 void GLWidget::resizeGL(int width, int height) {
+    setupProjection(width, height);
+}
+
+void GLWidget::setupProjection(int w, int h) {
+//    qDebug() << height();
+    w = width();
+    h = height();
     projectionMatrix.setToIdentity();
     if (projectionMode == 0) {
-        projectionMatrix.perspective(45.0f, GLfloat(width) / height, 0.01f, 100.0f);
+        projectionMatrix.perspective(45.0f, GLfloat(w) / h, 0.01f, 100.0f);
     }
-//    projectionMatrix.viewport(0, 0, width*0.8, height*0.8, 0.1f, 4.0f);
 }
 
 static void qNormalizeAngle(int &angle)

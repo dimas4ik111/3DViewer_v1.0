@@ -144,7 +144,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->projectionCentral->setChecked(true);
 }
 
-void MainWindow::handleOpenFile() {
+void MainWindow::handleOpenFile() {  
   // Определяем класс диалогового окна выбора файла
   QFileDialog *fileDialog = new QFileDialog(this);
   // Определяем заголовок окна
