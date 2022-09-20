@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <qpushbutton.h>
+#include <QColorDialog>
+#include <QColor>
 #include "glwidget.h"
 
 extern "C" {
@@ -52,6 +54,10 @@ private slots:
     void zMoveSliderValueChanged(int value);
 
     void linesSizeSliderChanged(int value);
+
+    void edgesColorChanged();
+    void vertexColorChanged();
+    void backgroundColorChanged();
 
     void vertexSize(int value);
 

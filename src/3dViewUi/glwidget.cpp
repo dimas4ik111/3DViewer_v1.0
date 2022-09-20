@@ -21,7 +21,7 @@ void GLWidget::initSettings() {
     backgroundColor.setRgb(0, 0, 0);
 
     // Цвет линии
-    lineColor.setRgb(255, 127, 51);
+    lineColor.setRgb(0, 127, 51);
 
     // Толщина линии
     lineSize = 1;

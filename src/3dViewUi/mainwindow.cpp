@@ -60,7 +60,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
 
     // slider line size
-//    linesSizeSliderChecnged
     connect(ui->linesSizeSlider, &QSlider::valueChanged, (this), &MainWindow::linesSizeSliderChanged);
 
     // slider move val
@@ -119,9 +118,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateAxesMode);
     connect(ui->RotateModelRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateModelMode);
 
-    // prijection select
+    // projection select
     connect(ui->projectionParallel, &QRadioButton::pressed, (this), &MainWindow::projectionParallel);
     connect(ui->projectionCentral, &QRadioButton::pressed, (this), &MainWindow::projectionCentral);
+
+    // colors
+    connect(ui->colorEdges, SIGNAL(released()), (this), SLOT(edgesColorChanged()));
+    connect(ui->colorVertex, SIGNAL(released()), (this), SLOT(vertexColorChanged()));
+    connect(ui->widgetBackGroundColor, SIGNAL(released()), (this), SLOT(backgroundColorChanged()));
 
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
@@ -280,11 +284,15 @@ void MainWindow::resetValue()
     ui->disableView->setChecked(true);
     ui->CalcModeGPURadio->setChecked(true);
     ui->RotateAxesRadio->setChecked(true);
+    ui->projectionCentral->setChecked(true);
+    ui->solidEdges->setChecked(true);
+    ui->linesSizeSlider->setValue(1);
     ui->OGLwidget->initSettings();
     ui->xMove->setValue(50);
     ui->yMove->setValue(50);
     ui->zMove->setValue(50);
     ui->zoomSlider->setValue(30);
+    ui->vertexSizeSlider->setValue(1);
     ui->OGLwidget->update();
 }
 
@@ -391,5 +399,24 @@ void MainWindow::createScreenshot() {
         QString fileName = "convert -delay 10 -loop 0 ../../../../screenshot/gif_obj/*.jpg ../" + currentDateTime + ".gif";
         QByteArray ba = fileName.toLocal8Bit();
         system(ba);
+void MainWindow::edgesColorChanged() {
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->lineColor = color;
+    }
+}
+
+void MainWindow::vertexColorChanged() {
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->pointColor = color;
+    }
+}
+
+void MainWindow::backgroundColorChanged()
+{
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->backgroundColor = color;
     }
 }
