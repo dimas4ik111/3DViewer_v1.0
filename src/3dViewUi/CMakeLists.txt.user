@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.0, 2022-09-19T16:19:23. -->
+<!-- Written by QtCreator 7.0.0, 2022-09-20T17:00:52. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{082db485-939c-4de2-96f1-5ceaa264f61a}</value>
+  <value type="QByteArray">{b9b207db-3fb8-4ef2-8bb6-9b12b5f1da78}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -91,11 +91,7 @@
    <value type="QString" key="DeviceType">Desktop</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop (x86-darwin-generic-mach_o-64bit)</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop (x86-darwin-generic-mach_o-64bit)</value>
-<<<<<<< HEAD
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{d67c4901-d617-4f94-a6ec-d6984a5676e5}</value>
-=======
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{d902111c-e328-481f-a602-7fead0359a59}</value>
->>>>>>> 8516cafb1611cca0378363ba06a486ea487a0a47
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -109,11 +105,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-<<<<<<< HEAD
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/maiamabl/Desktop/3Dviewer/src/build-3dViewUi-Desktop_x86_darwin_generic_mach_o_64bit-Debug</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/hubertfu/projects/main/c/3DViewer_v1.0/src/build-3dViewUi-Desktop_x86_darwin_generic_mach_o_64bit-Debug</value>
->>>>>>> 8516cafb1611cca0378363ba06a486ea487a0a47
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/maiamabl/Desktop/3Dviewer/src/build</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
@@ -160,11 +152,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/maiamabl/Desktop/3Dviewer/src/build-3dViewUi-Desktop_x86_darwin_generic_mach_o_64bit-Release</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/hubertfu/projects/main/c/3DViewer_v1.0/src/build-3dViewUi-Desktop_x86_darwin_generic_mach_o_64bit-Release</value>
->>>>>>> 8516cafb1611cca0378363ba06a486ea487a0a47
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
@@ -254,11 +242,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 %{CMAKE_OSX_ARCHITECTURES:DefaultFlag}</value>
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/maiamabl/Desktop/3Dviewer/src/build-3dViewUi-Desktop_x86_darwin_generic_mach_o_64bit-MinSizeRel</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/hubertfu/projects/main/c/3DViewer_v1.0/src/build-3dViewUi-Desktop_x86_darwin_generic_mach_o_64bit-MinSizeRel</value>
->>>>>>> 8516cafb1611cca0378363ba06a486ea487a0a47
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
@@ -322,11 +306,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-<<<<<<< HEAD
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/maiamabl/Desktop/3Dviewer/src/build-3dViewUi-Desktop_x86_darwin_generic_mach_o_64bit-Debug/3dView.app/Contents/MacOS</value>
-=======
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/hubertfu/projects/main/c/3DViewer_v1.0/src/build-3dViewUi-Desktop_x86_darwin_generic_mach_o_64bit-Debug/3dView.app/Contents/MacOS</value>
->>>>>>> 8516cafb1611cca0378363ba06a486ea487a0a47
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/maiamabl/Desktop/3Dviewer/src/build/3dView.app/Contents/MacOS</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

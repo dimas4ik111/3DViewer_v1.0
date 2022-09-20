@@ -760,7 +760,7 @@
     </property>
     <property name="text">
      <string>gif</string>
-   <widget class="QPushButton" name="colorEdges">
+     <widget class="QPushButton" name="colorEdges">
     <property name="geometry">
      <rect>
       <x>0</x>
