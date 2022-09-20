@@ -21,8 +21,8 @@ Thx to school.
 @title 3DViewer
 @subtitle for version @value{VERSION}, @value{UPDATED}
 @author Hubert Furr (@email{hubertfu@@student.21-school.ru})
-@author Osgrey Wilbert (@email{osgreywi@@student.21-school.ru})
 @author Maiamabl (@email{maiamabl@@student.21-school.ru})
+@author Osgrey Wilbert (@email{osgreywi@@student.21-school.ru})
 
 @page
 @vskip 0pt plus 1filll
@@ -129,6 +129,7 @@ Record:
 The program allow saving the captured (rendered) images as bmp and jpeg files.
 @item
 The program allow recording small screencasts by a special button - the current custom affine transformation of the loaded object into gif-animation (640x480, 10fps, 5s)
+@end itemize
 @end itemize
 
 @node Interface & output
