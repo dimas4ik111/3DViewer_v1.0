@@ -4,6 +4,10 @@
 #define S21_MEMORY_BLOCK_SIZE 128U
 #define S21_MEMORY_BLOCK_SIZE_F 256U
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 typedef struct s21_obj_data {
   unsigned int num_of_v;
   unsigned int num_of_f;
