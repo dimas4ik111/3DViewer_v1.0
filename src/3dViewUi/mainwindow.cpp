@@ -39,6 +39,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->zoomSlider->setRange(1, 300);
     ui->zMove->setSingleStep(1);
 
+    ui->vertexSizeSlider->setRange(1, 25);
+    ui->vertexSizeSlider->setSingleStep(1);
+
+    ui->linesSizeSlider->setRange(1, 40);
+    ui->linesSizeSlider->setSingleStep(1);
+
     // slider rotate val
     // x
     connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXRotation);
@@ -53,7 +59,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zSlider, &QSlider::setValue);
     connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
 
-
+    // slider line size
+//    linesSizeSliderChecnged
+    connect(ui->linesSizeSlider, &QSlider::valueChanged, (this), &MainWindow::linesSizeSliderChanged);
 
     // slider move val
     // x
@@ -87,12 +95,17 @@ MainWindow::MainWindow(QWidget *parent)
     // reset all val
     connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
 
+    // vertex size
+    connect(ui->vertexSizeSlider, &QSlider::valueChanged, (this), &MainWindow::vertexSize);
 
-
-    // dots view
+    // vertex view
     connect(ui->disableView, &QRadioButton::pressed, (this), &MainWindow::DisableView);
     connect(ui->circleView, &QRadioButton::pressed, (this), &MainWindow::CircleView);
     connect(ui->squareView, &QRadioButton::pressed, (this), &MainWindow::SquareView);
+
+    // lines view
+    connect(ui->solidEdges, &QRadioButton::pressed, (this), &MainWindow::linesTypeSolid);
+    connect(ui->dashedEdges, &QRadioButton::pressed, (this), &MainWindow::linesTypeDashed);
 
     // CPU / GPU
     connect(ui->CalcModeGPURadio, &QRadioButton::pressed, (this), &MainWindow::EnableGPUMode);
@@ -101,6 +114,10 @@ MainWindow::MainWindow(QWidget *parent)
     // Rotate
     connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateAxesMode);
     connect(ui->RotateModelRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateModelMode);
+
+    // prijection select
+    connect(ui->projectionParallel, &QRadioButton::pressed, (this), &MainWindow::projectionParallel);
+    connect(ui->projectionCentral, &QRadioButton::pressed, (this), &MainWindow::projectionCentral);
 
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
@@ -115,6 +132,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->disableView->setChecked(true);
     ui->CalcModeGPURadio->setChecked(true);
     ui->RotateAxesRadio->setChecked(true);
+    ui->solidEdges->setChecked(true);
+    ui->projectionCentral->setChecked(true);
 }
 
 void MainWindow::handleOpenFile() {
@@ -277,6 +296,41 @@ void MainWindow::zMoveSliderValueChanged(int value) {
     ui->zMText->setText(QString::number(value - 50));
 }
 
+void MainWindow::linesSizeSliderChanged(int value)
+{
+    ui->OGLwidget->lineSize = value;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::vertexSize(int value)
+{
+    ui->OGLwidget->pointSize = value;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::linesTypeSolid()
+{
+    ui->OGLwidget->lineMode = 0;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::linesTypeDashed() {
+    ui->OGLwidget->lineMode = 1;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::projectionParallel()
+{
+    ui->OGLwidget->projectionMode = 1;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::projectionCentral()
+{
+    ui->OGLwidget->projectionMode = 0;
+    ui->OGLwidget->update();
+}
+
 void MainWindow::xSliderValueChanged(int value)
 {
     ui->xText->setText(QString::number(-180 + value / 16));
@@ -299,24 +353,18 @@ void MainWindow::zoomSliderValueChanged(int value) {
 void MainWindow::xMoveTextEdit() {
     int val = ui->xMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setXMove(val);
     ui->xMove->setValue(val);
 }
 
 void MainWindow::yMoveTextEdit() {
     int val = ui->yMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setYMove(val);
     ui->yMove->setValue(val);
 }
 
 void MainWindow::zMoveTextEdit() {
     int val = ui->zMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setZMove(val);
     ui->zMove->setValue(val);
 }
 

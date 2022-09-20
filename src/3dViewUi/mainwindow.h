@@ -50,6 +50,16 @@ private slots:
     void yMoveSliderValueChanged(int value);
     void zMoveSliderValueChanged(int value);
 
+    void linesSizeSliderChanged(int value);
+
+    void vertexSize(int value);
+
+    void linesTypeSolid();
+    void linesTypeDashed();
+
+    void projectionParallel();
+    void projectionCentral();
+
     void zoomSliderValueChanged(int value);
 
     void handleOpenFile();

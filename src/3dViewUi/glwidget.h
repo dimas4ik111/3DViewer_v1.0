@@ -28,7 +28,7 @@ public:
     QColor backgroundColor;
     QColor lineColor;
     QColor pointColor;
-    int orthoMode;
+    int projectionMode;
     int pointMode;
     int pointSize;
     int lineSize;

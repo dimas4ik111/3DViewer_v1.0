@@ -15,23 +15,32 @@ GLWidget::~GLWidget()
 
 void GLWidget::initSettings() {
     // Проекция: 0 - центральная, 1 - параллельная
-    orthoMode = 0;
+    projectionMode = 0;
+
     // Цвет фона
     backgroundColor.setRgb(0, 0, 0);
+
     // Цвет линии
     lineColor.setRgb(255, 127, 51);
+
     // Толщина линии
     lineSize = 1;
+
     // Тип линии: 0 - сплошная, 1 - пунктирная
     lineMode = 0;
+
     // Цвет точки
     pointColor.setRgb(0, 214, 120);
+
     // Размер точки
-    pointSize = 20;
+    pointSize = 1;
+
     // Тип точки: 0 - нет точек, 1 - круг, 2 - квадрат
     pointMode = 0;
+
     // Режим вычислений: 0 - GPU, 1 - CPU
     calcMode = 0;
+
     // Способ вращения: 0 - вокруг осей xyz, 1 - вокруг осей модели
     rotateMode = 0;
 }
@@ -219,17 +228,15 @@ void GLWidget::initializeGL() {
 
     testBuffers();
 
-    cameraMatrix.setToIdentity();
-    if (orthoMode == 0) {
-        cameraMatrix.translate(0, 0, -4);
-    } else {
-        cameraMatrix.scale(0.5, 0.5, 0.5);
-    }
-
     rotateMatrix.setToIdentity();
     moveMatrix.setToIdentity();
     scaleMatrix.setToIdentity();
-
+//    cameraMatrix.setToIdentity();
+//    if (projectionMode == 0) {
+//        cameraMatrix.translate(0, 0, -4);
+//    } else {
+//        cameraMatrix.scale(0.75, 0.75, 0.75);
+//    }
 //    cameraMatrix.ortho(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
 //    ortho(float left, float right, float bottom, float top, float nearPlane, float farPlane)
 //    cameraMatrix.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
@@ -254,6 +261,13 @@ void GLWidget::paintGL() {
         rotateMatrix.setToIdentity();
         moveMatrix.setToIdentity();
         scaleMatrix.setToIdentity();
+
+        cameraMatrix.setToIdentity();
+        if (projectionMode == 0) {
+            cameraMatrix.translate(0, 0, -4);
+        } else {
+            cameraMatrix.scale(0, 7, 0);
+        }
 
         if (calcMode == 0) {
             rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
@@ -352,7 +366,7 @@ void GLWidget::paintGL() {
 // Функция resizeGL() вызывается один раз, перед paintGL(), но после того, как будет вызвана функция initializeGL(). Здесь настраивается область просмотра (viewport), проекция и прочие настройки, которые зависят от размера виджета.
 void GLWidget::resizeGL(int width, int height) {
     projectionMatrix.setToIdentity();
-    if (orthoMode == 0) {
+    if (projectionMode == 0) {
         projectionMatrix.perspective(45.0f, GLfloat(width) / height, 0.01f, 100.0f);
     }
 //    projectionMatrix.viewport(0, 0, width*0.8, height*0.8, 0.1f, 4.0f);
