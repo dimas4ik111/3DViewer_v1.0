@@ -39,6 +39,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->zoomSlider->setRange(1, 300);
     ui->zMove->setSingleStep(1);
 
+    ui->vertexSizeSlider->setRange(1, 25);
+    ui->vertexSizeSlider->setSingleStep(1);
+
+    ui->linesSizeSlider->setRange(1, 40);
+    ui->linesSizeSlider->setSingleStep(1);
+
     // slider rotate val
     // x
     connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXRotation);
@@ -53,7 +59,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zSlider, &QSlider::setValue);
     connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
 
-
+    // slider line size
+    connect(ui->linesSizeSlider, &QSlider::valueChanged, (this), &MainWindow::linesSizeSliderChanged);
 
     // slider move val
     // x
@@ -83,16 +90,25 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->zoomSlider, &QSlider::valueChanged, (this), &MainWindow::zoomSliderValueChanged);
 
-
     // reset all val
     connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
 
+    // screenshot
+    connect(ui->btn_screen_bmp, SIGNAL(released()), (this), SLOT(createScreenshot()));
+    connect(ui->btn_screen_jpg, SIGNAL(released()), (this), SLOT(createScreenshot()));
+    connect(ui->btn_screen_gif, SIGNAL(released()), (this), SLOT(createScreenshot()));
 
+    // vertex size
+    connect(ui->vertexSizeSlider, &QSlider::valueChanged, (this), &MainWindow::vertexSize);
 
-    // dots view
+    // vertex view
     connect(ui->disableView, &QRadioButton::pressed, (this), &MainWindow::DisableView);
     connect(ui->circleView, &QRadioButton::pressed, (this), &MainWindow::CircleView);
     connect(ui->squareView, &QRadioButton::pressed, (this), &MainWindow::SquareView);
+
+    // lines view
+    connect(ui->solidEdges, &QRadioButton::pressed, (this), &MainWindow::linesTypeSolid);
+    connect(ui->dashedEdges, &QRadioButton::pressed, (this), &MainWindow::linesTypeDashed);
 
     // CPU / GPU
     connect(ui->CalcModeGPURadio, &QRadioButton::pressed, (this), &MainWindow::EnableGPUMode);
@@ -101,6 +117,15 @@ MainWindow::MainWindow(QWidget *parent)
     // Rotate
     connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateAxesMode);
     connect(ui->RotateModelRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateModelMode);
+
+    // projection select
+    connect(ui->projectionParallel, &QRadioButton::pressed, (this), &MainWindow::projectionParallel);
+    connect(ui->projectionCentral, &QRadioButton::pressed, (this), &MainWindow::projectionCentral);
+
+    // colors
+    connect(ui->colorEdges, SIGNAL(released()), (this), SLOT(edgesColorChanged()));
+    connect(ui->colorVertex, SIGNAL(released()), (this), SLOT(vertexColorChanged()));
+    connect(ui->widgetBackGroundColor, SIGNAL(released()), (this), SLOT(backgroundColorChanged()));
 
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
@@ -115,6 +140,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->disableView->setChecked(true);
     ui->CalcModeGPURadio->setChecked(true);
     ui->RotateAxesRadio->setChecked(true);
+    ui->solidEdges->setChecked(true);
+    ui->projectionCentral->setChecked(true);
 }
 
 void MainWindow::handleOpenFile() {
@@ -148,6 +175,8 @@ void MainWindow::handleOpenFile() {
         ui->statusbar->showMessage("Выбран файл: " + fileName);
         // Инициализируем буфферы OpenGL распарсенными данными
         ui->OGLwidget->initBuffers();
+        ui->numberOfEdges->setText(QString::number(ui->OGLwidget->numberOfEdges));
+        ui->numberOfVerticies->setText(QString::number(ui->OGLwidget->numberOfVerticies));
       } else {
         MainWindow::handleErrorByCode(code);
       }
@@ -257,11 +286,15 @@ void MainWindow::resetValue()
     ui->disableView->setChecked(true);
     ui->CalcModeGPURadio->setChecked(true);
     ui->RotateAxesRadio->setChecked(true);
+    ui->projectionCentral->setChecked(true);
+    ui->solidEdges->setChecked(true);
+    ui->linesSizeSlider->setValue(1);
     ui->OGLwidget->initSettings();
     ui->xMove->setValue(50);
     ui->yMove->setValue(50);
     ui->zMove->setValue(50);
     ui->zoomSlider->setValue(30);
+    ui->vertexSizeSlider->setValue(1);
     ui->OGLwidget->update();
 }
 
@@ -275,6 +308,41 @@ void MainWindow::yMoveSliderValueChanged(int value) {
 
 void MainWindow::zMoveSliderValueChanged(int value) {
     ui->zMText->setText(QString::number(value - 50));
+}
+
+void MainWindow::linesSizeSliderChanged(int value)
+{
+    ui->OGLwidget->lineSize = value;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::vertexSize(int value)
+{
+    ui->OGLwidget->pointSize = value;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::linesTypeSolid()
+{
+    ui->OGLwidget->lineMode = 0;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::linesTypeDashed() {
+    ui->OGLwidget->lineMode = 1;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::projectionParallel()
+{
+    ui->OGLwidget->projectionMode = 1;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::projectionCentral()
+{
+    ui->OGLwidget->projectionMode = 0;
+    ui->OGLwidget->update();
 }
 
 void MainWindow::xSliderValueChanged(int value)
@@ -299,28 +367,60 @@ void MainWindow::zoomSliderValueChanged(int value) {
 void MainWindow::xMoveTextEdit() {
     int val = ui->xMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setXMove(val);
     ui->xMove->setValue(val);
 }
 
 void MainWindow::yMoveTextEdit() {
     int val = ui->yMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setYMove(val);
     ui->yMove->setValue(val);
 }
 
 void MainWindow::zMoveTextEdit() {
     int val = ui->zMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setZMove(val);
     ui->zMove->setValue(val);
 }
 
 void MainWindow::zoomTextEdit() {
     int val = ui->zoomText->text().toInt();
     ui->zoomSlider->setValue(val);
+}
+
+void MainWindow::createScreenshot() {
+    QDateTime dateTime = dateTime.currentDateTime();
+    QString currentDateTime = dateTime.toString("yyyy_MM_dd_HHmmss");
+    if (ui->btn_screen_bmp) {
+        ui->OGLwidget->grab().save("../../../../screenshot/" + currentDateTime + ".bmp");
+    } else if (ui->btn_screen_jpg) {
+        ui->OGLwidget->grab().save("../../../../screenshot/" + currentDateTime + ".jpg");
+    } else if (ui->btn_screen_gif) {
+        for (int i = 0; i <= 50; i++) {
+            ui->OGLwidget->grab().save("../../../../screenshot/gif_obj" + QString::number(i) + ".jpg");
+        }
+        QString fileName = "convert -delay 10 -loop 0 ../../../../screenshot/gif_obj/*.jpg ../" + currentDateTime + ".gif";
+        QByteArray ba = fileName.toLocal8Bit();
+        system(ba);
+    }
+}
+void MainWindow::edgesColorChanged() {
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->lineColor = color;
+    }
+}
+
+void MainWindow::vertexColorChanged() {
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->pointColor = color;
+    }
+}
+
+void MainWindow::backgroundColorChanged()
+{
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->backgroundColor = color;
+    }
 }

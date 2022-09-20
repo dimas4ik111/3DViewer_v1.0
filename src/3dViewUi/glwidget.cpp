@@ -15,23 +15,32 @@ GLWidget::~GLWidget()
 
 void GLWidget::initSettings() {
     // Проекция: 0 - центральная, 1 - параллельная
-    orthoMode = 0;
+    projectionMode = 0;
+
     // Цвет фона
     backgroundColor.setRgb(0, 0, 0);
+
     // Цвет линии
-    lineColor.setRgb(255, 127, 51);
+    lineColor.setRgb(0, 127, 51);
+
     // Толщина линии
     lineSize = 1;
+
     // Тип линии: 0 - сплошная, 1 - пунктирная
     lineMode = 0;
+
     // Цвет точки
     pointColor.setRgb(0, 214, 120);
+
     // Размер точки
-    pointSize = 20;
+    pointSize = 1;
+
     // Тип точки: 0 - нет точек, 1 - круг, 2 - квадрат
     pointMode = 0;
+
     // Режим вычислений: 0 - GPU, 1 - CPU
     calcMode = 0;
+
     // Способ вращения: 0 - вокруг осей xyz, 1 - вокруг осей модели
     rotateMode = 0;
 }
@@ -39,8 +48,10 @@ void GLWidget::initSettings() {
 void GLWidget::testBuffers() {
     clearBuffers();
 
-    // s21_parser_result code = s21_parse_file("../../../../check/objfiles/pyramid.obj", &rawObjData, S21_TRUE);
-    s21_parser_result code = s21_parse_file("../check/objfiles/pyramid.obj", &rawObjData, S21_TRUE);
+    QString fileName = "../../../../check/objfiles/pyramid.obj";
+    // QString fileName = "../check/objfiles/pyramid.obj";
+    QByteArray ba = fileName.toLocal8Bit();
+    s21_parser_result code = s21_parse_file(ba.data(), &rawObjData, S21_TRUE);
 
     if (code == S21_PARSER_OK) {
         initBuffers();
@@ -88,7 +99,8 @@ void GLWidget::initBuffers() {
     // Заполняем VBO данными, которые были распарсены из .obj-файла
     vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
 
-    qDebug() << "Координат вершин:" << rawObjData.num_of_v;
+//    qDebug() << "Координат вершин:" << rawObjData.num_of_v;
+    numberOfVerticies = rawObjData.num_of_v / 3;
 
     // Сообщаем OpenGL, как он должен интерпретировать данные вершин
     // 0 - Указываем location атрибута в шейдерах, который мы хотим настроить (у нас он один)
@@ -109,8 +121,9 @@ void GLWidget::initBuffers() {
     ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     // Заполняем EBO данными, которые были распарсены из .obj-файла
     ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
-    qDebug() << "Координат линий:" << rawObjData.num_of_f;
-    qDebug() << "Максимальная координата:" << rawObjData.max_coord;
+//    qDebug() << "Координат линий:" << rawObjData.num_of_f;
+//    qDebug() << "Максимальная координата:" << rawObjData.max_coord;
+    numberOfEdges = rawObjData.num_of_f / 2;
 
     // Сообщаем, что мы закончили привязывать к VAO
     vao.release();
@@ -200,17 +213,15 @@ void GLWidget::initializeGL() {
 
     testBuffers();
 
-    cameraMatrix.setToIdentity();
-    if (orthoMode == 0) {
-        cameraMatrix.translate(0, 0, -4);
-    } else {
-        cameraMatrix.scale(0.5, 0.5, 0.5);
-    }
-
     rotateMatrix.setToIdentity();
     moveMatrix.setToIdentity();
     scaleMatrix.setToIdentity();
-
+//    cameraMatrix.setToIdentity();
+//    if (projectionMode == 0) {
+//        cameraMatrix.translate(0, 0, -4);
+//    } else {
+//        cameraMatrix.scale(0.75, 0.75, 0.75);
+//    }
 //    cameraMatrix.ortho(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
 //    ortho(float left, float right, float bottom, float top, float nearPlane, float farPlane)
 //    cameraMatrix.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
@@ -235,6 +246,13 @@ void GLWidget::paintGL() {
         rotateMatrix.setToIdentity();
         moveMatrix.setToIdentity();
         scaleMatrix.setToIdentity();
+
+        cameraMatrix.setToIdentity();
+        if (projectionMode == 0) {
+            cameraMatrix.translate(0, 0, -4);
+        } else {
+            cameraMatrix.scale(0, 7, 0);
+        }
 
         if (calcMode == 0) {
             rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
@@ -333,7 +351,7 @@ void GLWidget::paintGL() {
 // Функция resizeGL() вызывается один раз, перед paintGL(), но после того, как будет вызвана функция initializeGL(). Здесь настраивается область просмотра (viewport), проекция и прочие настройки, которые зависят от размера виджета.
 void GLWidget::resizeGL(int width, int height) {
     projectionMatrix.setToIdentity();
-    if (orthoMode == 0) {
+    if (projectionMode == 0) {
         projectionMatrix.perspective(45.0f, GLfloat(width) / height, 0.01f, 100.0f);
     }
 //    projectionMatrix.viewport(0, 0, width*0.8, height*0.8, 0.1f, 4.0f);
@@ -428,14 +446,12 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
     int dx = event->position().toPoint().x() - m_lastPos.x();
     int dy = event->position().toPoint().y() - m_lastPos.y();
-
-    if (event->buttons() & Qt::LeftButton) {
-        setXRotation(m_xRot + 8 * dy);
-        setYRotation(m_yRot + 8 * dx);
-    } else if (event->buttons() & Qt::RightButton) {
-        setXRotation(m_xRot + 8 * dy);
-        setZRotation(m_zRot + 8 * dx);
-    }
+        if (event->buttons() & Qt::LeftButton) {
+            setXRotation(m_xRot + 8 * dy);
+            setYRotation(m_yRot + 8 * dx);
+        } else if (event->buttons() & Qt::RightButton) {
+            setXRotation(m_xRot + 8 * dy);
+            setZRotation(m_zRot + 8 * dx);
+        }
     m_lastPos = event->position().toPoint();
 }
-

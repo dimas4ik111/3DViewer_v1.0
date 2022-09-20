@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <qpushbutton.h>
+#include <QColorDialog>
+#include <QColor>
 #include "glwidget.h"
 
 extern "C" {
@@ -50,11 +53,27 @@ private slots:
     void yMoveSliderValueChanged(int value);
     void zMoveSliderValueChanged(int value);
 
+    void linesSizeSliderChanged(int value);
+
+    void edgesColorChanged();
+    void vertexColorChanged();
+    void backgroundColorChanged();
+
+    void vertexSize(int value);
+
+    void linesTypeSolid();
+    void linesTypeDashed();
+
+    void projectionParallel();
+    void projectionCentral();
+
     void zoomSliderValueChanged(int value);
 
     void handleOpenFile();
 
     void resetValue();
+
+    void createScreenshot();
 
 private:
     Ui::MainWindow *ui;
