@@ -235,21 +235,6 @@ void MainWindow::EnableRotateModelMode() {
 
 void MainWindow::resetValue()
 {
-//    ui->xSlider->setValue(360 * 8);
-//    ui->ySlider->setValue(360 * 8);
-//    ui->zSlider->setValue(360 * 8);
-//    ui->disableView->setChecked(true);
-//    ui->CalcModeGPURadio->setChecked(true);
-//    ui->RotateAxesRadio->setChecked(true);
-//    ui->projectionCentral->setChecked(true);
-//    ui->solidEdges->setChecked(true);
-//    ui->linesSizeSlider->setValue(1);
-//    ui->OGLwidget->initSettings();
-//    ui->xMove->setValue(50);
-//    ui->yMove->setValue(50);
-//    ui->zMove->setValue(50);
-//    ui->zoomSlider->setValue(30);
-//    ui->vertexSizeSlider->setValue(1);
     defaultSettings();
     ui->OGLwidget->update();
 }
