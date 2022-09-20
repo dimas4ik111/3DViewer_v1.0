@@ -21,7 +21,7 @@ Thx to school.
 @title 3DViewer
 @subtitle for version @value{VERSION}, @value{UPDATED}
 @author Hubert Furr (@email{hubertfu@@student.21-school.ru})
-@author Maiamabl (@email{maiamabl@@student.21-school.ru})
+@author Maia Mable (@email{maiamabl@@student.21-school.ru})
 @author Osgrey Wilbert (@email{osgreywi@@student.21-school.ru})
 
 @page
