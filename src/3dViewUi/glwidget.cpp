@@ -1,4 +1,5 @@
 #include "glwidget.h"
+#include "mainwindow.h" // TODO(hubertfu): delete this
 
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent)
@@ -39,30 +40,13 @@ void GLWidget::initSettings() {
 void GLWidget::testBuffers() {
     clearBuffers();
 
-    s21_parser_result code = s21_parse_file("../../../../check/objfiles/pyramid.obj", &rawObjData, S21_TRUE);
+    // s21_parser_result code = s21_parse_file("../../../../check/objfiles/pyramid.obj", &rawObjData, S21_TRUE);
+    s21_parser_result code = s21_parse_file("../check/objfiles/pyramid.obj", &rawObjData, S21_TRUE);
 
     if (code == S21_PARSER_OK) {
-        vao.create();
-        vao.bind();
-
-        vbo = QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
-        vbo.create();
-        vbo.bind();
-        vbo.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-        vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
-
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
-        glEnableVertexAttribArray(0);
-
-        ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
-        ebo.create();
-        ebo.bind();
-        ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
-        ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
-
-        vao.release();
-
-        s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
+        initBuffers();
+    } else {
+        MainWindow::handleErrorByCode(code);
     }
 }
 
