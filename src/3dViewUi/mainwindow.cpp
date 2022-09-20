@@ -175,6 +175,8 @@ void MainWindow::handleOpenFile() {
         ui->statusbar->showMessage("Выбран файл: " + fileName);
         // Инициализируем буфферы OpenGL распарсенными данными
         ui->OGLwidget->initBuffers();
+        ui->numberOfEdges->setText(QString::number(ui->OGLwidget->numberOfEdges));
+        ui->numberOfVerticies->setText(QString::number(ui->OGLwidget->numberOfVerticies));
       } else {
         MainWindow::handleErrorByCode(code);
       }

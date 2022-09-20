@@ -49,6 +49,9 @@ public:
     s21_obj_data rawObjData;
     s21_obj_data rawObjDataCPU;
 
+    int numberOfEdges = 0;
+    int numberOfVerticies = 0;
+
 protected:
     void initializeGL() override;
     void paintGL() override;

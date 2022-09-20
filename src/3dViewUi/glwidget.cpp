@@ -118,7 +118,8 @@ void GLWidget::initBuffers() {
     // Заполняем VBO данными, которые были распарсены из .obj-файла
     vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
 
-    qDebug() << "Координат вершин:" << rawObjData.num_of_v;
+//    qDebug() << "Координат вершин:" << rawObjData.num_of_v;
+    numberOfVerticies = rawObjData.num_of_v / 3;
 
     // Сообщаем OpenGL, как он должен интерпретировать данные вершин
     // 0 - Указываем location атрибута в шейдерах, который мы хотим настроить (у нас он один)
@@ -139,8 +140,9 @@ void GLWidget::initBuffers() {
     ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     // Заполняем EBO данными, которые были распарсены из .obj-файла
     ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
-    qDebug() << "Координат линий:" << rawObjData.num_of_f;
-    qDebug() << "Максимальная координата:" << rawObjData.max_coord;
+//    qDebug() << "Координат линий:" << rawObjData.num_of_f;
+//    qDebug() << "Максимальная координата:" << rawObjData.max_coord;
+    numberOfEdges = rawObjData.num_of_f / 2;
 
     // Сообщаем, что мы закончили привязывать к VAO
     vao.release();
