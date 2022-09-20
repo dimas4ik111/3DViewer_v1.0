@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <qpushbutton.h>
 #include <QColorDialog>
 #include <QColor>
 #include "glwidget.h"
@@ -55,9 +54,7 @@ private slots:
 
     void linesSizeSliderChanged(int value);
 
-    void edgesColorChanged();
-    void vertexColorChanged();
-    void backgroundColorChanged();
+    void edgesColorSliderChanged();
 
     void vertexSize(int value);
 
@@ -72,8 +69,6 @@ private slots:
     void handleOpenFile();
 
     void resetValue();
-
-    void createScreenshot();
 
 private:
     Ui::MainWindow *ui;
