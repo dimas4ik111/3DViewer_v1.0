@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,6 +39,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->zoomSlider->setRange(1, 300);
     ui->zMove->setSingleStep(1);
 
+    ui->vertexSizeSlider->setRange(1, 25);
+    ui->vertexSizeSlider->setSingleStep(1);
+
+    ui->linesSizeSlider->setRange(1, 40);
+    ui->linesSizeSlider->setSingleStep(1);
+
     // slider rotate val
     // x
     connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget, &GLWidget::setXRotation);
@@ -52,7 +59,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zSlider, &QSlider::setValue);
     connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
 
-
+    // slider line size
+//    linesSizeSliderChecnged
+    connect(ui->linesSizeSlider, &QSlider::valueChanged, (this), &MainWindow::linesSizeSliderChanged);
 
     // slider move val
     // x
@@ -87,12 +96,29 @@ MainWindow::MainWindow(QWidget *parent)
 
     // screenshot
     connect(ui->btn_screen, SIGNAL(released()), (this), SLOT(createScreenshot()));
+    // vertex size
+    connect(ui->vertexSizeSlider, &QSlider::valueChanged, (this), &MainWindow::vertexSize);
 
-
-    // dots view
+    // vertex view
     connect(ui->disableView, &QRadioButton::pressed, (this), &MainWindow::DisableView);
     connect(ui->circleView, &QRadioButton::pressed, (this), &MainWindow::CircleView);
     connect(ui->squareView, &QRadioButton::pressed, (this), &MainWindow::SquareView);
+
+    // lines view
+    connect(ui->solidEdges, &QRadioButton::pressed, (this), &MainWindow::linesTypeSolid);
+    connect(ui->dashedEdges, &QRadioButton::pressed, (this), &MainWindow::linesTypeDashed);
+
+    // CPU / GPU
+    connect(ui->CalcModeGPURadio, &QRadioButton::pressed, (this), &MainWindow::EnableGPUMode);
+    connect(ui->CalcModeCPURadio, &QRadioButton::pressed, (this), &MainWindow::EnableCPUMode);
+
+    // Rotate
+    connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateAxesMode);
+    connect(ui->RotateModelRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateModelMode);
+
+    // prijection select
+    connect(ui->projectionParallel, &QRadioButton::pressed, (this), &MainWindow::projectionParallel);
+    connect(ui->projectionCentral, &QRadioButton::pressed, (this), &MainWindow::projectionCentral);
 
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
@@ -105,38 +131,65 @@ MainWindow::MainWindow(QWidget *parent)
     ui->yText->setText(QString::number(0));
     ui->zText->setText(QString::number(0));
     ui->disableView->setChecked(true);
+    ui->CalcModeGPURadio->setChecked(true);
+    ui->RotateAxesRadio->setChecked(true);
+    ui->solidEdges->setChecked(true);
+    ui->projectionCentral->setChecked(true);
 }
 
 void MainWindow::handleOpenFile() {
-    // Определяем класс диалогового окна выбора файла
-    QFileDialog *fileDialog = new QFileDialog(this);
-    // Определяем заголовок окна
-    fileDialog-> setWindowTitle (tr ("Выберите .obj-файл"));
-    // Устанавливаем путь к файлу по умолчанию
-    // fileDialog->setDirectory(QDir::homePath());
-    // Устанавливаем фильтр файлов
-    fileDialog->setNameFilter(tr("(*.obj)"));
-    // Устанавливаем режим просмотра
-    fileDialog->setViewMode(QFileDialog::Detail);
-    // Вызываем диалог
-    QStringList fileNames;
-    if (fileDialog->exec()) {
-       fileNames = fileDialog->selectedFiles();
-       // В случае успеха и если что-то выбрано
-       if (fileNames.size() > 0) {
-           QString fileName = fileNames.at(0);
-           qDebug() << "Выбран файл: " << fileName;
-           ui->statusbar->showMessage("Выбран файл: " + fileName);
-           QByteArray ba = fileName.toLocal8Bit();
-           char *input = ba.data();
-           // Парсим файл
-           if (strstr(input, ".obj") != NULL) { // Типо проверка на файл .obj
-               s21_parse_file(input, &ui->OGLwidget->rawObjData);
-           }
-           // Инициализируем буфферы OpenGL распарсенными данными
-           ui->OGLwidget->initBuffers();
-       }
+  // Определяем класс диалогового окна выбора файла
+  QFileDialog *fileDialog = new QFileDialog(this);
+  // Определяем заголовок окна
+  fileDialog->setWindowTitle(tr("Выберите .obj-файл"));
+  // Устанавливаем путь к файлу по умолчанию
+  // fileDialog->setDirectory(QDir::homePath());
+  // Устанавливаем фильтр файлов
+  fileDialog->setNameFilter(tr("(*.obj)"));
+  // Устанавливаем режим просмотра
+  fileDialog->setViewMode(QFileDialog::Detail);
+  // Режим: выбор только существующего файла
+  fileDialog->setFileMode(QFileDialog::ExistingFile);
+  // Вызываем диалог
+  QStringList fileNames;
+  if (fileDialog->exec()) {
+    fileNames = fileDialog->selectedFiles();
+    // В случае успеха и если что-то выбрано
+    if (fileNames.size() > 0) {
+      QString fileName = fileNames.at(0);
+      qDebug() << "Выбран файл: " << fileName;
+      QByteArray ba = fileName.toLocal8Bit();
+      char *input = ba.data();
+      // Парсим файл
+      s21_parser_result code =
+          s21_parse_file(input, &ui->OGLwidget->rawObjData, S21_TRUE);
+      if (code == S21_PARSER_OK) {
+        // Пишем путь до файла в статусбар приложения
+        ui->statusbar->showMessage("Выбран файл: " + fileName);
+        // Инициализируем буфферы OpenGL распарсенными данными
+        ui->OGLwidget->initBuffers();
+      } else {
+        MainWindow::handleErrorByCode(code);
+      }
     }
+  }
+}
+
+void MainWindow::handleErrorByCode(s21_parser_result code) {
+  if (code != S21_PARSER_OK) {
+    switch (code) {
+      case S21_PARSER_ERROR_FILE:
+        QMessageBox::critical(0, "Ошибка",
+                              "Выбран некорректный файл");
+        break;
+      case S21_PARSER_ERROR_MEMORY:
+        QMessageBox::critical(0, "Ошибка", "Ошибка выделения памяти");
+        break;
+      default:
+        QMessageBox::critical(0, "Ошибка", "Неизвестная ошибка");
+        break;
+    }
+  }
 }
 
 MainWindow::~MainWindow()
@@ -196,12 +249,34 @@ void MainWindow::SquareView()
     ui->OGLwidget->update();
 }
 
+void MainWindow::EnableGPUMode() {
+  ui->OGLwidget->calcMode = 0;
+  ui->OGLwidget->update();
+}
+
+void MainWindow::EnableCPUMode() {
+  ui->OGLwidget->calcMode = 1;
+  ui->OGLwidget->update();
+}
+
+void MainWindow::EnableRotateAxesMode() {
+  ui->OGLwidget->rotateMode = 0;
+  ui->OGLwidget->update();
+}
+
+void MainWindow::EnableRotateModelMode() {
+  ui->OGLwidget->rotateMode = 1;
+  ui->OGLwidget->update();
+}
+
 void MainWindow::resetValue()
 {
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
     ui->disableView->setChecked(true);
+    ui->CalcModeGPURadio->setChecked(true);
+    ui->RotateAxesRadio->setChecked(true);
     ui->OGLwidget->initSettings();
     ui->xMove->setValue(50);
     ui->yMove->setValue(50);
@@ -220,6 +295,41 @@ void MainWindow::yMoveSliderValueChanged(int value) {
 
 void MainWindow::zMoveSliderValueChanged(int value) {
     ui->zMText->setText(QString::number(value - 50));
+}
+
+void MainWindow::linesSizeSliderChanged(int value)
+{
+    ui->OGLwidget->lineSize = value;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::vertexSize(int value)
+{
+    ui->OGLwidget->pointSize = value;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::linesTypeSolid()
+{
+    ui->OGLwidget->lineMode = 0;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::linesTypeDashed() {
+    ui->OGLwidget->lineMode = 1;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::projectionParallel()
+{
+    ui->OGLwidget->projectionMode = 1;
+    ui->OGLwidget->update();
+}
+
+void MainWindow::projectionCentral()
+{
+    ui->OGLwidget->projectionMode = 0;
+    ui->OGLwidget->update();
 }
 
 void MainWindow::xSliderValueChanged(int value)
@@ -244,24 +354,18 @@ void MainWindow::zoomSliderValueChanged(int value) {
 void MainWindow::xMoveTextEdit() {
     int val = ui->xMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setXMove(val);
     ui->xMove->setValue(val);
 }
 
 void MainWindow::yMoveTextEdit() {
     int val = ui->yMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setYMove(val);
     ui->yMove->setValue(val);
 }
 
 void MainWindow::zMoveTextEdit() {
     int val = ui->zMText->text().toInt();
     val += 50;
-//    val = valNormalize(val);
-//    ui->OGLwidget->setZMove(val);
     ui->zMove->setValue(val);
 }
 

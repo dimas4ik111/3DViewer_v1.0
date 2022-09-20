@@ -24,7 +24,7 @@ set(PROJECT_SOURCES
         mainwindow.h mainwindow.cpp
         mainwindow.ui
         glwidget.h glwidget.cpp
-        ../backend/backend.h ../backend/parser.c
+        ../backend/backend.h ../backend/parser.c ../backend/transform.c
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
