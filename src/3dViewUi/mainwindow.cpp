@@ -60,7 +60,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
 
     // slider line size
-//    linesSizeSliderChecnged
     connect(ui->linesSizeSlider, &QSlider::valueChanged, (this), &MainWindow::linesSizeSliderChanged);
 
     // slider move val
@@ -115,9 +114,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateAxesMode);
     connect(ui->RotateModelRadio, &QRadioButton::pressed, (this), &MainWindow::EnableRotateModelMode);
 
-    // prijection select
+    // projection select
     connect(ui->projectionParallel, &QRadioButton::pressed, (this), &MainWindow::projectionParallel);
     connect(ui->projectionCentral, &QRadioButton::pressed, (this), &MainWindow::projectionCentral);
+
+    // color lines
+    connect(ui->colorEdges, SIGNAL(released()), (this), SLOT(edgesColorSliderChanged()));
 
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
@@ -276,11 +278,15 @@ void MainWindow::resetValue()
     ui->disableView->setChecked(true);
     ui->CalcModeGPURadio->setChecked(true);
     ui->RotateAxesRadio->setChecked(true);
+    ui->projectionCentral->setChecked(true);
+    ui->solidEdges->setChecked(true);
+    ui->linesSizeSlider->setValue(1);
     ui->OGLwidget->initSettings();
     ui->xMove->setValue(50);
     ui->yMove->setValue(50);
     ui->zMove->setValue(50);
     ui->zoomSlider->setValue(30);
+    ui->vertexSizeSlider->setValue(1);
     ui->OGLwidget->update();
 }
 
@@ -371,4 +377,11 @@ void MainWindow::zMoveTextEdit() {
 void MainWindow::zoomTextEdit() {
     int val = ui->zoomText->text().toInt();
     ui->zoomSlider->setValue(val);
+}
+
+void MainWindow::edgesColorSliderChanged() {
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->lineColor = color;
+    }
 }

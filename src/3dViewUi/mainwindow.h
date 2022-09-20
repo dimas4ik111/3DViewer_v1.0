@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QColorDialog>
+#include <QColor>
 #include "glwidget.h"
 
 extern "C" {
@@ -51,6 +53,8 @@ private slots:
     void zMoveSliderValueChanged(int value);
 
     void linesSizeSliderChanged(int value);
+
+    void edgesColorSliderChanged();
 
     void vertexSize(int value);
 

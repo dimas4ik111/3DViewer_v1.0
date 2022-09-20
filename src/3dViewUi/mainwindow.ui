@@ -402,7 +402,7 @@
      <rect>
       <x>0</x>
       <y>490</y>
-      <width>244</width>
+      <width>263</width>
       <height>40</height>
      </rect>
     </property>
@@ -469,24 +469,6 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_21">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>490</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QSlider" name="vertexSizeSlider">
     <property name="geometry">
      <rect>
@@ -498,19 +480,6 @@
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>570</y>
-      <width>100</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
     </property>
    </widget>
    <widget class="QSlider" name="linesSizeSlider">
@@ -784,6 +753,32 @@
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>570</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="colorEdges">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>710</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>color</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
