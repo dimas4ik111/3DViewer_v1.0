@@ -48,7 +48,9 @@ void GLWidget::initSettings() {
 void GLWidget::testBuffers() {
     clearBuffers();
 
-    s21_parser_result code = s21_parse_file("../../../../check/objfiles/pyramid.obj", &rawObjData, S21_TRUE);
+    QString fileName = "../../../../check/objfiles/pyramid.obj";
+    QByteArray ba = fileName.toLocal8Bit();
+    s21_parser_result code = s21_parse_file(ba.data(), &rawObjData, S21_TRUE);
 
     if (code == S21_PARSER_OK) {
         vao.create();

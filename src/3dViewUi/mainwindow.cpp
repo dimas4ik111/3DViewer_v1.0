@@ -399,6 +399,8 @@ void MainWindow::createScreenshot() {
         QString fileName = "convert -delay 10 -loop 0 ../../../../screenshot/gif_obj/*.jpg ../" + currentDateTime + ".gif";
         QByteArray ba = fileName.toLocal8Bit();
         system(ba);
+    }
+}
 void MainWindow::edgesColorChanged() {
     QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
     if (color.isValid()) {

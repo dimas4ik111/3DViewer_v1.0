@@ -17,8 +17,8 @@
    <widget class="GLWidget" name="OGLwidget" native="true">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>50</y>
+      <x>310</x>
+      <y>60</y>
       <width>1401</width>
       <height>981</height>
      </rect>
@@ -726,8 +726,8 @@
    <widget class="QPushButton" name="btn_screen_bmp">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>420</y>
+      <x>240</x>
+      <y>600</y>
       <width>101</width>
       <height>51</height>
      </rect>
@@ -739,8 +739,8 @@
    <widget class="QPushButton" name="btn_screen_jpg">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>470</y>
+      <x>240</x>
+      <y>650</y>
       <width>101</width>
       <height>51</height>
      </rect>
@@ -752,15 +752,17 @@
    <widget class="QPushButton" name="btn_screen_gif">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>520</y>
+      <x>240</x>
+      <y>700</y>
       <width>101</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string>gif</string>
-     <widget class="QPushButton" name="colorEdges">
+    </property>
+   </widget>
+   <widget class="QPushButton" name="colorEdges">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -806,7 +808,7 @@
      <x>0</x>
      <y>0</y>
      <width>1683</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
