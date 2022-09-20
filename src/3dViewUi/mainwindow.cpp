@@ -272,5 +272,4 @@ void MainWindow::zoomTextEdit() {
 
 void MainWindow::createScreenshot() {
     ui->OGLwidget->grab().save("../../../../SCREEEEEN1.bmp");
-    QMovie
 }
