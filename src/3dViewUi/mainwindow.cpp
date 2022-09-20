@@ -118,8 +118,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->projectionParallel, &QRadioButton::pressed, (this), &MainWindow::projectionParallel);
     connect(ui->projectionCentral, &QRadioButton::pressed, (this), &MainWindow::projectionCentral);
 
-    // color lines
-    connect(ui->colorEdges, SIGNAL(released()), (this), SLOT(edgesColorSliderChanged()));
+    // colors
+    connect(ui->colorEdges, SIGNAL(released()), (this), SLOT(edgesColorChanged()));
+    connect(ui->colorVertex, SIGNAL(released()), (this), SLOT(vertexColorChanged()));
+    connect(ui->widgetBackGroundColor, SIGNAL(released()), (this), SLOT(backgroundColorChanged()));
 
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
@@ -379,9 +381,24 @@ void MainWindow::zoomTextEdit() {
     ui->zoomSlider->setValue(val);
 }
 
-void MainWindow::edgesColorSliderChanged() {
+void MainWindow::edgesColorChanged() {
     QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
     if (color.isValid()) {
         ui->OGLwidget->lineColor = color;
+    }
+}
+
+void MainWindow::vertexColorChanged() {
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->pointColor = color;
+    }
+}
+
+void MainWindow::backgroundColorChanged()
+{
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+    if (color.isValid()) {
+        ui->OGLwidget->backgroundColor = color;
     }
 }

@@ -54,7 +54,9 @@ private slots:
 
     void linesSizeSliderChanged(int value);
 
-    void edgesColorSliderChanged();
+    void edgesColorChanged();
+    void vertexColorChanged();
+    void backgroundColorChanged();
 
     void vertexSize(int value);
 
