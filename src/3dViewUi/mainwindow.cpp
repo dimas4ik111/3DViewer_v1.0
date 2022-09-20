@@ -403,6 +403,7 @@ void MainWindow::defaultSettings()
     ui->OGLwidget->initSettings();
     ui->vertexSizeSlider->setValue(1);
 }
+
 void MainWindow::edgesColorChanged() {
     QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
     if (color.isValid()) {
