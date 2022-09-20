@@ -78,5 +78,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     void sliderSetUp();
+    void defaultSettings();
 };
 #endif // MAINWINDOW_H
