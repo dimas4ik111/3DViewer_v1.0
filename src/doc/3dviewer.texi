@@ -1,0 +1,145 @@
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@setfilename 3dviewer.info
+@include version.texi
+@settitle 3DViewer @value{VERSION}
+@c %**end of header
+
+@copying
+This manual is for 3DViewer (version @value{VERSION}, @value{UPDATED}),
+program to view 3D wireframe models (3D Viewer) in the C programming language. The models themselves must be loaded from .obj files and be viewable on the screen with the ability to rotate, scale and translate.
+
+Copyright @copyright{} 2022
+School 21 License.
+
+@quotation
+Thx to school.
+@end quotation
+@end copying
+
+@titlepage
+@title 3DViewer
+@subtitle for version @value{VERSION}, @value{UPDATED}
+@author Hubert Furr (@email{hubertfu@@student.21-school.ru})
+@author Osgrey Wilbert (@email{osgreywi@@student.21-school.ru})
+@author Maiamabl (@email{maiamabl@@student.21-school.ru})
+
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+
+@ifnottex
+@node Top
+@top 3DViewer
+
+This manual is for 3DViewer (version @value{VERSION}, @value{UPDATED}).
+@end ifnottex
+
+@menu
+* Overview::	    General purpose and information.
+* Sample output::	Interface & output.
+@end menu
+
+
+@node Overview
+@chapter Overview
+
+The 3DViewer v@value{VERSION} program:
+
+@itemize @bullet
+
+@item
+The program developed in C language of C11 standard using gcc compiler. 
+
+@item
+The program code located in the src folder
+
+@item
+The program built with Makefile which contains standard set of targets for GNU-programs: all, install, uninstall, clean, dvi, dist, tests, gcov_report. Installation directory is HOME
+
+@item
+The program developed according to the principles of structured programming
+
+@item
+Code follow the Google style
+
+@item
+Full coverage of modules related to model loading and affine transformations with unit-tests
+
+@item
+There is only one model on the screen at a time
+
+@item
+GUI implementation, based on any GUI library with Qt6
+
+@item
+The program can:
+@itemize @bullet
+@item
+Load a wireframe model from an obj file (vertices and surfaces list support only).
+@item
+Translate the model by a given distance in relation to the X, Y, Z axes.
+@item
+Rotate the model by a given angle relative to its X, Y, Z axes.
+@item
+Scale the model by a given value
+@end itemize
+
+@item
+The graphical user interface contain:
+@itemize @bullet
+@item
+A button to select the model file and a field to output its name.
+@item
+A visualisation area for the wireframe model.
+@item
+Button/buttons and input fields for translating the model.
+@item
+Button/buttons and input fields for rotating the model.
+@item
+Button/buttons and input fields for scaling the model.
+@item
+Information about the uploaded model - file name, number of vertices and edges.
+@end itemize
+
+@item
+The program correctly processes and allows user to view models with details up to 100, 1000, 10,000, 100,000, 1,000,000  vertices without freezing (a freeze is an interface inactivity of more than 0.5 seconds)
+
+@item
+Settings:
+@itemize @bullet
+@item
+The program allow customizing the type of projection (parallel and central)
+@item
+The program allow setting up the type (solid, dashed), color and thickness of the edges, display method (none, circle, square), color and size of the vertices
+@item
+The program allow choosing the background color
+@item
+Settings can be saved between program restarts
+@end itemize
+
+@item
+Record:
+@itemize @bullet
+@item
+The program allow saving the captured (rendered) images as bmp and jpeg files.
+@item
+The program allow recording small screencasts by a special button - the current custom affine transformation of the loaded object into gif-animation (640x480, 10fps, 5s)
+@end itemize
+
+@node Interface & output
+@chapter Interface & output
+
+Example1:
+
+@image{images/example1, 10cm}
+
+Example2:
+
+@image{images/example2, 10cm}
+
+@bye
