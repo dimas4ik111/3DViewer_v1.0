@@ -1,5 +1,4 @@
 #include "glwidget.h"
-#include "mainwindow.h" // TODO(hubertfu): delete this
 
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent)
@@ -45,8 +44,6 @@ void GLWidget::testBuffers() {
 
     if (code == S21_PARSER_OK) {
         initBuffers();
-    } else {
-        MainWindow::handleErrorByCode(code);
     }
 }
 
