@@ -95,7 +95,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
 
     // screenshot
-    connect(ui->btn_screen, SIGNAL(released()), (this), SLOT(createScreenshot()));
+    connect(ui->btn_screen_bmp, SIGNAL(released()), (this), SLOT(createScreenshot()));
+    connect(ui->btn_screen_jpg, SIGNAL(released()), (this), SLOT(createScreenshot()));
+    connect(ui->btn_screen_gif, SIGNAL(released()), (this), SLOT(createScreenshot()));
+
     // vertex size
     connect(ui->vertexSizeSlider, &QSlider::valueChanged, (this), &MainWindow::vertexSize);
 
@@ -375,5 +378,18 @@ void MainWindow::zoomTextEdit() {
 }
 
 void MainWindow::createScreenshot() {
-    ui->OGLwidget->grab().save("../../../../SCREEEEEN1.bmp");
+    QDateTime dateTime = dateTime.currentDateTime();
+    QString currentDateTime = dateTime.toString("yyyy_MM_dd_HHmmss");
+    if (ui->btn_screen_bmp) {
+        ui->OGLwidget->grab().save("../../../../screenshot/" + currentDateTime + ".bmp");
+    } else if (ui->btn_screen_jpg) {
+        ui->OGLwidget->grab().save("../../../../screenshot/" + currentDateTime + ".jpg");
+    } else if (ui->btn_screen_gif) {
+        for (int i = 0; i <= 50; i++) {
+            ui->OGLwidget->grab().save("../../../../screenshot/gif_obj" + QString::number(i) + ".jpg");
+        }
+        QString fileName = "convert -delay 10 -loop 0 ../../../../screenshot/gif_obj/*.jpg ../" + currentDateTime + ".gif";
+        QByteArray ba = fileName.toLocal8Bit();
+        system(ba);
+    }
 }

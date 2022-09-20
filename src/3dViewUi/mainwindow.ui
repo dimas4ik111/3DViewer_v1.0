@@ -785,17 +785,43 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="btn_screen">
+   <widget class="QPushButton" name="btn_screen_bmp">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>500</y>
-      <width>231</width>
+      <x>250</x>
+      <y>420</y>
+      <width>101</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>screen</string>
+     <string>bmp</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_screen_jpg">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>470</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>jpg</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_screen_gif">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>520</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>gif</string>
     </property>
    </widget>
   </widget>
