@@ -80,5 +80,7 @@ private:
     Ui::MainWindow *ui;
     void sliderSetUp();
     void defaultSettings();
+    void defSliders();
+    void saveSettings();
 };
 #endif // MAINWINDOW_H
