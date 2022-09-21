@@ -140,6 +140,7 @@ START_TEST(test_parser_ok1) {
   ck_assert_float_eq_tol(data.array_of_f[70], 7, TEST_PRECISION);
   ck_assert_float_eq_tol(data.array_of_f[71], 4, TEST_PRECISION);
 
+  s21_print_obj_data(&data);
   s21_destroy_obj_data(&data);
 }
 
