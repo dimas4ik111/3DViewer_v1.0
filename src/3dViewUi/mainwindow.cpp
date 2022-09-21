@@ -165,6 +165,15 @@ void MainWindow::defaultSettings()
             ui->OGLwidget->backgroundColor = settings.value("color").toString();
             settings.endGroup();
         }
+
+        settings.beginGroup("proection");
+        if (settings.value("mode").toInt() == 0 && settings.value("mode").toInt() != 1) {
+            ui->OGLwidget->projectionMode = 0;
+        } else if (settings.value("mode").toInt() == 1 && settings.value("mode").toString().length() > 0) {
+            ui->OGLwidget->projectionMode = 1;
+            ui->projectionParallel->setChecked(true);
+        }
+        settings.endGroup();
     }
 }
 
@@ -187,6 +196,9 @@ MainWindow::~MainWindow()
     settings.endGroup();
     settings.beginGroup("background");
     settings.setValue("color", ui->OGLwidget->backgroundColor);
+    settings.endGroup();
+    settings.beginGroup("proection");
+    settings.setValue("mode", ui->OGLwidget->projectionMode);
     settings.endGroup();
     delete ui;
 //    settings.setValue( "y", ui->OGLwidget->y());
