@@ -9,6 +9,7 @@ int main(void) {
   sr = srunner_create(NULL);
   srunner_add_suite(sr, parse_file_suite());
   srunner_add_suite(sr, other_suite());
+  srunner_add_suite(sr, transform_suite());
 
   srunner_set_fork_status(sr, CK_NOFORK);
   // Используем данный блок для вывода подробно про каждый тест с разбиением по
