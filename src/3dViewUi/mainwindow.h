@@ -5,6 +5,7 @@
 #include <qpushbutton.h>
 #include <QColorDialog>
 #include <QColor>
+#include <QSettings>
 #include "glwidget.h"
 
 extern "C" {
