@@ -179,6 +179,8 @@ void MainWindow::defaultSettings()
         }
         settings.endGroup();
     }
+
+    updateUiColors();
 }
 
 void MainWindow::saveSettings() {
@@ -493,6 +495,7 @@ void MainWindow::edgesColorChanged() {
     QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
     if (color.isValid()) {
         ui->OGLwidget->lineColor = color;
+        updateUiColors();
     }
 }
 
@@ -500,6 +503,7 @@ void MainWindow::vertexColorChanged() {
     QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
     if (color.isValid()) {
         ui->OGLwidget->pointColor = color;
+        updateUiColors();
     }
 }
 
@@ -508,5 +512,16 @@ void MainWindow::backgroundColorChanged()
     QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
     if (color.isValid()) {
         ui->OGLwidget->backgroundColor = color;
+        updateUiColors();
     }
+}
+
+void MainWindow::updateUiColors()
+{
+    ui->boxBackGroundColor->setAutoFillBackground(true);
+    ui->boxBackGroundColor->setStyleSheet(QString("border-style: solid; border-width: 1px;border-color: black; background-color: rgb(%1, %2, %3);").arg(ui->OGLwidget->backgroundColor.red()).arg(ui->OGLwidget->backgroundColor.green()).arg(ui->OGLwidget->backgroundColor.blue()));
+    ui->boxEdgesColor->setAutoFillBackground(true);
+    ui->boxEdgesColor->setStyleSheet(QString("border-style: solid; border-width: 1px;border-color: black; background-color: rgb(%1, %2, %3);").arg(ui->OGLwidget->lineColor.red()).arg(ui->OGLwidget->lineColor.green()).arg(ui->OGLwidget->lineColor.blue()));
+    ui->boxVertexColor->setAutoFillBackground(true);
+    ui->boxVertexColor->setStyleSheet(QString("border-style: solid; border-width: 1px;border-color: black; background-color: rgb(%1, %2, %3);").arg(ui->OGLwidget->pointColor.red()).arg(ui->OGLwidget->pointColor.green()).arg(ui->OGLwidget->pointColor.blue()));
 }
