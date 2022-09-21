@@ -48,7 +48,7 @@ void GLWidget::initSettings() {
 void GLWidget::testBuffers() {
     clearBuffers();
 
-    QString fileName = "../../../../check/objfiles/pyramid.obj";
+    QString fileName = "../../../../_objfiles/_pyramid.obj";
     // QString fileName = "../check/objfiles/pyramid.obj";
     QByteArray ba = fileName.toLocal8Bit();
     s21_parser_result code = s21_parse_file(ba.data(), &rawObjData, S21_TRUE);
