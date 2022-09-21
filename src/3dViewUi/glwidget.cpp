@@ -336,8 +336,7 @@ void GLWidget::paintGL() {
 
         m_program->release();
         if (calcMode == 1) {
-            s21_destroy_obj_data(&rawObjDataCPU);
-            s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
+            s21_copy_obj_to_obj(&rawObjDataCPU, &rawObjData);
         }
     }
 }

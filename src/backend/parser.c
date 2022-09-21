@@ -240,11 +240,17 @@ void s21_copy_obj_data(s21_obj_data *dst, s21_obj_data *src) {
   dst->max_coord = src->max_coord;
   dst->array_of_v = malloc(dst->num_of_v * sizeof(float));
   dst->array_of_f = malloc(dst->num_of_f * sizeof(unsigned int));
-  for (unsigned int i = 0; i < dst->num_of_v; i++) {
-    dst->array_of_v[i] = src->array_of_v[i];
-  }
-  for (unsigned int i = 0; i < dst->num_of_f; i++) {
-    dst->array_of_f[i] = src->array_of_f[i];
+  s21_copy_obj_to_obj(dst, src);
+}
+
+void s21_copy_obj_to_obj(s21_obj_data *dst, s21_obj_data *src) {
+  if (dst->num_of_f == src->num_of_f && dst->num_of_v == src->num_of_v) {
+    for (unsigned int i = 0; i < dst->num_of_v; i++) {
+      dst->array_of_v[i] = src->array_of_v[i];
+    }
+    for (unsigned int i = 0; i < dst->num_of_f; i++) {
+      dst->array_of_f[i] = src->array_of_f[i];
+    }
   }
 }
 
