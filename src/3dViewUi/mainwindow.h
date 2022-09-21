@@ -5,6 +5,7 @@
 #include <qpushbutton.h>
 #include <QColorDialog>
 #include <QColor>
+#include <QSettings>
 #include "glwidget.h"
 
 extern "C" {
@@ -78,5 +79,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     void sliderSetUp();
+    void defaultSettings();
 };
 #endif // MAINWINDOW_H

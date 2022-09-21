@@ -10,40 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
 {  
     ui->setupUi(this);
 
+    sliderSetUp();
+
     connect(ui->openObjButton, SIGNAL(clicked()), this, SLOT(handleOpenFile()));
-
-    ui->xSlider->setRange(0, 360 * 16);
-    ui->xSlider->setSingleStep(16);
-    ui->xSlider->setPageStep(15 * 16);
-    ui->xSlider->setTickInterval(15 * 16);
-
-    ui->ySlider->setRange(0, 360 * 16);
-    ui->ySlider->setSingleStep(16);
-    ui->ySlider->setPageStep(15 * 16);
-    ui->ySlider->setTickInterval(15 * 16);
-
-    ui->zSlider->setRange(0, 360 * 16);
-    ui->zSlider->setSingleStep(16);
-    ui->zSlider->setPageStep(15 * 16);
-    ui->zSlider->setTickInterval(15 * 16);
-
-    ui->xMove->setRange(0, 100);
-    ui->xMove->setSingleStep(1);
-
-    ui->yMove->setRange(0, 100);
-    ui->yMove->setSingleStep(1);
-
-    ui->zMove->setRange(0, 100);
-    ui->zMove->setSingleStep(1);
-
-    ui->zoomSlider->setRange(1, 300);
-    ui->zMove->setSingleStep(1);
-
-    ui->vertexSizeSlider->setRange(1, 25);
-    ui->vertexSizeSlider->setSingleStep(1);
-
-    ui->linesSizeSlider->setRange(1, 40);
-    ui->linesSizeSlider->setSingleStep(1);
 
     // slider rotate val
     // x
@@ -127,6 +96,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->colorVertex, SIGNAL(released()), (this), SLOT(vertexColorChanged()));
     connect(ui->widgetBackGroundColor, SIGNAL(released()), (this), SLOT(backgroundColorChanged()));
 
+    defaultSettings();
+    ui->OGLwidget->update();
+}
+
+void MainWindow::defaultSettings()
+{
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
@@ -142,6 +117,79 @@ MainWindow::MainWindow(QWidget *parent)
     ui->RotateAxesRadio->setChecked(true);
     ui->solidEdges->setChecked(true);
     ui->projectionCentral->setChecked(true);
+
+    ui->linesSizeSlider->setValue(1);
+    ui->OGLwidget->initSettings();
+    ui->vertexSizeSlider->setValue(1);
+
+    if (QFile::exists("settings.conf")) {
+        QSettings settings("settings.conf", QSettings::IniFormat);
+        settings.beginGroup("LineSet");
+
+        ui->linesSizeSlider->setValue(settings.value("value").toInt());
+
+        if (settings.value("solid").toBool()) {
+            ui->solidEdges->setChecked(true);
+            ui->OGLwidget->lineMode = 0;
+        } else if (settings.value("dashed").toBool()) {
+            ui->dashedEdges->setChecked(true);
+            ui->OGLwidget->lineMode = 1;
+        }
+
+        if (settings.value("color").toString().length() > 0) {
+            ui->OGLwidget->lineColor = settings.value("color").toString();
+            settings.endGroup();
+        }
+
+        settings.beginGroup("VertexSet");
+        if (settings.value("disable").toBool()) {
+            ui->disableView->setChecked(true);
+            ui->OGLwidget->pointMode = 0;
+        } else if (settings.value("circle").toBool()) {
+            ui->circleView->setChecked(true);
+            ui->OGLwidget->pointMode = 1;
+        } else if (settings.value("square").toBool()) {
+            ui->squareView->setChecked(true);
+            ui->OGLwidget->pointMode = 2;
+        }
+
+        ui->OGLwidget->pointColor = settings.value("color").toString();
+
+        ui->vertexSizeSlider->setValue(settings.value("size").toInt());
+
+        settings.endGroup();
+
+        settings.beginGroup("background");
+
+        if (settings.value("color").toString().length() > 0) {
+            ui->OGLwidget->backgroundColor = settings.value("color").toString();
+            settings.endGroup();
+        }
+    }
+}
+
+
+MainWindow::~MainWindow()
+{
+    QSettings settings("settings.conf", QSettings::IniFormat);
+    settings.beginGroup("LineSet");
+    settings.setValue("value", ui->linesSizeSlider->value());
+    settings.setValue("solid", ui->solidEdges->isChecked());
+    settings.setValue("dashed", ui->dashedEdges->isChecked());
+    settings.setValue("color", ui->OGLwidget->lineColor);
+    settings.endGroup();
+    settings.beginGroup("VertexSet");
+    settings.setValue("disable", ui->disableView->isChecked());
+    settings.setValue("circle", ui->circleView->isChecked());
+    settings.setValue("square", ui->squareView->isChecked());
+    settings.setValue("color", ui->OGLwidget->pointColor);
+    settings.setValue("size", ui->vertexSizeSlider->value());
+    settings.endGroup();
+    settings.beginGroup("background");
+    settings.setValue("color", ui->OGLwidget->backgroundColor);
+    settings.endGroup();
+    delete ui;
+//    settings.setValue( "y", ui->OGLwidget->y());
 }
 
 void MainWindow::handleOpenFile() {  
@@ -199,11 +247,6 @@ void MainWindow::handleErrorByCode(s21_parser_result code) {
         break;
     }
   }
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
 }
 
 int valNormalize(int val) {
@@ -280,21 +323,7 @@ void MainWindow::EnableRotateModelMode() {
 
 void MainWindow::resetValue()
 {
-    ui->xSlider->setValue(360 * 8);
-    ui->ySlider->setValue(360 * 8);
-    ui->zSlider->setValue(360 * 8);
-    ui->disableView->setChecked(true);
-    ui->CalcModeGPURadio->setChecked(true);
-    ui->RotateAxesRadio->setChecked(true);
-    ui->projectionCentral->setChecked(true);
-    ui->solidEdges->setChecked(true);
-    ui->linesSizeSlider->setValue(1);
-    ui->OGLwidget->initSettings();
-    ui->xMove->setValue(50);
-    ui->yMove->setValue(50);
-    ui->zMove->setValue(50);
-    ui->zoomSlider->setValue(30);
-    ui->vertexSizeSlider->setValue(1);
+    defaultSettings();
     ui->OGLwidget->update();
 }
 
@@ -403,6 +432,43 @@ void MainWindow::createScreenshot() {
         system(ba);
     }
 }
+
+void MainWindow::sliderSetUp()
+{
+    ui->xSlider->setRange(0, 360 * 16);
+    ui->xSlider->setSingleStep(16);
+    ui->xSlider->setPageStep(15 * 16);
+    ui->xSlider->setTickInterval(15 * 16);
+
+    ui->ySlider->setRange(0, 360 * 16);
+    ui->ySlider->setSingleStep(16);
+    ui->ySlider->setPageStep(15 * 16);
+    ui->ySlider->setTickInterval(15 * 16);
+
+    ui->zSlider->setRange(0, 360 * 16);
+    ui->zSlider->setSingleStep(16);
+    ui->zSlider->setPageStep(15 * 16);
+    ui->zSlider->setTickInterval(15 * 16);
+
+    ui->xMove->setRange(0, 100);
+    ui->xMove->setSingleStep(1);
+
+    ui->yMove->setRange(0, 100);
+    ui->yMove->setSingleStep(1);
+
+    ui->zMove->setRange(0, 100);
+    ui->zMove->setSingleStep(1);
+
+    ui->zoomSlider->setRange(1, 300);
+    ui->zMove->setSingleStep(1);
+
+    ui->vertexSizeSlider->setRange(1, 25);
+    ui->vertexSizeSlider->setSingleStep(1);
+
+    ui->linesSizeSlider->setRange(1, 20);
+    ui->linesSizeSlider->setSingleStep(1);
+}
+
 void MainWindow::edgesColorChanged() {
     QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
     if (color.isValid()) {
