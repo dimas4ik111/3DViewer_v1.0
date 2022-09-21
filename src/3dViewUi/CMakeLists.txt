@@ -25,6 +25,7 @@ set(PROJECT_SOURCES
         mainwindow.ui
         glwidget.h glwidget.cpp
         ../backend/backend.h ../backend/parser.c ../backend/transform.c
+         ../gif/gif.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

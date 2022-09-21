@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <qpushbutton.h>
 #include <QColorDialog>
 #include <QColor>
+#include <QPainter>
+#include <QImage>
+#include <QVector>
 #include "glwidget.h"
 
 extern "C" {
@@ -78,5 +80,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     void sliderSetUp();
+    void createGif();
 };
 #endif // MAINWINDOW_H

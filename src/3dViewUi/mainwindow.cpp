@@ -3,6 +3,8 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
+#include <unistd.h>
+#include <../gif/gif.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -142,6 +144,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->RotateAxesRadio->setChecked(true);
     ui->solidEdges->setChecked(true);
     ui->projectionCentral->setChecked(true);
+    ui->linesSizeSlider->setValue(15);
 }
 
 void MainWindow::handleOpenFile() {
@@ -388,21 +391,46 @@ void MainWindow::zoomTextEdit() {
 }
 
 void MainWindow::createScreenshot() {
+    QPushButton *btn = (QPushButton * )sender();
+    QString butVal = btn->text();
+    QString pathScreen = "../../../../screenshot/";
+    QByteArray ba = pathScreen.toLocal8Bit();
+
     QDateTime dateTime = dateTime.currentDateTime();
     QString currentDateTime = dateTime.toString("yyyy_MM_dd_HHmmss");
-    if (ui->btn_screen_bmp) {
-        ui->OGLwidget->grab().save("../../../../screenshot/" + currentDateTime + ".bmp");
-    } else if (ui->btn_screen_jpg) {
-        ui->OGLwidget->grab().save("../../../../screenshot/" + currentDateTime + ".jpg");
-    } else if (ui->btn_screen_gif) {
-        for (int i = 0; i <= 50; i++) {
-            ui->OGLwidget->grab().save("../../../../screenshot/gif_obj" + QString::number(i) + ".jpg");
+    if (QString::compare(butVal, "bmp", Qt::CaseInsensitive) == 0) {
+        ui->OGLwidget->grab().save(pathScreen + currentDateTime + ".bmp");
+    } else if (QString::compare(butVal, "jpg", Qt::CaseInsensitive) == 0) {
+        ui->OGLwidget->grab().save(pathScreen + currentDateTime + ".jpg");
+    } else if (QString::compare(butVal, "gif", Qt::CaseInsensitive) == 0) {
+        ui->btn_screen_gif->setDisabled(true);
+
+        QSize pic_size(640, 480);
+
+        for (int i = 1; i <= 10; i++) {
+            ui->OGLwidget->grab()
+                .scaled(640, 480, Qt::IgnoreAspectRatio)
+                .save(pathScreen + "gif_obj/" + QString::number(i)  + ".bmp");
         }
-        QString fileName = "convert -delay 10 -loop 0 ../../../../screenshot/gif_obj/*.jpg ../" + currentDateTime + ".gif";
-        QByteArray ba = fileName.toLocal8Bit();
-        system(ba);
+        createGif();
+        ui->btn_screen_gif->setDisabled(false);
     }
 }
+
+void MainWindow::createGif() {
+    QString gif_name = "../../../../screenshot/demo.gif";
+    QByteArray ga = gif_name.toLocal8Bit();
+    GifWriter writer = {};
+    GifBegin( &writer, ga.data(), 640, 480, 5, 8, false);
+    for (int i = 1; i <= 10; i++) {
+        QImage img("../../../../screenshot/gif_obj/" + QString::number(i)  + ".bmp");
+        const uint8_t *frames = img.convertToFormat(QImage::Format_Indexed8)
+                .convertToFormat(QImage::Format_RGBA8888).constBits();
+        GifWriteFrame(&writer, frames, 640, 480, 5, 8, false);
+    }
+    GifEnd( &writer );
+}
+
 void MainWindow::edgesColorChanged() {
     QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
     if (color.isValid()) {
