@@ -9,14 +9,14 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
 
 START_TEST(test_parser_fail1) {
-  char *obj_path = "check/objfiles/";
+  char *obj_path = "_objfiles/";
   s21_obj_data data;
   s21_parser_result code_check = S21_PARSER_ERROR_FILE;
   test_parser_fail(obj_path, &data, code_check);
 }
 
 START_TEST(test_parser_fail2) {
-  char *obj_path = "check/objfiles/lkjhygtfrds.obj";
+  char *obj_path = "_objfiles/lkjhygtfrds.obj";
   s21_obj_data data;
   s21_parser_result code_check = S21_PARSER_ERROR_FILE;
   test_parser_fail(obj_path, &data, code_check);
@@ -27,7 +27,7 @@ START_TEST(test_parser_fail2) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
 
 START_TEST(test_parser_ok1) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -145,7 +145,7 @@ START_TEST(test_parser_ok1) {
 }
 
 START_TEST(test_parser_ok2) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_TRUE);
 
@@ -262,7 +262,7 @@ START_TEST(test_parser_ok2) {
 }
 
 START_TEST(test_parser_ok3) {
-  char *obj_path = "check/objfiles/cube 2.obj";
+  char *obj_path = "_objfiles/_cube 2.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -367,7 +367,7 @@ START_TEST(test_parser_ok3) {
 }
 
 START_TEST(test_parser_ok4) {
-  char *obj_path = "check/objfiles/cube 2.obj";
+  char *obj_path = "_objfiles/_cube 2.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_TRUE);
 
@@ -472,7 +472,7 @@ START_TEST(test_parser_ok4) {
 }
 
 START_TEST(test_parser_ok5) {
-  char *obj_path = "check/objfiles/in cube 2.obj";
+  char *obj_path = "_objfiles/in cube 2.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -577,12 +577,13 @@ START_TEST(test_parser_ok5) {
 }
 
 START_TEST(test_parser_ok6) {
-  char *obj_path = "check/objfiles/in_cube.obj";
+  char *obj_path = "_objfiles/in cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
   ck_assert_uint_eq(data.num_of_v, 24);
   ck_assert_uint_eq(data.num_of_f, 72);
+  ck_assert_float_eq_tol(data.max_coord, 1, TEST_PRECISION);
 
   ck_assert_float_eq_tol(data.array_of_v[0], 1, TEST_PRECISION);
   ck_assert_float_eq_tol(data.array_of_v[1], -1, TEST_PRECISION);
@@ -693,12 +694,13 @@ START_TEST(test_parser_ok6) {
 }
 
 START_TEST(test_parser_ok7) {
-  char *obj_path = "check/objfiles/pyramid.obj";
+  char *obj_path = "_objfiles/_pyramid.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
   ck_assert_uint_eq(data.num_of_v, 15);
   ck_assert_uint_eq(data.num_of_f, 36);
+  ck_assert_float_eq_tol(data.max_coord, 1, TEST_PRECISION);
 
   ck_assert_float_eq_tol(data.array_of_v[0], 0, TEST_PRECISION);
   ck_assert_float_eq_tol(data.array_of_v[1], 1, TEST_PRECISION);
@@ -761,12 +763,13 @@ START_TEST(test_parser_ok7) {
 }
 
 START_TEST(test_parser_ok8) {
-  char *obj_path = "check/objfiles/in pyramid.obj";
+  char *obj_path = "_objfiles/in pyramid.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
   ck_assert_uint_eq(data.num_of_v, 15);
   ck_assert_uint_eq(data.num_of_f, 36);
+  ck_assert_float_eq_tol(data.max_coord, 1, TEST_PRECISION);
 
   ck_assert_float_eq_tol(data.array_of_v[0], 0, TEST_PRECISION);
   ck_assert_float_eq_tol(data.array_of_v[1], 1, TEST_PRECISION);
@@ -829,12 +832,13 @@ START_TEST(test_parser_ok8) {
 }
 
 START_TEST(test_parser_ok9) {
-  char *obj_path = "check/objfiles/octahedron.obj";
+  char *obj_path = "_objfiles/_octahedron.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
   ck_assert_uint_eq(data.num_of_v, 18);
   ck_assert_uint_eq(data.num_of_f, 48);
+  ck_assert_float_eq_tol(data.max_coord, 1, TEST_PRECISION);
 
   ck_assert_float_eq_tol(data.array_of_v[0], 1, TEST_PRECISION);
   ck_assert_float_eq_tol(data.array_of_v[1], 0, TEST_PRECISION);
@@ -913,67 +917,85 @@ START_TEST(test_parser_ok9) {
 }
 
 START_TEST(test_parser_ok10) {
-  char *obj_path = "check/objfiles/Gun.obj";
+  char *obj_path = "_objfiles/100 cottage_obj.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
-  ck_assert_uint_eq(data.num_of_v, 39492);
-  ck_assert_uint_eq(data.num_of_f, 87324);
+  ck_assert_uint_eq(data.num_of_v, 1059);
+  ck_assert_uint_eq(data.num_of_f, 2008);
+  ck_assert_float_eq_tol(data.max_coord, 167.101471, TEST_PRECISION);
 
   s21_destroy_obj_data(&data);
 }
 
 START_TEST(test_parser_ok11) {
-  // char *obj_path = "check/objfiles/Kalashnikov.obj";
-  // s21_obj_data data;
-  // test_parser(obj_path, &data, S21_FALSE);
-
-  // ck_assert_uint_eq(data.num_of_v, 590535);
-  // ck_assert_uint_eq(data.num_of_f, 1571608);
-
-  // s21_destroy_obj_data(&data);
-}
-
-START_TEST(test_parser_ok12) {
-  // char *obj_path = "check/objfiles/Bugatti.obj";
-  // s21_obj_data data;
-  // test_parser(obj_path, &data, S21_FALSE);
-
-  // ck_assert_uint_eq(data.num_of_v, 2232639);
-  // ck_assert_uint_eq(data.num_of_f, 5981036);
-
-  // s21_destroy_obj_data(&data);
-}
-
-START_TEST(test_parser_ok13) {
-  // char *obj_path = "check/objfiles/one_million.obj";
-  // s21_obj_data data;
-  // test_parser(obj_path, &data, S21_FALSE);
-
-  // ck_assert_uint_eq(data.num_of_v, 3000000);
-  // ck_assert_uint_eq(data.num_of_f, 6677268);
-
-  // s21_destroy_obj_data(&data);
-}
-
-START_TEST(test_parser_ok14) {
-  char *obj_path = "check/objfiles/empty.obj";
+  char *obj_path = "_objfiles/1000 Glass.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
-  ck_assert_uint_eq(data.num_of_v, 3);
-  ck_assert_uint_eq(data.num_of_f, 6);
+  ck_assert_uint_eq(data.num_of_v, 2688);
+  ck_assert_uint_eq(data.num_of_f, 7040);
+  ck_assert_float_eq_tol(data.max_coord, 5.073612, TEST_PRECISION);
+
+  s21_destroy_obj_data(&data);
+}
+
+START_TEST(test_parser_ok12) {
+  char *obj_path = "_objfiles/10000 Gun.obj";
+  s21_obj_data data;
+  test_parser(obj_path, &data, S21_FALSE);
+
+  ck_assert_uint_eq(data.num_of_v, 39492);
+  ck_assert_uint_eq(data.num_of_f, 87324);
+  ck_assert_float_eq_tol(data.max_coord, 7.334266, TEST_PRECISION);
+
+  s21_destroy_obj_data(&data);
+}
+
+START_TEST(test_parser_ok13) {
+  char *obj_path = "_objfiles/100000 sirus city.obj";
+  s21_obj_data data;
+  test_parser(obj_path, &data, S21_FALSE);
+
+  ck_assert_uint_eq(data.num_of_v, 392790);
+  ck_assert_uint_eq(data.num_of_f, 801824);
+  ck_assert_float_eq_tol(data.max_coord, 1276.29, TEST_PRECISION);
+
+  s21_destroy_obj_data(&data);
+}
+
+START_TEST(test_parser_ok14) {
+  char *obj_path = "_objfiles/1000000 tree.obj";
+  s21_obj_data data;
+  test_parser(obj_path, &data, S21_FALSE);
+
+  ck_assert_uint_eq(data.num_of_v, 3000000);
+  ck_assert_uint_eq(data.num_of_f, 6677268);
+  ck_assert_float_eq_tol(data.max_coord, 21.699883, TEST_PRECISION);
 
   s21_destroy_obj_data(&data);
 }
 
 START_TEST(test_parser_ok15) {
-  char *obj_path = "check/objfiles/empty abs.obj";
+  char *obj_path = "_objfiles/empty.obj";
+  s21_obj_data data;
+  test_parser(obj_path, &data, S21_FALSE);
+
+  ck_assert_uint_eq(data.num_of_v, 3);
+  ck_assert_uint_eq(data.num_of_f, 6);
+  ck_assert_float_eq_tol(data.max_coord, 1, TEST_PRECISION);
+
+  s21_destroy_obj_data(&data);
+}
+
+START_TEST(test_parser_ok16) {
+  char *obj_path = "_objfiles/empty abs.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
   ck_assert_uint_eq(data.num_of_v, 0);
   ck_assert_uint_eq(data.num_of_f, 0);
+  ck_assert_float_eq_tol(data.max_coord, 0, TEST_PRECISION);
 
   s21_destroy_obj_data(&data);
 }
@@ -1003,6 +1025,7 @@ Suite *parse_file_suite(void) {
   tcase_add_test(tc_core, test_parser_ok13);
   tcase_add_test(tc_core, test_parser_ok14);
   tcase_add_test(tc_core, test_parser_ok15);
+  tcase_add_test(tc_core, test_parser_ok16);
 
   suite_add_tcase(s, tc_core);
   return s;

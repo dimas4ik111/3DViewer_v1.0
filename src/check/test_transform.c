@@ -9,7 +9,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
 
 START_TEST(test_transform_ok1) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -44,7 +44,7 @@ START_TEST(test_transform_ok1) {
 }
 
 START_TEST(test_transform_ok2) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -79,7 +79,7 @@ START_TEST(test_transform_ok2) {
 }
 
 START_TEST(test_transform_ok3) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -114,7 +114,7 @@ START_TEST(test_transform_ok3) {
 }
 
 START_TEST(test_transform_ok4) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -149,7 +149,7 @@ START_TEST(test_transform_ok4) {
 }
 
 START_TEST(test_transform_ok5) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -184,7 +184,7 @@ START_TEST(test_transform_ok5) {
 }
 
 START_TEST(test_transform_ok6) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 
@@ -219,7 +219,7 @@ START_TEST(test_transform_ok6) {
 }
 
 START_TEST(test_transform_ok7) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   test_parser(obj_path, &data, S21_FALSE);
 

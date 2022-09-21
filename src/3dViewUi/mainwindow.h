@@ -82,5 +82,6 @@ private:
     void defaultSettings();
     void defSliders();
     void saveSettings();
+    void updateUiColors();
 };
 #endif // MAINWINDOW_H
