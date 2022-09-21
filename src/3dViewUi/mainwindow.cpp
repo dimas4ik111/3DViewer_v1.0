@@ -100,8 +100,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->OGLwidget->update();
 }
 
-void MainWindow::defaultSettings()
-{
+void MainWindow::defSliders() {
     ui->xSlider->setValue(360 * 8);
     ui->ySlider->setValue(360 * 8);
     ui->zSlider->setValue(360 * 8);
@@ -112,6 +111,11 @@ void MainWindow::defaultSettings()
     ui->xText->setText(QString::number(0));
     ui->yText->setText(QString::number(0));
     ui->zText->setText(QString::number(0));
+}
+
+void MainWindow::defaultSettings()
+{
+    defSliders();
     ui->disableView->setChecked(true);
     ui->CalcModeGPURadio->setChecked(true);
     ui->RotateAxesRadio->setChecked(true);
@@ -177,9 +181,7 @@ void MainWindow::defaultSettings()
     }
 }
 
-
-MainWindow::~MainWindow()
-{
+void MainWindow::saveSettings() {
     QSettings settings("settings.conf", QSettings::IniFormat);
     settings.beginGroup("LineSet");
     settings.setValue("value", ui->linesSizeSlider->value());
@@ -200,11 +202,16 @@ MainWindow::~MainWindow()
     settings.beginGroup("proection");
     settings.setValue("mode", ui->OGLwidget->projectionMode);
     settings.endGroup();
+}
+
+MainWindow::~MainWindow()
+{
+    saveSettings();
     delete ui;
 //    settings.setValue( "y", ui->OGLwidget->y());
 }
 
-void MainWindow::handleOpenFile() {  
+void MainWindow::handleOpenFile() {
   // Определяем класс диалогового окна выбора файла
   QFileDialog *fileDialog = new QFileDialog(this);
   // Определяем заголовок окна
@@ -233,7 +240,8 @@ void MainWindow::handleOpenFile() {
       if (code == S21_PARSER_OK) {
         // Пишем путь до файла в статусбар приложения
         ui->statusbar->showMessage("Выбран файл: " + fileName);
-        // Инициализируем буфферы OpenGL распарсенными данными
+        // Инициализируем буфферы OpenGL распарсенными данным
+        defSliders();
         ui->OGLwidget->initBuffers();
         ui->numberOfEdges->setText(QString::number(ui->OGLwidget->numberOfEdges));
         ui->numberOfVerticies->setText(QString::number(ui->OGLwidget->numberOfVerticies));
