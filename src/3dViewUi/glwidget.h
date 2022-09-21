@@ -24,6 +24,7 @@ public:
     void initBuffers();
     void initBuffersCPU();
     void initSettings();
+    void setupProjection(int w = 0, int h = 0);
 
     QColor backgroundColor;
     QColor lineColor;

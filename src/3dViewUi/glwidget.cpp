@@ -49,31 +49,12 @@ void GLWidget::testBuffers() {
     clearBuffers();
 
     QString fileName = "../../../../check/objfiles/pyramid.obj";
+    // QString fileName = "../check/objfiles/pyramid.obj";
     QByteArray ba = fileName.toLocal8Bit();
     s21_parser_result code = s21_parse_file(ba.data(), &rawObjData, S21_TRUE);
 
     if (code == S21_PARSER_OK) {
-        vao.create();
-        vao.bind();
-
-        vbo = QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
-        vbo.create();
-        vbo.bind();
-        vbo.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-        vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
-
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
-        glEnableVertexAttribArray(0);
-
-        ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
-        ebo.create();
-        ebo.bind();
-        ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
-        ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
-
-        vao.release();
-
-        s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
+        initBuffers();
     }
 }
 
@@ -266,13 +247,7 @@ void GLWidget::paintGL() {
         moveMatrix.setToIdentity();
         scaleMatrix.setToIdentity();
 
-        cameraMatrix.setToIdentity();
-        if (projectionMode == 0) {
-            cameraMatrix.translate(0, 0, -4);
-        } else {
-            cameraMatrix.translate(0, -2, -4);
-//            cameraMatrix.scale(0.95, 0.95, 0.95);
-        }
+        setupProjection();
 
         if (calcMode == 0) {
             rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
@@ -365,16 +340,42 @@ void GLWidget::paintGL() {
             s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
         }
     }
-
 }
 
 // Функция resizeGL() вызывается один раз, перед paintGL(), но после того, как будет вызвана функция initializeGL(). Здесь настраивается область просмотра (viewport), проекция и прочие настройки, которые зависят от размера виджета.
 void GLWidget::resizeGL(int width, int height) {
+    setupProjection(width, height);
+}
+
+void GLWidget::setupProjection(int w, int h) {
+    if (w < 1 || h < 1) {
+        w = width();
+        h = height();
+    }
+
+    cameraMatrix.setToIdentity();
     projectionMatrix.setToIdentity();
     if (projectionMode == 0) {
-        projectionMatrix.perspective(45.0f, GLfloat(width) / height, 0.01f, 100.0f);
+        projectionMatrix.perspective(45.0f, GLfloat(w) / h, 0.01f, 100.0f);
+        cameraMatrix.translate(0, 0, -4);
+    } else {
+        float top, bottom, right, left, aratio;
+        aratio = (GLfloat) w / h;
+
+        if (w > h) {
+            top = 1.5f;
+            bottom = -top;
+            right = top * aratio;
+            left = -right;
+        } else {
+            right = 1.5f;
+            left = -right;
+            top = right / aratio;
+            bottom = -top;
+        }
+
+        cameraMatrix.ortho(left, right, bottom, top, -100.0f, 100.0f);
     }
-//    projectionMatrix.viewport(0, 0, width*0.8, height*0.8, 0.1f, 4.0f);
 }
 
 static void qNormalizeAngle(int &angle)

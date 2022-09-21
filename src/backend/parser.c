@@ -262,8 +262,13 @@ void s21_print_obj_data(s21_obj_data *data) {
     printf("x:%10f y:%10f z:%10f\n", data->array_of_v[i * 3],
            data->array_of_v[i * 3 + 1], data->array_of_v[i * 3 + 2]);
   }
-
+  printf("\n");
   for (unsigned int i = 0; i < data->num_of_f; i++) {
     printf("%u,", data->array_of_f[i]);
   }
+  printf("\n\n");
+  printf("v: %u (%u)\n", data->num_of_v / 3, data->num_of_v);
+  printf("f: %u (%u)\n", data->num_of_f / 2, data->num_of_f);
+  printf("max: %f\n", data->max_coord);
+  printf("\n\n");
 }

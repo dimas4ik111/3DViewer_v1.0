@@ -192,7 +192,7 @@ MainWindow::~MainWindow()
 //    settings.setValue( "y", ui->OGLwidget->y());
 }
 
-void MainWindow::handleOpenFile() {
+void MainWindow::handleOpenFile() {  
   // Определяем класс диалогового окна выбора файла
   QFileDialog *fileDialog = new QFileDialog(this);
   // Определяем заголовок окна

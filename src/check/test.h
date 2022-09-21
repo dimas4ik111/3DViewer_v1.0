@@ -11,6 +11,7 @@
 
 Suite *parse_file_suite(void);
 Suite *other_suite(void);
+Suite *transform_suite(void);
 
 void test_parser(char *obj_path, s21_obj_data *data,
                  s21_boolean need_normalize);

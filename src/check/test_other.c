@@ -211,6 +211,7 @@ START_TEST(test_other_ok1) {
                          TEST_PRECISION);
 
   s21_destroy_obj_data(&data);
+  s21_destroy_obj_data(&data_copy);
 }
 
 Suite *other_suite(void) {
