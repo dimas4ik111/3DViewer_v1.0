@@ -352,7 +352,6 @@ void GLWidget::setupProjection(int w, int h) {
         w = width();
         h = height();
     }
-    qDebug() << "h:" << h << "w:" << w;
 
     cameraMatrix.setToIdentity();
     projectionMatrix.setToIdentity();
@@ -374,15 +373,8 @@ void GLWidget::setupProjection(int w, int h) {
             top = right / aratio;
             bottom = -top;
         }
-        qDebug() << "ratio:" << aratio;
-        qDebug() << "height:" << height();
-        qDebug() << "width:" << width();
-        //    ortho(float left, float right, float bottom, float top, float nearPlane, float farPlane)
-        // cameraMatrix.ortho(0, 0, 5, 5, 0.01f, 100.0f);
-        cameraMatrix.ortho(left, right, bottom, top, -100.0f, 100.0f);
-        // cameraMatrix.scale(0.75 * aratio, 0.75, 0.75);
 
-        // (справа-слева)/(сверху-внизу) совпадали пропорции окна
+        cameraMatrix.ortho(left, right, bottom, top, -100.0f, 100.0f);
     }
 }
 
