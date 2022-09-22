@@ -8,6 +8,7 @@
 #include <QImage>
 #include <QVector>
 #include <QTimer>
+#include <QSettings>
 #include "glwidget.h"
 
 extern "C" {
@@ -88,5 +89,9 @@ private:
     int counter = 1;
     void sliderSetUp();
     void createGif();
+    void defaultSettings();
+    void defSliders();
+    void saveSettings();
+    void updateUiColors();
 };
 #endif // MAINWINDOW_H

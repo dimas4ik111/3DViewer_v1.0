@@ -5,7 +5,7 @@
 #include "./test.h"
 
 START_TEST(test_other_ok1) {
-  char *obj_path = "check/objfiles/cube.obj";
+  char *obj_path = "_objfiles/_cube.obj";
   s21_obj_data data;
   s21_obj_data data_copy;
   test_other(obj_path, &data, S21_FALSE);
@@ -211,6 +211,7 @@ START_TEST(test_other_ok1) {
                          TEST_PRECISION);
 
   s21_destroy_obj_data(&data);
+  s21_destroy_obj_data(&data_copy);
 }
 
 Suite *other_suite(void) {

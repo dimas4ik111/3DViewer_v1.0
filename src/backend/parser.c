@@ -240,11 +240,17 @@ void s21_copy_obj_data(s21_obj_data *dst, s21_obj_data *src) {
   dst->max_coord = src->max_coord;
   dst->array_of_v = malloc(dst->num_of_v * sizeof(float));
   dst->array_of_f = malloc(dst->num_of_f * sizeof(unsigned int));
-  for (unsigned int i = 0; i < dst->num_of_v; i++) {
-    dst->array_of_v[i] = src->array_of_v[i];
-  }
-  for (unsigned int i = 0; i < dst->num_of_f; i++) {
-    dst->array_of_f[i] = src->array_of_f[i];
+  s21_copy_obj_to_obj(dst, src);
+}
+
+void s21_copy_obj_to_obj(s21_obj_data *dst, s21_obj_data *src) {
+  if (dst->num_of_f == src->num_of_f && dst->num_of_v == src->num_of_v) {
+    for (unsigned int i = 0; i < dst->num_of_v; i++) {
+      dst->array_of_v[i] = src->array_of_v[i];
+    }
+    for (unsigned int i = 0; i < dst->num_of_f; i++) {
+      dst->array_of_f[i] = src->array_of_f[i];
+    }
   }
 }
 
@@ -262,8 +268,13 @@ void s21_print_obj_data(s21_obj_data *data) {
     printf("x:%10f y:%10f z:%10f\n", data->array_of_v[i * 3],
            data->array_of_v[i * 3 + 1], data->array_of_v[i * 3 + 2]);
   }
-
+  printf("\n");
   for (unsigned int i = 0; i < data->num_of_f; i++) {
     printf("%u,", data->array_of_f[i]);
   }
+  printf("\n\n");
+  printf("v: %u (%u)\n", data->num_of_v / 3, data->num_of_v);
+  printf("f: %u (%u)\n", data->num_of_f / 2, data->num_of_f);
+  printf("max: %f\n", data->max_coord);
+  printf("\n\n");
 }

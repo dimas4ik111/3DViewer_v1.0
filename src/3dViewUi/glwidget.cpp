@@ -48,32 +48,13 @@ void GLWidget::initSettings() {
 void GLWidget::testBuffers() {
     clearBuffers();
 
-    QString fileName = "../../../../check/objfiles/pyramid.obj";
+    QString fileName = "../../../../_objfiles/_pyramid.obj";
+    // QString fileName = "../check/objfiles/pyramid.obj";
     QByteArray ba = fileName.toLocal8Bit();
     s21_parser_result code = s21_parse_file(ba.data(), &rawObjData, S21_TRUE);
 
     if (code == S21_PARSER_OK) {
-        vao.create();
-        vao.bind();
-
-        vbo = QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
-        vbo.create();
-        vbo.bind();
-        vbo.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-        vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
-
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
-        glEnableVertexAttribArray(0);
-
-        ebo = QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
-        ebo.create();
-        ebo.bind();
-        ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
-        ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
-
-        vao.release();
-
-        s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
+        initBuffers();
     }
 }
 
@@ -118,7 +99,6 @@ void GLWidget::initBuffers() {
     // Заполняем VBO данными, которые были распарсены из .obj-файла
     vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
 
-//    qDebug() << "Координат вершин:" << rawObjData.num_of_v;
     numberOfVerticies = rawObjData.num_of_v / 3;
 
     // Сообщаем OpenGL, как он должен интерпретировать данные вершин
@@ -140,13 +120,13 @@ void GLWidget::initBuffers() {
     ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
     // Заполняем EBO данными, которые были распарсены из .obj-файла
     ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
-//    qDebug() << "Координат линий:" << rawObjData.num_of_f;
-//    qDebug() << "Максимальная координата:" << rawObjData.max_coord;
+
     numberOfEdges = rawObjData.num_of_f / 2;
 
     // Сообщаем, что мы закончили привязывать к VAO
     vao.release();
-
+    
+    // Создаем копию данных для просчетов на CPU
     s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
 }
 
@@ -199,8 +179,6 @@ void GLWidget::initBuffersCPU() {
 
 // код веришнного шейдера на GLSL
 static const char *vertexShaderSourceCore =
-//    "#version 150\n"
-//    "in vec4 vertex;\n"
     "attribute vec4 vertex;\n"
     "uniform mat4 coeffMatrix;\n"
     "void main() {\n"
@@ -208,8 +186,6 @@ static const char *vertexShaderSourceCore =
     "}\n";
 
 static const char *fragmentShaderSourceCore =
-//    "#version 330 core\n"
-//    "out highp vec4 gl_FragColor;\n"
     "uniform vec4 color;\n"
     "void main() {\n"
     "   gl_FragColor = color;\n"
@@ -235,22 +211,6 @@ void GLWidget::initializeGL() {
     rotateMatrix.setToIdentity();
     moveMatrix.setToIdentity();
     scaleMatrix.setToIdentity();
-//    cameraMatrix.setToIdentity();
-//    if (projectionMode == 0) {
-//        cameraMatrix.translate(0, 0, -4);
-//    } else {
-//        cameraMatrix.scale(0.75, 0.75, 0.75);
-//    }
-//    cameraMatrix.ortho(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
-//    ortho(float left, float right, float bottom, float top, float nearPlane, float farPlane)
-//    cameraMatrix.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
-//    cameraMatrix.viewport()
-//    viewport(float left, float bottom, float width, float height, float nearPlane = 0.0f, float farPlane = 1.0f)
-//    rotateMatrix.rotate(180.0f - (m_xRot / 16.0f), 1, 0, 0);
-//    rotateMatrix.rotate(m_yRot / 16.0f, 0, 1, 0);
-//    rotateMatrix.rotate(m_zRot / 16.0f, 0, 0, 1);
-//    m_camera.frustum(-0.5, 0.5, -0.5, 0.5, 0.4, 4);
-//    m_camera.translate(0, 0, -1.7);
 }
 
 // Функция paintGL() вызывается всякий раз, когда возникает необходимость перерисовать содержимое виджета.
@@ -258,7 +218,6 @@ void GLWidget::paintGL() {
     glClearColor(backgroundColor.redF(), backgroundColor.greenF(), backgroundColor.blueF(), backgroundColor.alphaF());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
-//    glEnable(GL_CULL_FACE);
 
     // Пытаемся что-то рисовать только если создан VAO
     if (vao.isCreated()) {
@@ -266,12 +225,7 @@ void GLWidget::paintGL() {
         moveMatrix.setToIdentity();
         scaleMatrix.setToIdentity();
 
-        cameraMatrix.setToIdentity();
-        if (projectionMode == 0) {
-            cameraMatrix.translate(0, 0, -4);
-        } else {
-            cameraMatrix.scale(0, 7, 0);
-        }
+        setupProjection();
 
         if (calcMode == 0) {
             rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
@@ -360,20 +314,45 @@ void GLWidget::paintGL() {
 
         m_program->release();
         if (calcMode == 1) {
-            s21_destroy_obj_data(&rawObjDataCPU);
-            s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
+            s21_copy_obj_to_obj(&rawObjDataCPU, &rawObjData);
         }
     }
-
 }
 
 // Функция resizeGL() вызывается один раз, перед paintGL(), но после того, как будет вызвана функция initializeGL(). Здесь настраивается область просмотра (viewport), проекция и прочие настройки, которые зависят от размера виджета.
 void GLWidget::resizeGL(int width, int height) {
+    setupProjection(width, height);
+}
+
+void GLWidget::setupProjection(int w, int h) {
+    if (w < 1 || h < 1) {
+        w = width();
+        h = height();
+    }
+
+    cameraMatrix.setToIdentity();
     projectionMatrix.setToIdentity();
     if (projectionMode == 0) {
-        projectionMatrix.perspective(45.0f, GLfloat(width) / height, 0.01f, 100.0f);
+        projectionMatrix.perspective(45.0f, GLfloat(w) / h, 0.01f, 100.0f);
+        cameraMatrix.translate(0, 0, -4);
+    } else {
+        float top, bottom, right, left, aratio;
+        aratio = (GLfloat) w / h;
+
+        if (w > h) {
+            top = 1.5f;
+            bottom = -top;
+            right = top * aratio;
+            left = -right;
+        } else {
+            right = 1.5f;
+            left = -right;
+            top = right / aratio;
+            bottom = -top;
+        }
+
+        cameraMatrix.ortho(left, right, bottom, top, -100.0f, 100.0f);
     }
-//    projectionMatrix.viewport(0, 0, width*0.8, height*0.8, 0.1f, 4.0f);
 }
 
 static void qNormalizeAngle(int &angle)
