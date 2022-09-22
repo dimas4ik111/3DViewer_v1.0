@@ -7,6 +7,7 @@
 #include <QPainter>
 #include <QImage>
 #include <QVector>
+#include <QTimer>
 #include "glwidget.h"
 
 extern "C" {
@@ -77,8 +78,14 @@ private slots:
 
     void createScreenshot();
 
+    void oneGif();
+
 private:
     Ui::MainWindow *ui;
+    int startTime, tmpTime;
+    const int GifFps = 10, GifLength = 5;
+    QTimer *timer;
+    int counter = 1;
     void sliderSetUp();
     void createGif();
 };

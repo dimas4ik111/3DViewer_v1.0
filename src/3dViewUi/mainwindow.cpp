@@ -394,7 +394,7 @@ void MainWindow::createScreenshot() {
     QPushButton *btn = (QPushButton * )sender();
     QString butVal = btn->text();
     QString pathScreen = "../../../../screenshot/";
-    QByteArray ba = pathScreen.toLocal8Bit();
+//    QByteArray ba = pathScreen.toLocal8Bit();
 
     QDateTime dateTime = dateTime.currentDateTime();
     QString currentDateTime = dateTime.toString("yyyy_MM_dd_HHmmss");
@@ -407,28 +407,49 @@ void MainWindow::createScreenshot() {
 
         QSize pic_size(640, 480);
 
-        for (int i = 1; i <= 10; i++) {
-            ui->OGLwidget->grab()
-                .scaled(640, 480, Qt::IgnoreAspectRatio)
-                .save(pathScreen + "gif_obj/" + QString::number(i)  + ".bmp");
-        }
-        createGif();
+//        for (int i = 1; i <= 50; i++) {
+//            ui->OGLwidget->grab()
+//                .scaled(640, 480, Qt::IgnoreAspectRatio)
+//                .save(pathScreen + "gif_obj/" + QString::number(i)  + ".bmp");
+//        }
+        startTime = 0, tmpTime = 1000 / GifFps;
+        timer = new QTimer(this);
+        connect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
+        timer->start(1000 / GifFps);
+//        createGif();
         ui->btn_screen_gif->setDisabled(false);
     }
+}
+
+void MainWindow::oneGif() {
+  if (startTime == tmpTime) {
+      ui->OGLwidget->grab()
+          .scaled(640, 480, Qt::IgnoreAspectRatio)
+          .save("../../../../screenshot/gif_obj/" + QString::number(counter)  + ".bmp");
+      counter++;
+      qDebug() << counter;
+    tmpTime += 1000 / GifFps;
+  }
+  if (startTime == 1000 * GifLength) {
+      createGif();
+    timer->stop();
+//    counter = 1;
+  }
+  startTime += 1000 / GifFps;
 }
 
 void MainWindow::createGif() {
     QString gif_name = "../../../../screenshot/demo.gif";
     QByteArray ga = gif_name.toLocal8Bit();
     GifWriter writer = {};
-    GifBegin( &writer, ga.data(), 640, 480, 5, 8, false);
-    for (int i = 1; i <= 10; i++) {
-        QImage img("../../../../screenshot/gif_obj/" + QString::number(i)  + ".bmp");
-        const uint8_t *frames = img.convertToFormat(QImage::Format_Indexed8)
-                .convertToFormat(QImage::Format_RGBA8888).constBits();
-        GifWriteFrame(&writer, frames, 640, 480, 5, 8, false);
+    if (GifBegin( &writer, ga.data(), 640, 480, 10, 8, false)) {
+        for (int i = 1; i <= 50; i++) {
+            QImage img("../../../../screenshot/gif_obj/" + QString::number(i)  + ".bmp");
+            GifWriteFrame(&writer, img.convertToFormat(QImage::Format_Indexed8)
+                .convertToFormat(QImage::Format_RGBA8888).constBits(), 640, 480, 10, 8, false);
+        }
+        GifEnd( &writer );
     }
-    GifEnd( &writer );
 }
 
 void MainWindow::edgesColorChanged() {
