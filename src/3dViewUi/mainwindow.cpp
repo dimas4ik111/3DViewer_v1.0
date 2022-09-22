@@ -484,7 +484,7 @@ void MainWindow::oneGif() {
   if (startTime == 1000 * GifLength) {
       createGif();
     timer->stop();
-//    counter = 1;
+    counter = 1;
   }
   startTime += 1000 / GifFps;
 }
