@@ -1,105 +1,105 @@
 #ifndef GLWIDGET_H
 #define GLWIDGET_H
 
-#include <QOpenGLWidget>
+#define GL_SILENCE_DEPRECATION
+
+#include <QMouseEvent>
+#include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
-#include <QMouseEvent>
+#include <QOpenGLWidget>
 
 extern "C" {
-    #include "../backend/backend.h"
+#include "../backend/backend.h"
 }
 
-class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
-{
-    Q_OBJECT
+class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
+  Q_OBJECT
 
-public:
-    GLWidget(QWidget *parent = nullptr);
-    ~GLWidget();
+ public:
+  GLWidget(QWidget *parent = nullptr);
+  ~GLWidget();
 
-    void testBuffers();
-    void initBuffers();
-    void initBuffersCPU();
-    void initSettings();
-    void setupProjection(int w = 0, int h = 0);
+  void testBuffers();
+  void initBuffers();
+  void initBuffersCPU();
+  void initSettings();
+  void setupProjection(int w = 0, int h = 0);
 
-    QColor backgroundColor;
-    QColor lineColor;
-    QColor pointColor;
-    int projectionMode;
-    int pointMode;
-    int pointSize;
-    int lineSize;
-    int lineMode;
-    int calcMode;
-    int rotateMode;
+  QColor backgroundColor;
+  QColor lineColor;
+  QColor pointColor;
+  int projectionMode;
+  int pointMode;
+  int pointSize;
+  int lineSize;
+  int lineMode;
+  int calcMode;
+  int rotateMode;
 
-    int m_xRot = 2880;
-    int m_yRot = 360 * 8;
-    int m_zRot = 360 * 8;
+  int m_xRot = 2880;
+  int m_yRot = 360 * 8;
+  int m_zRot = 360 * 8;
 
-    int m_xMove = 0;
-    int m_yMove = 0;
-    int m_zMove = 0;
+  int m_xMove = 0;
+  int m_yMove = 0;
+  int m_zMove = 0;
 
-    int zoomVal = 30;
+  int zoomVal = 30;
 
-    s21_obj_data rawObjData;
-    s21_obj_data rawObjDataCPU;
+  s21_obj_data rawObjData;
+  s21_obj_data rawObjDataCPU;
 
-    int numberOfEdges = 0;
-    int numberOfVerticies = 0;
+  int numberOfEdges = 0;
+  int numberOfVerticies = 0;
 
-protected:
-    void initializeGL() override;
-    void paintGL() override;
-    void resizeGL(int width, int height) override;
-    void mousePressEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
+ protected:
+  void initializeGL() override;
+  void paintGL() override;
+  void resizeGL(int width, int height) override;
+  void mousePressEvent(QMouseEvent *event) override;
+  void mouseMoveEvent(QMouseEvent *event) override;
 
-public slots:
-    void setXMove(int step);
-    void setYMove(int step);
-    void setZMove(int step);
+ public slots:
+  void setXMove(int step);
+  void setYMove(int step);
+  void setZMove(int step);
 
-    void setZoom(int zoom);
+  void setZoom(int zoom);
 
-    void setXRotation(int angle);
-    void setYRotation(int angle);
-    void setZRotation(int angle);
+  void setXRotation(int angle);
+  void setYRotation(int angle);
+  void setZRotation(int angle);
 
-    void clearBuffers();
-    void clearBuffersCPU();
-    void cleanup();
+  void clearBuffers();
+  void clearBuffersCPU();
+  void cleanup();
 
-signals:
-    void xRotationChanged(int angle);
-    void yRotationChanged(int angle);
-    void zRotationChanged(int angle);
+ signals:
+  void xRotationChanged(int angle);
+  void yRotationChanged(int angle);
+  void zRotationChanged(int angle);
 
-private:
+ private:
+  QPoint m_lastPos;
 
-    QPoint m_lastPos;
+  int m_coeffMatrixLoc = 0;
+  int m_colorLoc = 0;
 
-    int m_coeffMatrixLoc = 0;
-    int m_colorLoc = 0;
+  QOpenGLShaderProgram *m_program = nullptr;
+  QOpenGLBuffer vbo;
+  QOpenGLBuffer vboCPU;
+  QOpenGLBuffer ebo;
+  QOpenGLBuffer eboCPU;
+  QOpenGLVertexArrayObject vao;
+  QOpenGLVertexArrayObject vaoCPU;
 
-    QOpenGLShaderProgram *m_program = nullptr;
-    QOpenGLBuffer vbo;
-    QOpenGLBuffer vboCPU;
-    QOpenGLBuffer ebo;
-    QOpenGLBuffer eboCPU;
-    QOpenGLVertexArrayObject vao;
-    QOpenGLVertexArrayObject vaoCPU;
-
-    QMatrix4x4 projectionMatrix;
-    QMatrix4x4 cameraMatrix;
-    QMatrix4x4 rotateMatrix;
-    QMatrix4x4 moveMatrix;
-    QMatrix4x4 scaleMatrix;
+  QMatrix4x4 projectionMatrix;
+  QMatrix4x4 cameraMatrix;
+  QMatrix4x4 rotateMatrix;
+  QMatrix4x4 moveMatrix;
+  QMatrix4x4 scaleMatrix;
 };
 
-#endif // GLWIDGET_H
+#endif  // GLWIDGET_H
