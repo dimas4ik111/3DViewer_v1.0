@@ -4,7 +4,6 @@
 #include <unistd.h>
 
 #include <QFileDialog>
-#include <QMessageBox>
 
 #include "./ui_mainwindow.h"
 
@@ -288,24 +287,8 @@ void MainWindow::handleOpenFile() {
         ui->numberOfVerticies->setText(
             QString::number(ui->OGLwidget->numberOfVerticies));
       } else {
-        MainWindow::handleErrorByCode(code);
+        GLWidget::handleErrorByCode(code);
       }
-    }
-  }
-}
-
-void MainWindow::handleErrorByCode(s21_parser_result code) {
-  if (code != S21_PARSER_OK) {
-    switch (code) {
-      case S21_PARSER_ERROR_FILE:
-        QMessageBox::critical(0, "Ошибка", "Выбран некорректный файл");
-        break;
-      case S21_PARSER_ERROR_MEMORY:
-        QMessageBox::critical(0, "Ошибка", "Ошибка выделения памяти");
-        break;
-      default:
-        QMessageBox::critical(0, "Ошибка", "Неизвестная ошибка");
-        break;
     }
   }
 }

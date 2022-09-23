@@ -9,6 +9,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLWidget>
+#include <QMessageBox>
 
 extern "C" {
 #include "../backend/backend.h"
@@ -20,6 +21,7 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
  public:
   GLWidget(QWidget *parent = nullptr);
   ~GLWidget();
+  static void handleErrorByCode(s21_parser_result code);
 
   void testBuffers();
   void initBuffers();

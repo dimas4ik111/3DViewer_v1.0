@@ -233,14 +233,24 @@ void s21_init_obj_data(s21_obj_data *data) {
   data->array_of_f = NULL;
 }
 
-void s21_copy_obj_data(s21_obj_data *dst, s21_obj_data *src) {
+s21_parser_result s21_copy_obj_data(s21_obj_data *dst, s21_obj_data *src) {
+  s21_parser_result code = S21_PARSER_OK;
   s21_init_obj_data(dst);
   dst->num_of_f = src->num_of_f;
   dst->num_of_v = src->num_of_v;
   dst->max_coord = src->max_coord;
   dst->array_of_v = malloc(dst->num_of_v * sizeof(float));
-  dst->array_of_f = malloc(dst->num_of_f * sizeof(unsigned int));
+  if (dst->array_of_v == NULL) {
+    code = S21_PARSER_ERROR_MEMORY;
+  } else {
+    dst->array_of_f = malloc(dst->num_of_f * sizeof(unsigned int));
+    if (dst->array_of_f == NULL) {
+      code = S21_PARSER_ERROR_MEMORY;
+    }
+  }
   s21_copy_obj_to_obj(dst, src);
+
+  return code;
 }
 
 void s21_copy_obj_to_obj(s21_obj_data *dst, s21_obj_data *src) {
