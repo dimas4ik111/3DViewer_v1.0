@@ -166,8 +166,8 @@ void MainWindow::defaultSettings() {
   ui->OGLwidget->initSettings();
   ui->vertexSizeSlider->setValue(1);
 
-  if (QFile::exists("settings.conf")) {
-    QSettings settings("settings.conf", QSettings::IniFormat);
+  if (QFile::exists(pathProject + "settings.conf")) {
+    QSettings settings(pathProject + "settings.conf", QSettings::IniFormat);
     settings.beginGroup("LineSet");
 
     ui->linesSizeSlider->setValue(settings.value("value").toInt());
@@ -226,7 +226,7 @@ void MainWindow::defaultSettings() {
 }
 
 void MainWindow::saveSettings() {
-  QSettings settings("settings.conf", QSettings::IniFormat);
+  QSettings settings(pathProject + "settings.conf", QSettings::IniFormat);
   settings.beginGroup("LineSet");
   settings.setValue("value", ui->linesSizeSlider->value());
   settings.setValue("solid", ui->solidEdges->isChecked());
