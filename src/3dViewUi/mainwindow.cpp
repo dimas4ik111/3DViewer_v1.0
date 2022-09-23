@@ -626,4 +626,5 @@ void MainWindow::updateUiColors() {
           .arg(ui->OGLwidget->pointColor.red())
           .arg(ui->OGLwidget->pointColor.green())
           .arg(ui->OGLwidget->pointColor.blue()));
+  ui->OGLwidget->update();
 }
