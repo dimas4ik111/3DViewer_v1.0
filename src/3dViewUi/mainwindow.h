@@ -3,13 +3,13 @@
 
 #include <QColor>
 #include <QColorDialog>
+#include <QDir>
 #include <QImage>
 #include <QMainWindow>
 #include <QPainter>
 #include <QSettings>
 #include <QTimer>
 #include <QVector>
-#include <QDir>
 
 #include "glwidget.h"
 

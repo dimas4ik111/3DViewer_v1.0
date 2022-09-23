@@ -1,13 +1,13 @@
 #include "mainwindow.h"
 
-#include "../gif/gif.h"
 #include <unistd.h>
 
-#include <QFileDialog>
-#include <QMessageBox>
 #include <QDir>
 #include <QFile>
+#include <QFileDialog>
+#include <QMessageBox>
 
+#include "../gif/gif.h"
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -451,21 +451,23 @@ void MainWindow::zoomTextEdit() {
 void MainWindow::createScreenshot() {
   QPushButton *btn = (QPushButton *)sender();
   QString butVal = btn->text();
-  
+
   QDir *pathDir = new QDir();
   pathDir->mkdir(pathProject);
   pathDir->mkdir(pathProject + "/screenshots");
 
   QDateTime dateTime = dateTime.currentDateTime();
   QString currentDateTime = dateTime.toString("yyyy_MM_dd_HHmmss_zzz");
-  
+
   if (QString::compare(butVal, "bmp", Qt::CaseInsensitive) == 0) {
     ui->btn_screen_bmp->setEnabled(false);
-    ui->OGLwidget->grab().save(pathProject + "screenshots/" + currentDateTime + ".bmp");
+    ui->OGLwidget->grab().save(pathProject + "screenshots/" + currentDateTime +
+                               ".bmp");
     ui->btn_screen_bmp->setEnabled(true);
   } else if (QString::compare(butVal, "jpg", Qt::CaseInsensitive) == 0) {
     ui->btn_screen_jpg->setEnabled(false);
-    ui->OGLwidget->grab().save(pathProject + "screenshots/" + currentDateTime + ".jpg");
+    ui->OGLwidget->grab().save(pathProject + "screenshots/" + currentDateTime +
+                               ".jpg");
     ui->btn_screen_jpg->setEnabled(true);
   } else if (QString::compare(butVal, "gif", Qt::CaseInsensitive) == 0) {
     ui->btn_screen_gif->setEnabled(false);
@@ -513,16 +515,16 @@ void MainWindow::createGif() {
                  ".bmp");
       if (!img.isNull()) {
         if (GifWriteFrame(&writer,
-          img.convertToFormat(QImage::Format_Indexed8)
-                .convertToFormat(QImage::Format_RGBA8888)
-                .constBits(),
-          640, 480, 10, 8, false)) {  
+                          img.convertToFormat(QImage::Format_Indexed8)
+                              .convertToFormat(QImage::Format_RGBA8888)
+                              .constBits(),
+                          640, 480, 10, 8, false)) {
         } else {
           QMessageBox::critical(0, "Ошибка", "Что то пошло не так!");
           err = 1;
         }
       } else {
-        QMessageBox::critical(0, "Ошибка",  "Что то пошло не так!");
+        QMessageBox::critical(0, "Ошибка", "Что то пошло не так!");
         err = 1;
       }
     }
@@ -531,7 +533,7 @@ void MainWindow::createGif() {
     }
   } else {
     err = 1;
-    QMessageBox::critical(0, "Ошибка",  "Что то пошло не так!");
+    QMessageBox::critical(0, "Ошибка", "Что то пошло не так!");
   }
 
   if (err == 1) {
@@ -539,7 +541,7 @@ void MainWindow::createGif() {
       QFile::remove(gif_name);
     }
   }
-  
+
   pathFile.setPath(pathProject + "/screenshots/gif_obj/");
   pathFile.removeRecursively();
   ui->btn_screen_gif->setEnabled(true);
