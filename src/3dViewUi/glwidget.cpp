@@ -44,7 +44,7 @@ void GLWidget::testBuffers() {
   clearBuffers();
 
   QString fileName = "../../../../_objfiles/_pyramid.obj";
-  // QString fileName = "../check/objfiles/pyramid.obj";
+  // QString fileName = "../_objfiles/_pyramid.obj";
   QByteArray ba = fileName.toLocal8Bit();
   s21_parser_result code = s21_parse_file(ba.data(), &rawObjData, S21_TRUE);
 
@@ -78,6 +78,9 @@ void GLWidget::clearBuffersCPU() {
 }
 
 void GLWidget::initBuffers() {
+  // Делаем соответствующий контекст текущим и привязываем объект буфера кадра в
+  // этом контексте.
+  makeCurrent();
   // Чистим все буферы, если они были ранее созданы
   clearBuffers();
 
@@ -136,6 +139,7 @@ void GLWidget::initBuffers() {
     clearBuffersCPU();
     GLWidget::handleErrorByCode(code);
   }
+  update();
 }
 
 void GLWidget::initBuffersCPU() {
