@@ -3,13 +3,13 @@
 
 #define GL_SILENCE_DEPRECATION
 
+#include <QMessageBox>
 #include <QMouseEvent>
 #include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLWidget>
-#include <QMessageBox>
 
 extern "C" {
 #include "../backend/backend.h"
