@@ -66,6 +66,10 @@ set_target_properties(3dView PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+install(TARGETS 3dView
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(3dView)
 endif()
