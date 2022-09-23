@@ -318,8 +318,6 @@ void GLWidget::paintGL() {
     if (lineMode == 1) {
       // Настраиваем тип линии
       glEnable(GL_LINE_STIPPLE);
-      // TODO(maiamabl): glLineStipple deprecated in OpenGL 3.1 / Использовать
-      // геометрические шейдеры или #define GL_SILENCE_DEPRECATION?
       glLineStipple(2, 0x00F0);
     }
 

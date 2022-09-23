@@ -1,6 +1,8 @@
 #ifndef GLWIDGET_H
 #define GLWIDGET_H
 
+#define GL_SILENCE_DEPRECATION
+
 #include <QMouseEvent>
 #include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
