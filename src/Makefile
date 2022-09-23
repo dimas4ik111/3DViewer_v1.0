@@ -149,8 +149,10 @@ dvi:
 dist:
 	@mkdir -p $(DIST_DIR)/$(UI_DIR)
 	@mkdir -p $(DIST_DIR)/$(MODULES_DIR)
+	@mkdir -p $(DIST_DIR)/gif
 	@cp -R $(UI_DIR)/* $(DIST_DIR)/$(UI_DIR)
 	@cp -R $(MODULES_DIR)/* $(DIST_DIR)/$(MODULES_DIR)
+	@cp -R gif/* $(DIST_DIR)/gif
 	@cp Makefile $(DIST_DIR)/Makefile
 	@tar -czf $(DIST_DIR).tar.gz $(DIST_DIR)/
 	@echo "-- Distribution: $(DIST_DIR).tar.gz"
