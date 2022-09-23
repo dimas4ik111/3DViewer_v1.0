@@ -9,6 +9,7 @@
 #include <QSettings>
 #include <QTimer>
 #include <QVector>
+#include <QDir>
 
 #include "glwidget.h"
 
@@ -84,10 +85,11 @@ class MainWindow : public QMainWindow {
   void oneGif();
 
  private:
-  Ui::MainWindow *ui;
-  int startTime, tmpTime;
   const int GifFps = 10, GifLength = 5;
+  Ui::MainWindow *ui;
   QTimer *timer;
+  QString pathProject = QDir::homePath() + "/3dViewer1/";
+  int startTime, tmpTime;
   int counter = 1;
   void sliderSetUp();
   void createGif();
