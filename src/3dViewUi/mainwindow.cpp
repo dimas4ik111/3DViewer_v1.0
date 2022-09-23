@@ -1,12 +1,11 @@
 #include "mainwindow.h"
 
-#include <../gif/gif.h>
+#include "../gif/gif.h"
 #include <unistd.h>
 
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDir>
-#include <Qdebug>
 #include <QFile>
 
 #include "./ui_mainwindow.h"
