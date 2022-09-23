@@ -236,4 +236,4 @@ leaks:
 valgrind:
 	valgrind --tool=memcheck --track-fds=yes --trace-children=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./$(TEST_EXE)	
 
-.PHONY: all clean rebuild cpplint cppcheck leaks valgrind install uninstall dvi dist
+.PHONY: all clean rebuild cpplint cppcheck leaks valgrind build install uninstall dvi dist
