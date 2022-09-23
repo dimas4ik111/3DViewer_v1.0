@@ -28,7 +28,6 @@ class MainWindow : public QMainWindow {
  public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
-  static void handleErrorByCode(s21_parser_result code);
 
  private slots:
   void xTextEdit();

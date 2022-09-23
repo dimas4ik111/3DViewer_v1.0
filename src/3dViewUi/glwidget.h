@@ -3,6 +3,7 @@
 
 #define GL_SILENCE_DEPRECATION
 
+#include <QMessageBox>
 #include <QMouseEvent>
 #include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
@@ -20,6 +21,7 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
  public:
   GLWidget(QWidget *parent = nullptr);
   ~GLWidget();
+  static void handleErrorByCode(s21_parser_result code);
 
   void testBuffers();
   void initBuffers();

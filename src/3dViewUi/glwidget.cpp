@@ -44,7 +44,7 @@ void GLWidget::testBuffers() {
   clearBuffers();
 
   QString fileName = "../../../../_objfiles/_pyramid.obj";
-  // QString fileName = "../check/objfiles/pyramid.obj";
+  // QString fileName = "../_objfiles/_pyramid.obj";
   QByteArray ba = fileName.toLocal8Bit();
   s21_parser_result code = s21_parse_file(ba.data(), &rawObjData, S21_TRUE);
 
@@ -78,6 +78,9 @@ void GLWidget::clearBuffersCPU() {
 }
 
 void GLWidget::initBuffers() {
+  // Делаем соответствующий контекст текущим и привязываем объект буфера кадра в
+  // этом контексте.
+  makeCurrent();
   // Чистим все буферы, если они были ранее созданы
   clearBuffers();
 
@@ -130,7 +133,13 @@ void GLWidget::initBuffers() {
   vao.release();
 
   // Создаем копию данных для просчетов на CPU
-  s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
+  s21_parser_result code = s21_copy_obj_data(&rawObjDataCPU, &rawObjData);
+  if (code != S21_PARSER_OK) {
+    clearBuffers();
+    clearBuffersCPU();
+    GLWidget::handleErrorByCode(code);
+  }
+  update();
 }
 
 void GLWidget::initBuffersCPU() {
@@ -236,7 +245,6 @@ void GLWidget::paintGL() {
                backgroundColor.blueF(), backgroundColor.alphaF());
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glEnable(GL_DEPTH_TEST);
-
   // Пытаемся что-то рисовать только если создан VAO
   if (vao.isCreated()) {
     rotateMatrix.setToIdentity();
@@ -466,4 +474,20 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event) {
     setZRotation(m_zRot + 8 * dx);
   }
   m_lastPos = event->position().toPoint();
+}
+
+void GLWidget::handleErrorByCode(s21_parser_result code) {
+  if (code != S21_PARSER_OK) {
+    switch (code) {
+      case S21_PARSER_ERROR_FILE:
+        QMessageBox::critical(0, "Ошибка", "Выбран некорректный файл");
+        break;
+      case S21_PARSER_ERROR_MEMORY:
+        QMessageBox::critical(0, "Ошибка", "Ошибка выделения памяти");
+        break;
+      default:
+        QMessageBox::critical(0, "Ошибка", "Неизвестная ошибка");
+        break;
+    }
+  }
 }

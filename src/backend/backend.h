@@ -36,7 +36,7 @@ s21_parser_result s21_allocate_memory_block_v(s21_obj_data *data);
 void s21_init_obj_data(s21_obj_data *data);
 void s21_destroy_obj_data(s21_obj_data *data);
 void s21_print_obj_data(s21_obj_data *data);
-void s21_copy_obj_data(s21_obj_data *dst, s21_obj_data *src);
+s21_parser_result s21_copy_obj_data(s21_obj_data *dst, s21_obj_data *src);
 void s21_copy_obj_to_obj(s21_obj_data *dst, s21_obj_data *src);
 
 void s21_move_x(s21_obj_data *data, float shift);
