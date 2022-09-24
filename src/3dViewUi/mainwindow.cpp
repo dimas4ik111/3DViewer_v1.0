@@ -88,13 +88,15 @@ void MainWindow::connectSetUp() {
           &GLWidget::setYRotation);
   connect(ui->OGLwidget, &GLWidget::yRotationChanged, ui->yRotate,
           &QSlider::setValue);
-  connect(ui->yRotateText, SIGNAL(editingFinished()), (this), SLOT(yRotateTextEdit()));
+  connect(ui->yRotateText, SIGNAL(editingFinished()), (this),
+          SLOT(yRotateTextEdit()));
   // По Z
   connect(ui->zRotate, &QSlider::valueChanged, ui->OGLwidget,
           &GLWidget::setZRotation);
   connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zRotate,
           &QSlider::setValue);
-  connect(ui->zRotateText, SIGNAL(editingFinished()), (this), SLOT(zRotateTextEdit()));
+  connect(ui->zRotateText, SIGNAL(editingFinished()), (this),
+          SLOT(zRotateTextEdit()));
   // Режим вращения
   connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this),
           &MainWindow::EnableRotateAxesMode);
@@ -515,13 +517,14 @@ void MainWindow::handleOpenFile() {
       if (code == S21_PARSER_OK) {
         // Пишем путь до файла в статусбар приложения
         ui->statusbar->showMessage("Выбран файл: " + fileName);
-        // Инициализируем буфферы OpenGL распарсенными данным
-        defSliders();
-        ui->OGLwidget->initBuffers();
         ui->numberOfEdges->setText(
-            QString::number(ui->OGLwidget->numberOfEdges));
+            QString::number(ui->OGLwidget->rawObjData.num_of_f / 2));
         ui->numberOfVerticies->setText(
-            QString::number(ui->OGLwidget->numberOfVerticies));
+            QString::number(ui->OGLwidget->rawObjData.num_of_v / 3));
+        // Инициализируем буфферы OpenGL распарсенными данным
+        ui->OGLwidget->initBuffers();
+        // Сбрасываем настройки движение
+        defSliders();
       } else {
         GLWidget::handleErrorByCode(code);
       }
