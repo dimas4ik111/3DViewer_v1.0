@@ -122,7 +122,7 @@ s21_parser_result s21_parse_line_f(char *line, s21_obj_data *data) {
   int flag = 0;
   int new_num = 0;
   int num_points = 0;
-  int first_index = data->num_of_f;
+  unsigned int first_index = data->num_of_f;
 
   while (*ptr != '\0') {
     if (code != S21_PARSER_OK) {
@@ -131,7 +131,7 @@ s21_parser_result s21_parse_line_f(char *line, s21_obj_data *data) {
     unsigned int tmp = 0;
     if (flag == 0) {
       char *end;
-      tmp = strtol(ptr, &end, 10);
+      tmp = (unsigned int)strtol(ptr, &end, 10);
       ptr += end - ptr;
       flag = 1;
       new_num = 1;

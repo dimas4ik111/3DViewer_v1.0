@@ -11,46 +11,24 @@ GLWidget::~GLWidget() { cleanup(); }
 void GLWidget::initSettings() {
   // Проекция: 0 - центральная, 1 - параллельная
   projectionMode = 0;
-
   // Цвет фона
   backgroundColor.setRgb(0, 0, 0);
-
   // Цвет линии
   lineColor.setRgb(0, 127, 51);
-
   // Толщина линии
   lineSize = 1;
-
   // Тип линии: 0 - сплошная, 1 - пунктирная
   lineMode = 0;
-
   // Цвет точки
   pointColor.setRgb(0, 214, 120);
-
   // Размер точки
   pointSize = 1;
-
   // Тип точки: 0 - нет точек, 1 - круг, 2 - квадрат
   pointMode = 0;
-
   // Режим вычислений: 0 - GPU, 1 - CPU
   calcMode = 0;
-
   // Способ вращения: 0 - вокруг осей xyz, 1 - вокруг осей модели
   rotateMode = 0;
-}
-
-void GLWidget::testBuffers() {
-  clearBuffers();
-
-  QString fileName = "../../../../_objfiles/_pyramid.obj";
-  // QString fileName = "../_objfiles/_pyramid.obj";
-  QByteArray ba = fileName.toLocal8Bit();
-  s21_parser_result code = s21_parse_file(ba.data(), &rawObjData, S21_TRUE);
-
-  if (code == S21_PARSER_OK) {
-    initBuffers();
-  }
 }
 
 void GLWidget::clearBuffers() {
@@ -77,20 +55,30 @@ void GLWidget::clearBuffersCPU() {
   }
 }
 
+void GLWidget::cleanup() {
+  if (m_program == nullptr) return;
+  makeCurrent();
+  clearBuffers();
+  clearBuffersCPU();
+  s21_destroy_obj_data(&rawObjData);
+  s21_destroy_obj_data(&rawObjDataCPU);
+  delete m_program;
+  m_program = nullptr;
+  doneCurrent();
+}
+
 void GLWidget::initBuffers() {
   // Делаем соответствующий контекст текущим и привязываем объект буфера кадра в
   // этом контексте.
   makeCurrent();
   // Чистим все буферы, если они были ранее созданы
   clearBuffers();
-
   // Создаем Vertex Arrays Object (VAO) - хранилище индексов VBO (в элементах
   // которого хранится информация о том, какую часть некого VBO использовать, и
   // как эти данные нужно интерпретировать)
   vao.create();
   // Всё, что будет происходить далее, будет привязано к vao
   vao.bind();
-
   // Создаем Vertex Buffer Object (VBO) - средство OpenGL, позволяющее загружать
   // определенные данные в память GPU. В данном случае будем хранить координаты
   // вершин
@@ -100,9 +88,6 @@ void GLWidget::initBuffers() {
   vbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
   // Заполняем VBO данными, которые были распарсены из .obj-файла
   vbo.allocate(rawObjData.array_of_v, rawObjData.num_of_v * sizeof(GLfloat));
-
-  numberOfVerticies = rawObjData.num_of_v / 3;
-
   // Сообщаем OpenGL, как он должен интерпретировать данные вершин
   // 0 - Указываем location атрибута в шейдерах, который мы хотим настроить (у
   // нас он один) 3 - размер вершинного атрибута (состоит из 3х значений - x, y,
@@ -126,8 +111,6 @@ void GLWidget::initBuffers() {
   ebo.setUsagePattern(QOpenGLBuffer::StaticDraw);
   // Заполняем EBO данными, которые были распарсены из .obj-файла
   ebo.allocate(rawObjData.array_of_f, rawObjData.num_of_f * sizeof(GLuint));
-
-  numberOfEdges = rawObjData.num_of_f / 2;
 
   // Сообщаем, что мы закончили привязывать к VAO
   vao.release();
@@ -164,8 +147,6 @@ void GLWidget::initBuffersCPU() {
   vboCPU.allocate(rawObjDataCPU.array_of_v,
                   rawObjDataCPU.num_of_v * sizeof(GLfloat));
 
-  qDebug() << "Координат вершин (CPU):" << rawObjDataCPU.num_of_v;
-
   // Сообщаем OpenGL, как он должен интерпретировать данные вершин
   // 0 - Указываем location атрибута в шейдерах, который мы хотим настроить (у
   // нас он один) 3 - размер вершинного атрибута (состоит из 3х значений - x, y,
@@ -190,14 +171,12 @@ void GLWidget::initBuffersCPU() {
   // Заполняем EBO данными, которые были распарсены из .obj-файла
   eboCPU.allocate(rawObjDataCPU.array_of_f,
                   rawObjDataCPU.num_of_f * sizeof(GLuint));
-  qDebug() << "Координат линий (CPU):" << rawObjDataCPU.num_of_f;
-  qDebug() << "Максимальная координата (CPU):" << rawObjDataCPU.max_coord;
 
   // Сообщаем, что мы закончили привязывать к VAO
   vaoCPU.release();
 }
 
-// код веришнного шейдера на GLSL
+// Код веришнного шейдера на GLSL
 static const char *vertexShaderSourceCore =
     "attribute vec4 vertex;\n"
     "uniform mat4 coeffMatrix;\n"
@@ -205,6 +184,7 @@ static const char *vertexShaderSourceCore =
     "   gl_Position = coeffMatrix * vertex;\n"
     "}\n";
 
+// Код фрагментного шейдера на GLSL
 static const char *fragmentShaderSourceCore =
     "uniform vec4 color;\n"
     "void main() {\n"
@@ -231,8 +211,6 @@ void GLWidget::initializeGL() {
   m_coeffMatrixLoc = m_program->uniformLocation("coeffMatrix");
   m_colorLoc = m_program->uniformLocation("color");
 
-  testBuffers();
-
   rotateMatrix.setToIdentity();
   moveMatrix.setToIdentity();
   scaleMatrix.setToIdentity();
@@ -254,6 +232,7 @@ void GLWidget::paintGL() {
     setupProjection();
 
     if (calcMode == 0) {
+      // Заполняем матрицы для расчетов на GPU
       rotateMatrix.rotate(180 - m_xRot / 16.0f, 1, 0, 0);
       rotateMatrix.rotate(180 - m_yRot / 16.0f, 0, 1, 0);
       rotateMatrix.rotate(180 - m_zRot / 16.0f, 0, 0, 1);
@@ -265,8 +244,10 @@ void GLWidget::paintGL() {
       scaleMatrix.scale(fabs(zoomVal / 30.0f), fabs(zoomVal / 30.0f),
                         fabs(zoomVal / 30.0f));
     } else {
+      // Пресчитываем координаты вершин на CPU
       s21_scale(&rawObjDataCPU, fabs(zoomVal / 30.0f));
       if (rotateMode == 0) {
+        // Вращение вокруг осей
         s21_move_x(&rawObjDataCPU, 0.05 * (50 - m_xMove));
         s21_move_y(&rawObjDataCPU, 0.05 * (50 - m_yMove));
         s21_move_z(&rawObjDataCPU, 0.05 * (50 - m_zMove));
@@ -275,6 +256,7 @@ void GLWidget::paintGL() {
         s21_rotate_y(&rawObjDataCPU, 180 - m_yRot / 16.0f);
         s21_rotate_x(&rawObjDataCPU, 180 - m_xRot / 16.0f);
       } else {
+        // Вращение фигуры вокруг себя
         s21_rotate_z(&rawObjDataCPU, 180 - m_zRot / 16.0f);
         s21_rotate_y(&rawObjDataCPU, 180 - m_yRot / 16.0f);
         s21_rotate_x(&rawObjDataCPU, 180 - m_xRot / 16.0f);
@@ -288,6 +270,7 @@ void GLWidget::paintGL() {
     }
 
     m_program->bind();
+
     if (rotateMode == 0) {
       m_program->setUniformValue(
           m_coeffMatrixLoc, projectionMatrix * cameraMatrix * rotateMatrix *
@@ -447,18 +430,6 @@ void GLWidget::setZoom(int zoom) {
   }
 }
 
-void GLWidget::cleanup() {
-  if (m_program == nullptr) return;
-  makeCurrent();
-  clearBuffers();
-  clearBuffersCPU();
-  s21_destroy_obj_data(&rawObjData);
-  s21_destroy_obj_data(&rawObjDataCPU);
-  delete m_program;
-  m_program = nullptr;
-  doneCurrent();
-}
-
 void GLWidget::mousePressEvent(QMouseEvent *event) {
   m_lastPos = event->position().toPoint();
 }
@@ -480,13 +451,13 @@ void GLWidget::handleErrorByCode(s21_parser_result code) {
   if (code != S21_PARSER_OK) {
     switch (code) {
       case S21_PARSER_ERROR_FILE:
-        QMessageBox::critical(0, "Ошибка", "Выбран некорректный файл");
+        QMessageBox::critical(0, "Error", "Incorrect file!");
         break;
       case S21_PARSER_ERROR_MEMORY:
-        QMessageBox::critical(0, "Ошибка", "Ошибка выделения памяти");
+        QMessageBox::critical(0, "Error", "Memory allocation error!");
         break;
       default:
-        QMessageBox::critical(0, "Ошибка", "Неизвестная ошибка");
+        QMessageBox::critical(0, "Error", "Unknown error!");
         break;
     }
   }

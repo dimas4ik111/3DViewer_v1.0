@@ -232,7 +232,7 @@ cppcheck:
 	cppcheck --enable=all --force --suppress=missingIncludeSystem --language=c++ $(ALL_CPP_H_FILES)
 leaks:
 	leaks --atExit -- ./$(TEST_EXE)
-#valgrind --tool=memcheck --track-fds=yes --trace-children=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s --suppressions=../qt.supp ./build/SmartCalcQt
+#valgrind --tool=memcheck --track-fds=yes --trace-children=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s --suppressions=../qt.supp ./build/3dView
 valgrind:
 	valgrind --tool=memcheck --track-fds=yes --trace-children=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./$(TEST_EXE)	
 

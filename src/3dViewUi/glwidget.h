@@ -21,13 +21,9 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
  public:
   GLWidget(QWidget *parent = nullptr);
   ~GLWidget();
-  static void handleErrorByCode(s21_parser_result code);
-
-  void testBuffers();
   void initBuffers();
-  void initBuffersCPU();
   void initSettings();
-  void setupProjection(int w = 0, int h = 0);
+  static void handleErrorByCode(s21_parser_result code);
 
   QColor backgroundColor;
   QColor lineColor;
@@ -39,22 +35,8 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
   int lineMode;
   int calcMode;
   int rotateMode;
-
-  int m_xRot = 2880;
-  int m_yRot = 360 * 8;
-  int m_zRot = 360 * 8;
-
-  int m_xMove = 0;
-  int m_yMove = 0;
-  int m_zMove = 0;
-
-  int zoomVal = 30;
-
   s21_obj_data rawObjData;
   s21_obj_data rawObjDataCPU;
-
-  int numberOfEdges = 0;
-  int numberOfVerticies = 0;
 
  protected:
   void initializeGL() override;
@@ -67,16 +49,10 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
   void setXMove(int step);
   void setYMove(int step);
   void setZMove(int step);
-
-  void setZoom(int zoom);
-
   void setXRotation(int angle);
   void setYRotation(int angle);
   void setZRotation(int angle);
-
-  void clearBuffers();
-  void clearBuffersCPU();
-  void cleanup();
+  void setZoom(int zoom);
 
  signals:
   void xRotationChanged(int angle);
@@ -85,10 +61,8 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 
  private:
   QPoint m_lastPos;
-
   int m_coeffMatrixLoc = 0;
   int m_colorLoc = 0;
-
   QOpenGLShaderProgram *m_program = nullptr;
   QOpenGLBuffer vbo;
   QOpenGLBuffer vboCPU;
@@ -96,12 +70,25 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
   QOpenGLBuffer eboCPU;
   QOpenGLVertexArrayObject vao;
   QOpenGLVertexArrayObject vaoCPU;
-
   QMatrix4x4 projectionMatrix;
   QMatrix4x4 cameraMatrix;
   QMatrix4x4 rotateMatrix;
   QMatrix4x4 moveMatrix;
   QMatrix4x4 scaleMatrix;
+
+  int m_xRot = 2880;
+  int m_yRot = 360 * 8;
+  int m_zRot = 360 * 8;
+  int m_xMove = 0;
+  int m_yMove = 0;
+  int m_zMove = 0;
+  int zoomVal = 30;
+
+  void initBuffersCPU();
+  void setupProjection(int w = 0, int h = 0);
+  void clearBuffers();
+  void clearBuffersCPU();
+  void cleanup();
 };
 
 #endif  // GLWIDGET_H

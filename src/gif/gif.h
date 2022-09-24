@@ -627,6 +627,8 @@ void GifWriteLzwImage(FILE* f, const uint8_t* image, uint32_t left,
   stat.bitIndex = 0;
   stat.chunkIndex = 0;
 
+  memset(stat.chunk, 0, sizeof(uint8_t) * 256);
+
   GifWriteCode(f, &stat, clearCode,
                codeSize);  // start with a fresh LZW dictionary
 
@@ -774,6 +776,13 @@ bool GifWriteFrame(GifWriter* writer, const uint8_t* image, uint32_t width,
   writer->firstFrame = false;
 
   GifPalette pal;
+
+  memset(pal.r, 0, sizeof(uint8_t) * 256);
+  memset(pal.g, 0, sizeof(uint8_t) * 256);
+  memset(pal.b, 0, sizeof(uint8_t) * 256);
+  memset(pal.treeSplitElt, 0, sizeof(uint8_t) * 256);
+  memset(pal.treeSplit, 0, sizeof(uint8_t) * 256);
+
   GifMakePalette((dither ? NULL : oldImage), image, width, height, bitDepth,
                  dither, &pal);
 
