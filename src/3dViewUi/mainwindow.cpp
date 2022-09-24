@@ -277,6 +277,8 @@ void MainWindow::handleOpenFile() {
       QByteArray ba = fileName.toLocal8Bit();
       char *input = ba.data();
       // Парсим файл
+      s21_destroy_obj_data(&ui->OGLwidget->rawObjData);
+      s21_destroy_obj_data(&ui->OGLwidget->rawObjDataCPU);
       s21_parser_result code =
           s21_parse_file(input, &ui->OGLwidget->rawObjData, S21_TRUE);
       if (code == S21_PARSER_OK) {
