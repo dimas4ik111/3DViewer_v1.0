@@ -521,11 +521,11 @@ void MainWindow::createGif() {
                               .constBits(),
                           640, 480, 10, 8, false)) {
         } else {
-          QMessageBox::critical(0, "Ошибка", "Что то пошло не так!");
+          QMessageBox::critical(0, "Error", "Gif file can not be create!d");
           err = 1;
         }
       } else {
-        QMessageBox::critical(0, "Ошибка", "Что то пошло не так!");
+        QMessageBox::critical(0, "Error", "Gif file can not be created!");
         err = 1;
       }
     }
@@ -534,7 +534,7 @@ void MainWindow::createGif() {
     }
   } else {
     err = 1;
-    QMessageBox::critical(0, "Ошибка", "Что то пошло не так!");
+    QMessageBox::critical(0, "Error", "Gif file can not be created!");
   }
 
   if (err == 1) {
