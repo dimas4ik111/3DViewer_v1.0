@@ -34,9 +34,9 @@ class MainWindow : public QMainWindow {
   void xMoveTextEdit();
   void yMoveTextEdit();
   void zMoveTextEdit();
-  void xTextEdit();
-  void yTextEdit();
-  void zTextEdit();
+  void xRotateTextEdit();
+  void yRotateTextEdit();
+  void zRotateTextEdit();
   void zoomTextEdit();
   void linesTypeSolid();
   void linesTypeDashed();
@@ -48,9 +48,9 @@ class MainWindow : public QMainWindow {
   void EnableCPUMode();
   void EnableRotateAxesMode();
   void EnableRotateModelMode();
-  void xSliderValueChanged(int value);
-  void ySliderValueChanged(int value);
-  void zSliderValueChanged(int value);
+  void xRotateValueChanged(int value);
+  void yRotateValueChanged(int value);
+  void zRotateValueChanged(int value);
   void xMoveSliderValueChanged(int value);
   void yMoveSliderValueChanged(int value);
   void zMoveSliderValueChanged(int value);

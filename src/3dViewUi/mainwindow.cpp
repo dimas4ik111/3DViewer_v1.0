@@ -26,20 +26,20 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::sliderSetUp() {
-  ui->xSlider->setRange(0, 360 * 16);
-  ui->xSlider->setSingleStep(16);
-  ui->xSlider->setPageStep(15 * 16);
-  ui->xSlider->setTickInterval(15 * 16);
+  ui->xRotate->setRange(0, 360 * 16);
+  ui->xRotate->setSingleStep(16);
+  ui->xRotate->setPageStep(15 * 16);
+  ui->xRotate->setTickInterval(15 * 16);
 
-  ui->ySlider->setRange(0, 360 * 16);
-  ui->ySlider->setSingleStep(16);
-  ui->ySlider->setPageStep(15 * 16);
-  ui->ySlider->setTickInterval(15 * 16);
+  ui->yRotate->setRange(0, 360 * 16);
+  ui->yRotate->setSingleStep(16);
+  ui->yRotate->setPageStep(15 * 16);
+  ui->yRotate->setTickInterval(15 * 16);
 
-  ui->zSlider->setRange(0, 360 * 16);
-  ui->zSlider->setSingleStep(16);
-  ui->zSlider->setPageStep(15 * 16);
-  ui->zSlider->setTickInterval(15 * 16);
+  ui->zRotate->setRange(0, 360 * 16);
+  ui->zRotate->setSingleStep(16);
+  ui->zRotate->setPageStep(15 * 16);
+  ui->zRotate->setTickInterval(15 * 16);
 
   ui->xMove->setRange(0, 100);
   ui->xMove->setSingleStep(1);
@@ -77,23 +77,24 @@ void MainWindow::connectSetUp() {
   connect(ui->zMText, SIGNAL(editingFinished()), (this), SLOT(zMoveTextEdit()));
   // для слайдеров вращения
   // по X
-  connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget,
+  connect(ui->xRotate, &QSlider::valueChanged, ui->OGLwidget,
           &GLWidget::setXRotation);
-  connect(ui->OGLwidget, &GLWidget::xRotationChanged, ui->xSlider,
+  connect(ui->OGLwidget, &GLWidget::xRotationChanged, ui->xRotate,
           &QSlider::setValue);
-  connect(ui->xText, SIGNAL(editingFinished()), (this), SLOT(xTextEdit()));
+  connect(ui->xRotateText, SIGNAL(editingFinished()), (this),
+          SLOT(xRotateTextEdit()));
   // По Y
-  connect(ui->ySlider, &QSlider::valueChanged, ui->OGLwidget,
+  connect(ui->yRotate, &QSlider::valueChanged, ui->OGLwidget,
           &GLWidget::setYRotation);
-  connect(ui->OGLwidget, &GLWidget::yRotationChanged, ui->ySlider,
+  connect(ui->OGLwidget, &GLWidget::yRotationChanged, ui->yRotate,
           &QSlider::setValue);
-  connect(ui->yText, SIGNAL(editingFinished()), (this), SLOT(yTextEdit()));
+  connect(ui->yRotateText, SIGNAL(editingFinished()), (this), SLOT(yRotateTextEdit()));
   // По Z
-  connect(ui->zSlider, &QSlider::valueChanged, ui->OGLwidget,
+  connect(ui->zRotate, &QSlider::valueChanged, ui->OGLwidget,
           &GLWidget::setZRotation);
-  connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zSlider,
+  connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zRotate,
           &QSlider::setValue);
-  connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
+  connect(ui->zRotateText, SIGNAL(editingFinished()), (this), SLOT(zRotateTextEdit()));
   // Режим вращения
   connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this),
           &MainWindow::EnableRotateAxesMode);
@@ -148,12 +149,12 @@ void MainWindow::connectSetUp() {
   // Кнопка открытия obj-файла для парсинга
   connect(ui->openObjButton, SIGNAL(clicked()), this, SLOT(handleOpenFile()));
   // Обновление текстовых полей вращения
-  connect(ui->xSlider, &QSlider::valueChanged, (this),
-          &MainWindow::xSliderValueChanged);
-  connect(ui->ySlider, &QSlider::valueChanged, (this),
-          &MainWindow::ySliderValueChanged);
-  connect(ui->zSlider, &QSlider::valueChanged, (this),
-          &MainWindow::zSliderValueChanged);
+  connect(ui->xRotate, &QSlider::valueChanged, (this),
+          &MainWindow::xRotateValueChanged);
+  connect(ui->yRotate, &QSlider::valueChanged, (this),
+          &MainWindow::yRotateValueChanged);
+  connect(ui->zRotate, &QSlider::valueChanged, (this),
+          &MainWindow::zRotateValueChanged);
   // Обновление текстовых полей движения
   connect(ui->xMove, &QSlider::valueChanged, (this),
           &MainWindow::xMoveSliderValueChanged);
@@ -176,16 +177,16 @@ void MainWindow::connectSetUp() {
 }
 
 void MainWindow::defSliders() {
-  ui->xSlider->setValue(360 * 8);
-  ui->ySlider->setValue(360 * 8);
-  ui->zSlider->setValue(360 * 8);
+  ui->xRotate->setValue(360 * 8);
+  ui->yRotate->setValue(360 * 8);
+  ui->zRotate->setValue(360 * 8);
   ui->zoomSlider->setValue(30);
   ui->xMove->setValue(50);
   ui->yMove->setValue(50);
   ui->zMove->setValue(50);
-  ui->xText->setText(QString::number(0));
-  ui->yText->setText(QString::number(0));
-  ui->zText->setText(QString::number(0));
+  ui->xRotateText->setText(QString::number(0));
+  ui->yRotateText->setText(QString::number(0));
+  ui->zRotateText->setText(QString::number(0));
 }
 
 void MainWindow::defaultSettings() {
@@ -293,22 +294,22 @@ int valNormalize(int val) {
   return val;
 }
 
-void MainWindow::xTextEdit() {
-  int val = ui->xText->text().toInt();
+void MainWindow::xRotateTextEdit() {
+  int val = ui->xRotateText->text().toInt();
   val += 180;
   val = valNormalize(val);
   ui->OGLwidget->setXRotation(val * 16);
 }
 
-void MainWindow::yTextEdit() {
-  int val = ui->yText->text().toInt();
+void MainWindow::yRotateTextEdit() {
+  int val = ui->yRotateText->text().toInt();
   val += 180;
   val = valNormalize(val);
   ui->OGLwidget->setYRotation(val * 16);
 }
 
-void MainWindow::zTextEdit() {
-  int val = ui->zText->text().toInt();
+void MainWindow::zRotateTextEdit() {
+  int val = ui->zRotateText->text().toInt();
   val += 180;
   val = valNormalize(val);
   ui->OGLwidget->setZRotation(val * 16);
@@ -396,16 +397,16 @@ void MainWindow::projectionCentral() {
   ui->OGLwidget->update();
 }
 
-void MainWindow::xSliderValueChanged(int value) {
-  ui->xText->setText(QString::number(-180 + value / 16));
+void MainWindow::xRotateValueChanged(int value) {
+  ui->xRotateText->setText(QString::number(-180 + value / 16));
 }
 
-void MainWindow::ySliderValueChanged(int value) {
-  ui->yText->setText(QString::number(-180 + value / 16));
+void MainWindow::yRotateValueChanged(int value) {
+  ui->yRotateText->setText(QString::number(-180 + value / 16));
 }
 
-void MainWindow::zSliderValueChanged(int value) {
-  ui->zText->setText(QString::number(-180 + value / 16));
+void MainWindow::zRotateValueChanged(int value) {
+  ui->zRotateText->setText(QString::number(-180 + value / 16));
 }
 
 void MainWindow::zoomSliderValueChanged(int value) {

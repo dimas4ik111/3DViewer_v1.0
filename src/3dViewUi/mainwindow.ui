@@ -348,7 +348,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSlider" name="xSlider">
+                <widget class="QSlider" name="xRotate">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -361,7 +361,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="xText">
+                <widget class="QLineEdit" name="xRotateText">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -414,7 +414,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSlider" name="ySlider">
+                <widget class="QSlider" name="yRotate">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -427,7 +427,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="yText">
+                <widget class="QLineEdit" name="yRotateText">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -480,7 +480,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSlider" name="zSlider">
+                <widget class="QSlider" name="zRotate">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -493,7 +493,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="zText">
+                <widget class="QLineEdit" name="zRotateText">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
