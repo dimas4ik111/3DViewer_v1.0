@@ -32,8 +32,8 @@ void s21_rotate_x(s21_obj_data *data, float angle) {
     float y = data->array_of_v[i + 1];
     float z = data->array_of_v[i + 2];
 
-    data->array_of_v[i + 1] = y * cos(angle) - z * sin(angle);
-    data->array_of_v[i + 2] = y * sin(angle) + z * cos(angle);
+    data->array_of_v[i + 1] = y * (float)cos(angle) - z * (float)sin(angle);
+    data->array_of_v[i + 2] = y * (float)sin(angle) + z * (float)cos(angle);
   }
 }
 
@@ -43,8 +43,8 @@ void s21_rotate_y(s21_obj_data *data, float angle) {
     float x = data->array_of_v[i];
     float z = data->array_of_v[i + 2];
 
-    data->array_of_v[i] = x * cos(angle) + z * sin(angle);
-    data->array_of_v[i + 2] = -x * sin(angle) + z * cos(angle);
+    data->array_of_v[i] = x * (float)cos(angle) + z * (float)sin(angle);
+    data->array_of_v[i + 2] = -x * (float)sin(angle) + z * (float)cos(angle);
   }
 }
 
@@ -54,9 +54,11 @@ void s21_rotate_z(s21_obj_data *data, float angle) {
     float x = data->array_of_v[i];
     float y = data->array_of_v[i + 1];
 
-    data->array_of_v[i] = x * cos(angle) - y * sin(angle);
-    data->array_of_v[i + 1] = x * sin(angle) + y * cos(angle);
+    data->array_of_v[i] = x * (float)cos(angle) - y * (float)sin(angle);
+    data->array_of_v[i + 1] = x * (float)sin(angle) + y * (float)cos(angle);
   }
 }
 
-float s21_degres_to_radians(float angle) { return angle * M_PI / 180; }
+float s21_degres_to_radians(float angle) {
+  return (float)(angle * M_PI / 180.0f);
+}
