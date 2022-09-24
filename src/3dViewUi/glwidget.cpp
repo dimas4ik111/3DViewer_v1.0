@@ -480,13 +480,13 @@ void GLWidget::handleErrorByCode(s21_parser_result code) {
   if (code != S21_PARSER_OK) {
     switch (code) {
       case S21_PARSER_ERROR_FILE:
-        QMessageBox::critical(0, "Ошибка", "Выбран некорректный файл");
+        QMessageBox::critical(0, "Error", "Incorrect file!");
         break;
       case S21_PARSER_ERROR_MEMORY:
-        QMessageBox::critical(0, "Ошибка", "Ошибка выделения памяти");
+        QMessageBox::critical(0, "Error", "Memory allocation error!");
         break;
       default:
-        QMessageBox::critical(0, "Ошибка", "Неизвестная ошибка");
+        QMessageBox::critical(0, "Error", "Unknown error!");
         break;
     }
   }
