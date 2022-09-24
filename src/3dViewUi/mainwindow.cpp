@@ -474,7 +474,6 @@ void MainWindow::createScreenshot() {
   } else if (QString::compare(butVal, "gif", Qt::CaseInsensitive) == 0) {
     ui->btn_screen_gif->setEnabled(false);
     pathDir->mkdir(pathProject + "/screenshots/gif_obj/");
-    QSize pic_size(640, 480);
     startTime = 0, tmpTime = 1000 / GifFps;
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(oneGif()));
