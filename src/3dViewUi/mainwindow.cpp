@@ -15,128 +15,164 @@ MainWindow::MainWindow(QWidget *parent)
   ui->setupUi(this);
 
   sliderSetUp();
+  connectSetUp();
+  defaultSettings();
+  ui->OGLwidget->update();
+}
 
-  connect(ui->openObjButton, SIGNAL(clicked()), this, SLOT(handleOpenFile()));
+MainWindow::~MainWindow() {
+  saveSettings();
+  delete ui;
+}
 
-  // slider rotate val
-  // x
+void MainWindow::sliderSetUp() {
+  ui->xSlider->setRange(0, 360 * 16);
+  ui->xSlider->setSingleStep(16);
+  ui->xSlider->setPageStep(15 * 16);
+  ui->xSlider->setTickInterval(15 * 16);
+
+  ui->ySlider->setRange(0, 360 * 16);
+  ui->ySlider->setSingleStep(16);
+  ui->ySlider->setPageStep(15 * 16);
+  ui->ySlider->setTickInterval(15 * 16);
+
+  ui->zSlider->setRange(0, 360 * 16);
+  ui->zSlider->setSingleStep(16);
+  ui->zSlider->setPageStep(15 * 16);
+  ui->zSlider->setTickInterval(15 * 16);
+
+  ui->xMove->setRange(0, 100);
+  ui->xMove->setSingleStep(1);
+
+  ui->yMove->setRange(0, 100);
+  ui->yMove->setSingleStep(1);
+
+  ui->zMove->setRange(0, 100);
+  ui->zMove->setSingleStep(1);
+
+  ui->zoomSlider->setRange(1, 300);
+  ui->zMove->setSingleStep(1);
+
+  ui->vertexSizeSlider->setRange(1, 25);
+  ui->vertexSizeSlider->setSingleStep(1);
+
+  ui->linesSizeSlider->setRange(1, 20);
+  ui->linesSizeSlider->setSingleStep(1);
+}
+
+void MainWindow::connectSetUp() {
+  // Соединяем сигналы и слоты
+  // для слайдеров движения
+  // по X
+  connect(ui->xMove, &QSlider::valueChanged, ui->OGLwidget,
+          &GLWidget::setXMove);
+  connect(ui->xMText, SIGNAL(editingFinished()), (this), SLOT(xMoveTextEdit()));
+  // По Y
+  connect(ui->yMove, &QSlider::valueChanged, ui->OGLwidget,
+          &GLWidget::setYMove);
+  connect(ui->yMText, SIGNAL(editingFinished()), (this), SLOT(yMoveTextEdit()));
+  // По Z
+  connect(ui->zMove, &QSlider::valueChanged, ui->OGLwidget,
+          &GLWidget::setZMove);
+  connect(ui->zMText, SIGNAL(editingFinished()), (this), SLOT(zMoveTextEdit()));
+  // для слайдеров вращения
+  // по X
   connect(ui->xSlider, &QSlider::valueChanged, ui->OGLwidget,
           &GLWidget::setXRotation);
   connect(ui->OGLwidget, &GLWidget::xRotationChanged, ui->xSlider,
           &QSlider::setValue);
   connect(ui->xText, SIGNAL(editingFinished()), (this), SLOT(xTextEdit()));
-  // y
+  // По Y
   connect(ui->ySlider, &QSlider::valueChanged, ui->OGLwidget,
           &GLWidget::setYRotation);
   connect(ui->OGLwidget, &GLWidget::yRotationChanged, ui->ySlider,
           &QSlider::setValue);
   connect(ui->yText, SIGNAL(editingFinished()), (this), SLOT(yTextEdit()));
-  // z
+  // По Z
   connect(ui->zSlider, &QSlider::valueChanged, ui->OGLwidget,
           &GLWidget::setZRotation);
   connect(ui->OGLwidget, &GLWidget::zRotationChanged, ui->zSlider,
           &QSlider::setValue);
   connect(ui->zText, SIGNAL(editingFinished()), (this), SLOT(zTextEdit()));
-
-  // slider line size
-  connect(ui->linesSizeSlider, &QSlider::valueChanged, (this),
-          &MainWindow::linesSizeSliderChanged);
-
-  // slider move val
-  // x
-  connect(ui->xMove, &QSlider::valueChanged, ui->OGLwidget,
-          &GLWidget::setXMove);
-  connect(ui->xMText, SIGNAL(editingFinished()), (this), SLOT(xMoveTextEdit()));
-
-  connect(ui->yMove, &QSlider::valueChanged, ui->OGLwidget,
-          &GLWidget::setYMove);
-  connect(ui->yMText, SIGNAL(editingFinished()), (this), SLOT(yMoveTextEdit()));
-
-  connect(ui->zMove, &QSlider::valueChanged, ui->OGLwidget,
-          &GLWidget::setZMove);
-  connect(ui->zMText, SIGNAL(editingFinished()), (this), SLOT(zMoveTextEdit()));
-
-  // zoom slider
+  // Режим вращения
+  connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this),
+          &MainWindow::EnableRotateAxesMode);
+  connect(ui->RotateModelRadio, &QRadioButton::pressed, (this),
+          &MainWindow::EnableRotateModelMode);
+  // Для слайдера масштабированя
   connect(ui->zoomSlider, &QSlider::valueChanged, ui->OGLwidget,
           &GLWidget::setZoom);
   connect(ui->zoomText, SIGNAL(editingFinished()), (this),
           SLOT(zoomTextEdit()));
-
-  // slider value in to text line
-  connect(ui->xSlider, &QSlider::valueChanged, (this),
-          &MainWindow::xSliderValueChanged);
-  connect(ui->ySlider, &QSlider::valueChanged, (this),
-          &MainWindow::ySliderValueChanged);
-  connect(ui->zSlider, &QSlider::valueChanged, (this),
-          &MainWindow::zSliderValueChanged);
-
-  connect(ui->xMove, &QSlider::valueChanged, (this),
-          &MainWindow::xMoveSliderValueChanged);
-  connect(ui->yMove, &QSlider::valueChanged, (this),
-          &MainWindow::yMoveSliderValueChanged);
-  connect(ui->zMove, &QSlider::valueChanged, (this),
-          &MainWindow::zMoveSliderValueChanged);
-
-  connect(ui->zoomSlider, &QSlider::valueChanged, (this),
-          &MainWindow::zoomSliderValueChanged);
-
-  // reset all val
-  connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
-
-  // screenshot
-  connect(ui->btn_screen_bmp, SIGNAL(released()), (this),
-          SLOT(createScreenshot()));
-  connect(ui->btn_screen_jpg, SIGNAL(released()), (this),
-          SLOT(createScreenshot()));
-  connect(ui->btn_screen_gif, SIGNAL(released()), (this),
-          SLOT(createScreenshot()));
-
-  // vertex size
+  // Для выбора типа проекции
+  connect(ui->projectionParallel, &QRadioButton::pressed, (this),
+          &MainWindow::projectionParallel);
+  connect(ui->projectionCentral, &QRadioButton::pressed, (this),
+          &MainWindow::projectionCentral);
+  // Для настройки ребер
+  // Внешний вид
+  connect(ui->solidEdges, &QRadioButton::pressed, (this),
+          &MainWindow::linesTypeSolid);
+  connect(ui->dashedEdges, &QRadioButton::pressed, (this),
+          &MainWindow::linesTypeDashed);
+  // Толщина
+  connect(ui->linesSizeSlider, &QSlider::valueChanged, (this),
+          &MainWindow::linesSizeSliderChanged);
+  // Цвет
+  connect(ui->colorEdges, SIGNAL(released()), (this),
+          SLOT(edgesColorChanged()));
+  // Для настройки вершин
+  // Размер
   connect(ui->vertexSizeSlider, &QSlider::valueChanged, (this),
           &MainWindow::vertexSize);
-
-  // vertex view
+  // Внешний вид
   connect(ui->disableView, &QRadioButton::pressed, (this),
           &MainWindow::DisableView);
   connect(ui->circleView, &QRadioButton::pressed, (this),
           &MainWindow::CircleView);
   connect(ui->squareView, &QRadioButton::pressed, (this),
           &MainWindow::SquareView);
-
-  // lines view
-  connect(ui->solidEdges, &QRadioButton::pressed, (this),
-          &MainWindow::linesTypeSolid);
-  connect(ui->dashedEdges, &QRadioButton::pressed, (this),
-          &MainWindow::linesTypeDashed);
-
-  // CPU / GPU
+  // Цвет
+  connect(ui->colorVertex, SIGNAL(released()), (this),
+          SLOT(vertexColorChanged()));
+  // Цвет Фона
+  connect(ui->widgetBackGroundColor, SIGNAL(released()), (this),
+          SLOT(backgroundColorChanged()));
+  // CPU/GPU
   connect(ui->CalcModeGPURadio, &QRadioButton::pressed, (this),
           &MainWindow::EnableGPUMode);
   connect(ui->CalcModeCPURadio, &QRadioButton::pressed, (this),
           &MainWindow::EnableCPUMode);
-
-  // Rotate
-  connect(ui->RotateAxesRadio, &QRadioButton::pressed, (this),
-          &MainWindow::EnableRotateAxesMode);
-  connect(ui->RotateModelRadio, &QRadioButton::pressed, (this),
-          &MainWindow::EnableRotateModelMode);
-
-  // projection select
-  connect(ui->projectionParallel, &QRadioButton::pressed, (this),
-          &MainWindow::projectionParallel);
-  connect(ui->projectionCentral, &QRadioButton::pressed, (this),
-          &MainWindow::projectionCentral);
-
-  // colors
-  connect(ui->colorEdges, SIGNAL(released()), (this),
-          SLOT(edgesColorChanged()));
-  connect(ui->colorVertex, SIGNAL(released()), (this),
-          SLOT(vertexColorChanged()));
-  connect(ui->widgetBackGroundColor, SIGNAL(released()), (this),
-          SLOT(backgroundColorChanged()));
-
-  defaultSettings();
-  ui->OGLwidget->update();
+  // Сбросить настройки
+  connect(ui->resetButton, SIGNAL(released()), (this), SLOT(resetValue()));
+  // Кнопка открытия obj-файла для парсинга
+  connect(ui->openObjButton, SIGNAL(clicked()), this, SLOT(handleOpenFile()));
+  // Обновление текстовых полей вращения
+  connect(ui->xSlider, &QSlider::valueChanged, (this),
+          &MainWindow::xSliderValueChanged);
+  connect(ui->ySlider, &QSlider::valueChanged, (this),
+          &MainWindow::ySliderValueChanged);
+  connect(ui->zSlider, &QSlider::valueChanged, (this),
+          &MainWindow::zSliderValueChanged);
+  // Обновление текстовых полей движения
+  connect(ui->xMove, &QSlider::valueChanged, (this),
+          &MainWindow::xMoveSliderValueChanged);
+  connect(ui->yMove, &QSlider::valueChanged, (this),
+          &MainWindow::yMoveSliderValueChanged);
+  connect(ui->zMove, &QSlider::valueChanged, (this),
+          &MainWindow::zMoveSliderValueChanged);
+  // Обновление текстовых полей масштабирования
+  connect(ui->zoomSlider, &QSlider::valueChanged, (this),
+          &MainWindow::zoomSliderValueChanged);
+  // Создать BMP
+  connect(ui->btn_screen_bmp, SIGNAL(released()), (this),
+          SLOT(createScreenshot()));
+  // Создать JPG
+  connect(ui->btn_screen_jpg, SIGNAL(released()), (this),
+          SLOT(createScreenshot()));
+  // Создать GIF
+  connect(ui->btn_screen_gif, SIGNAL(released()), (this),
+          SLOT(createScreenshot()));
 }
 
 void MainWindow::defSliders() {
@@ -245,57 +281,6 @@ void MainWindow::saveSettings() {
   settings.beginGroup("proection");
   settings.setValue("mode", ui->OGLwidget->projectionMode);
   settings.endGroup();
-}
-
-MainWindow::~MainWindow() {
-  saveSettings();
-  delete ui;
-  //    settings.setValue( "y", ui->OGLwidget->y());
-}
-
-void MainWindow::handleOpenFile() {
-  // Определяем класс диалогового окна выбора файла
-  QFileDialog *fileDialog = new QFileDialog(this);
-  // Определяем заголовок окна
-  fileDialog->setWindowTitle(tr("Выберите .obj-файл"));
-  // Устанавливаем путь к файлу по умолчанию
-  // fileDialog->setDirectory(QDir::homePath());
-  // Устанавливаем фильтр файлов
-  fileDialog->setNameFilter(tr("(*.obj)"));
-  // Устанавливаем режим просмотра
-  fileDialog->setViewMode(QFileDialog::Detail);
-  // Режим: выбор только существующего файла
-  fileDialog->setFileMode(QFileDialog::ExistingFile);
-  // Вызываем диалог
-  QStringList fileNames;
-  if (fileDialog->exec()) {
-    fileNames = fileDialog->selectedFiles();
-    // В случае успеха и если что-то выбрано
-    if (fileNames.size() > 0) {
-      QString fileName = fileNames.at(0);
-      qDebug() << "Выбран файл: " << fileName;
-      QByteArray ba = fileName.toLocal8Bit();
-      char *input = ba.data();
-      // Парсим файл
-      s21_destroy_obj_data(&ui->OGLwidget->rawObjData);
-      s21_destroy_obj_data(&ui->OGLwidget->rawObjDataCPU);
-      s21_parser_result code =
-          s21_parse_file(input, &ui->OGLwidget->rawObjData, S21_TRUE);
-      if (code == S21_PARSER_OK) {
-        // Пишем путь до файла в статусбар приложения
-        ui->statusbar->showMessage("Выбран файл: " + fileName);
-        // Инициализируем буфферы OpenGL распарсенными данным
-        defSliders();
-        ui->OGLwidget->initBuffers();
-        ui->numberOfEdges->setText(
-            QString::number(ui->OGLwidget->numberOfEdges));
-        ui->numberOfVerticies->setText(
-            QString::number(ui->OGLwidget->numberOfVerticies));
-      } else {
-        GLWidget::handleErrorByCode(code);
-      }
-    }
-  }
 }
 
 int valNormalize(int val) {
@@ -450,6 +435,99 @@ void MainWindow::zoomTextEdit() {
   ui->zoomSlider->setValue(val);
 }
 
+void MainWindow::edgesColorChanged() {
+  QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+  if (color.isValid()) {
+    ui->OGLwidget->lineColor = color;
+    updateUiColors();
+  }
+}
+
+void MainWindow::vertexColorChanged() {
+  QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+  if (color.isValid()) {
+    ui->OGLwidget->pointColor = color;
+    updateUiColors();
+  }
+}
+
+void MainWindow::backgroundColorChanged() {
+  QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
+  if (color.isValid()) {
+    ui->OGLwidget->backgroundColor = color;
+    updateUiColors();
+  }
+}
+
+void MainWindow::updateUiColors() {
+  ui->boxBackGroundColor->setAutoFillBackground(true);
+  ui->boxBackGroundColor->setStyleSheet(
+      QString("border-style: solid; border-width: 1px; border-color: black; "
+              "padding-top: 3px; background-color: rgb(%1, %2, %3);")
+          .arg(ui->OGLwidget->backgroundColor.red())
+          .arg(ui->OGLwidget->backgroundColor.green())
+          .arg(ui->OGLwidget->backgroundColor.blue()));
+  ui->boxEdgesColor->setAutoFillBackground(true);
+  ui->boxEdgesColor->setStyleSheet(
+      QString("border-style: solid; border-width: 1px; border-color: black; "
+              "padding-top: 3px; background-color: rgb(%1, %2, %3);")
+          .arg(ui->OGLwidget->lineColor.red())
+          .arg(ui->OGLwidget->lineColor.green())
+          .arg(ui->OGLwidget->lineColor.blue()));
+  ui->boxVertexColor->setAutoFillBackground(true);
+  ui->boxVertexColor->setStyleSheet(
+      QString("border-style: solid; border-width: 1px; border-color: black; "
+              "padding-top: 3px; background-color: rgb(%1, %2, %3);")
+          .arg(ui->OGLwidget->pointColor.red())
+          .arg(ui->OGLwidget->pointColor.green())
+          .arg(ui->OGLwidget->pointColor.blue()));
+  ui->OGLwidget->update();
+}
+
+void MainWindow::handleOpenFile() {
+  // Определяем класс диалогового окна выбора файла
+  QFileDialog *fileDialog = new QFileDialog(this);
+  // Определяем заголовок окна
+  fileDialog->setWindowTitle(tr("Выберите .obj-файл"));
+  // Устанавливаем путь к файлу по умолчанию
+  // fileDialog->setDirectory(QDir::homePath());
+  // Устанавливаем фильтр файлов
+  fileDialog->setNameFilter(tr("(*.obj)"));
+  // Устанавливаем режим просмотра
+  fileDialog->setViewMode(QFileDialog::Detail);
+  // Режим: выбор только существующего файла
+  fileDialog->setFileMode(QFileDialog::ExistingFile);
+  // Вызываем диалог
+  QStringList fileNames;
+  if (fileDialog->exec()) {
+    fileNames = fileDialog->selectedFiles();
+    // В случае успеха и если что-то выбрано
+    if (fileNames.size() > 0) {
+      QString fileName = fileNames.at(0);
+      QByteArray ba = fileName.toLocal8Bit();
+      char *input = ba.data();
+      // Парсим файл
+      s21_destroy_obj_data(&ui->OGLwidget->rawObjData);
+      s21_destroy_obj_data(&ui->OGLwidget->rawObjDataCPU);
+      s21_parser_result code =
+          s21_parse_file(input, &ui->OGLwidget->rawObjData, S21_TRUE);
+      if (code == S21_PARSER_OK) {
+        // Пишем путь до файла в статусбар приложения
+        ui->statusbar->showMessage("Выбран файл: " + fileName);
+        // Инициализируем буфферы OpenGL распарсенными данным
+        defSliders();
+        ui->OGLwidget->initBuffers();
+        ui->numberOfEdges->setText(
+            QString::number(ui->OGLwidget->numberOfEdges));
+        ui->numberOfVerticies->setText(
+            QString::number(ui->OGLwidget->numberOfVerticies));
+      } else {
+        GLWidget::handleErrorByCode(code);
+      }
+    }
+  }
+}
+
 void MainWindow::createScreenshot() {
   QPushButton *btn = (QPushButton *)sender();
   QString butVal = btn->text();
@@ -546,88 +624,4 @@ void MainWindow::createGif() {
   pathFile.setPath(pathProject + "/screenshots/gif_obj/");
   pathFile.removeRecursively();
   ui->btn_screen_gif->setEnabled(true);
-}
-
-void MainWindow::sliderSetUp() {
-  ui->xSlider->setRange(0, 360 * 16);
-  ui->xSlider->setSingleStep(16);
-  ui->xSlider->setPageStep(15 * 16);
-  ui->xSlider->setTickInterval(15 * 16);
-
-  ui->ySlider->setRange(0, 360 * 16);
-  ui->ySlider->setSingleStep(16);
-  ui->ySlider->setPageStep(15 * 16);
-  ui->ySlider->setTickInterval(15 * 16);
-
-  ui->zSlider->setRange(0, 360 * 16);
-  ui->zSlider->setSingleStep(16);
-  ui->zSlider->setPageStep(15 * 16);
-  ui->zSlider->setTickInterval(15 * 16);
-
-  ui->xMove->setRange(0, 100);
-  ui->xMove->setSingleStep(1);
-
-  ui->yMove->setRange(0, 100);
-  ui->yMove->setSingleStep(1);
-
-  ui->zMove->setRange(0, 100);
-  ui->zMove->setSingleStep(1);
-
-  ui->zoomSlider->setRange(1, 300);
-  ui->zMove->setSingleStep(1);
-
-  ui->vertexSizeSlider->setRange(1, 25);
-  ui->vertexSizeSlider->setSingleStep(1);
-
-  ui->linesSizeSlider->setRange(1, 20);
-  ui->linesSizeSlider->setSingleStep(1);
-}
-
-void MainWindow::edgesColorChanged() {
-  QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
-  if (color.isValid()) {
-    ui->OGLwidget->lineColor = color;
-    updateUiColors();
-  }
-}
-
-void MainWindow::vertexColorChanged() {
-  QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
-  if (color.isValid()) {
-    ui->OGLwidget->pointColor = color;
-    updateUiColors();
-  }
-}
-
-void MainWindow::backgroundColorChanged() {
-  QColor color = QColorDialog::getColor(Qt::white, this, "Choose color");
-  if (color.isValid()) {
-    ui->OGLwidget->backgroundColor = color;
-    updateUiColors();
-  }
-}
-
-void MainWindow::updateUiColors() {
-  ui->boxBackGroundColor->setAutoFillBackground(true);
-  ui->boxBackGroundColor->setStyleSheet(
-      QString("border-style: solid; border-width: 1px; border-color: black; "
-              "padding-top: 3px; background-color: rgb(%1, %2, %3);")
-          .arg(ui->OGLwidget->backgroundColor.red())
-          .arg(ui->OGLwidget->backgroundColor.green())
-          .arg(ui->OGLwidget->backgroundColor.blue()));
-  ui->boxEdgesColor->setAutoFillBackground(true);
-  ui->boxEdgesColor->setStyleSheet(
-      QString("border-style: solid; border-width: 1px; border-color: black; "
-              "padding-top: 3px; background-color: rgb(%1, %2, %3);")
-          .arg(ui->OGLwidget->lineColor.red())
-          .arg(ui->OGLwidget->lineColor.green())
-          .arg(ui->OGLwidget->lineColor.blue()));
-  ui->boxVertexColor->setAutoFillBackground(true);
-  ui->boxVertexColor->setStyleSheet(
-      QString("border-style: solid; border-width: 1px; border-color: black; "
-              "padding-top: 3px; background-color: rgb(%1, %2, %3);")
-          .arg(ui->OGLwidget->pointColor.red())
-          .arg(ui->OGLwidget->pointColor.green())
-          .arg(ui->OGLwidget->pointColor.blue()));
-  ui->OGLwidget->update();
 }
